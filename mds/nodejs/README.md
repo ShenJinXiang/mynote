@@ -12,5 +12,5 @@
  3.3 [Node.js包管理器 npm](./Node.js模块和包.md#Node.js包管理器 npm)    
 4. [事件处理](./Node.js中的事件处理.md)    
  4.1 [例子](./Node.js中的事件处理.md#一个简单的例子)    
- 4.2 [EventEmitter常用API](./Node.js中的事件处理.md#EventEmitter常用API)
- 4.3 [模仿events](./Node.js中的事件处理.md#模仿events)
+ 4.2 [EventEmitter常用API](./Node.js中的事件处理.md#EventEmitter常用API)    
+ 4.3 [模仿events](./Node.js中的事件处理.md#模仿events)    
