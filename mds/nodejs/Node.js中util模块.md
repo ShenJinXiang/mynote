@@ -165,7 +165,7 @@ util.isRegExp({})
 // false
 ```
 
-## <span id='isDate'>util.isDate(object)</span>
+## util.isDate(object)
 如果给定的参数 "object" 是一个日期返回true，否则返回false
 
 ### 例子
