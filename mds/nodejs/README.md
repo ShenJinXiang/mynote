@@ -15,3 +15,4 @@
  4.2 [EventEmitter常用API](./Node.js中的事件处理.md#EventEmitter常用API)    
  4.3 [模仿events](./Node.js中的事件处理.md#模仿events)    
 5. [util模块](./Node.js中util模块.md)    
+ 5.1 [util.isDate](./Node.js中util模块.md#isDate)
