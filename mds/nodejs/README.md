@@ -1,5 +1,5 @@
 # Node.js
-1. [Nodejs总结：安装与使用](./Nodejs总结：安装与使用.md)
+1. [安装与使用](./安装与使用.md)
 2. [Node.js中常见的全局对象](./Node.js中常见的全局对象.md)    
  2.1 [console](./Node.js中常见的全局对象.md#console)    
  2.2 [process](./Node.js中常见的全局对象.md#process)    
