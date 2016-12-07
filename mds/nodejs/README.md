@@ -6,3 +6,7 @@
  2.3 [__filename](./Node.js中常见的全局对象.md#__filename)    
  2.4 [__dirname](./Node.js中常见的全局对象.md#__dirname)    
  2.4 [定时器函数](./Node.js中常见的全局对象.md#定时器函数)    
+3. [Node.js模块和包](./Node.js模块和包.md)    
+ 3.1 [创建模块和加载模块](./Node.js模块和包.md#创建模块和加载模块)    
+ 3.2 [包](./Node.js模块和包.md#包)    
+ 3.3 [Node.js包管理器 npm](./Node.js模块和包.md#Node.js包管理器 npm)    
