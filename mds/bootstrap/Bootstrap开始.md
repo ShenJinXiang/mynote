@@ -6,37 +6,13 @@ Bootstrap 安装很简单直接去[官网](http://www.bootcss.com)下载即可�
 ### 生产环境版本
 下载完压缩包，解压以后的目录解构是这样的：
 
-bootstrap/    
-├── css/    
-│   ├── bootstrap.css    
-│   ├── bootstrap.min.css    
-│   ├── bootstrap-theme.css    
-│   └── bootstrap-theme.min.css    
-├── js/    
-│   ├── bootstrap.js    
-│   └── bootstrap.min.js    
-└── fonts/    
-    ├── glyphicons-halflings-regular.eot    
-    ├── glyphicons-halflings-regular.svg    
-    ├── glyphicons-halflings-regular.ttf    
-    └── glyphicons-halflings-regular.woff    
-
+![](./img/0001.png)
 可以看到包含已经编译的css和js文件，包括压缩版和未压缩版。同时也包含了 Glyphicons 的字体
 
 ### 源码版本
 如果下载的是源码，目录结构为:
 
-bootstrap/    
-├── less/    
-├── js/    
-├── fonts/    
-├── dist/    
-│   ├── css/    
-│   ├── js/    
-│   └── fonts/    
-└── docs/    
-    └── examples/    
-
+![](./img/0002.png)
 less/、js/ 和 fonts/ 目录分别包含了 CSS、JS 和字体图标的源码。dist/ 目录包含了上面所说的预编译 Bootstrap 包内的所有文件。docs/ 包含了所有文档的源码文件，examples/ 目录是 Bootstrap 官方提供的实例工程。除了这些，其他文件还包含 Bootstrap 安装包的定义文件、许可证文件和编译脚本等
 
 ## html模板
