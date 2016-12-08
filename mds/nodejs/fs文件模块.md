@@ -14,8 +14,8 @@ fs模块一般都会提供同步异步两种方法，异步的方法函数最后
 *同步读取文件readSync.js*
 ```javascript
 // readSync.js
-let fs = require('fs');
-let util = require('util');
+const fs = require('fs');
+const util = require('util');
 
 util.log('开始读取文件信息');
 let data = fs.readFileSync('./data.txt', 'utf-8');
@@ -39,8 +39,8 @@ node readSync.js
 *异步读取文件:*
 ```javascript
 // read.js
-let fs = require('fs');
-let util = require('util');
+const fs = require('fs');
+const util = require('util');
 
 util.log('开始读取数据');
 fs.readFile('./data.txt', 'utf-8', function (err, data) {
@@ -93,7 +93,7 @@ fs.open(path, flags[, mode], callback) 方法用于在异步模式下打开文�
 
 ```javascript
 // open.js
-let fs = require('fs');
+const fs = require('fs');
 
 console.time('文件打开时间');
 fs.open('./demo.txt', 'r', function (err, fd) {
@@ -168,4 +168,73 @@ node stat.js
 ## fs.statSync
 fs.statSync(path) 方法是fs.stat() 方法的同步版本，返回值为fs.Stats对象的实例
 
+## fs.writeFile
+fs.writeFile(filename, data[, options], callback) 以异步方式写入文件，默认情况下如果文件存在，写入的内容会覆盖旧的文件内容
 
+**参数**
+
+* filename - 文件地址路径
+* data - 要写入文件的数据，可以是String字符串或Buffer流对象
+* options - 这个参数是个对象，包含{encoding, mode, flag} 默认情况编码为utf-8，模式为0666，flag为'w'，如果想不覆盖原内容，可在此处修改
+
+**例子**
+
+*创建文件data.txt，内容:*
+```
+hello world
+申锦祥
+```
+*js文件writeFile.js:*
+```javascript
+// writeFile.js
+const fs = require('fs');
+const util = require('util');
+
+let str = 'shenjinxiang';
+
+util.log('开始写入数据');
+fs.writeFile('./data.txt', str, function (err) {
+	if (err) throw err;
+	util.log('数据写入成功，读取数据内容:');
+	fs.readFile('./data.txt', 'utf-8', function (err, data) {
+		if (err) throw err;
+		util.log('数据读取完毕，内容：');
+		console.log(data);
+	});
+});
+```
+*运行writeFile文件:*
+```
+node writeFile.js
+1 Dec 10:04:03 - 开始写入数据
+1 Dec 10:04:03 - 数据写入成功，读取数据内容:
+1 Dec 10:04:03 - 数据读取完毕，内容：
+shenjinxiang
+```
+*改用追加模式写入data.txt:*
+```javascript
+// writeFile.js
+const fs = require('fs');
+const util = require('util');
+
+let str = '追加内容\r\n申锦祥';
+util.log('开始写入数据');
+fs.writeFile('./data.txt', str, (encoding: 'utf-8', flag: 'a'), function (err) {
+	if (err) throw err;
+	util.log('数据写入成功，读取数据内容:');
+	fs.readFile('./data.txt', 'utf-8', function (err, data) {
+		if (err) throw err;
+		util.log('数据读取完毕，内容:');
+		console.log(data);
+	});
+});
+```
+*运行writeFile.js:*
+```
+node writeFile.js
+1 Dec 10:12:01 - 开始写入数据
+1 Dec 10:12:01 - 数据写入成功，读取数据内容:
+1 Dec 10:12:01 - 数据读取完毕，内容:
+shenjinxiang追加内容
+申锦祥
+```
