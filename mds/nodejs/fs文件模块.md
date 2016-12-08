@@ -112,3 +112,60 @@ node open.js
 
 ## fs.openSync
 fs.openSync(path, flags[, mode]) 方法是fs.open(path, flags[, mode], callback) 方法的同步版本，返回值为整数形式的文件描述符fd
+
+## fs.stat
+fs.stat(path, callback) 方法以异步模式获取文件信息
+
+**参数**
+
+* path - 文件路径
+* callback - 回调函数，带有两个参数：callback(err, stat) stat是fs.Stats对象
+
+**stats类的方法**
+
+|方法|描述|
+|:--|:--|
+|stats.isFile()|如果是文件返回true，否则返回false|
+|stats.isDirectory()|如果是目录返回true，否则返回false|
+|stats.isBlockDevice()|如果是块设备返回true，否则返回false|
+|stats.isCharacterDevice()|如果是字符设备返回true，否则返回false|
+|stats.isSymbolicLink()|如果是软连接返回true，否则返回false|
+|stats.isFIFO()|如果是FIFO，返回true，否则返回false，FIFO是UNIX中的一种特殊类型的命令管道|
+|stats.isSocket()|如果是Socket返回true，否则返回false|
+
+**例子**
+```javascript
+// stat.js
+const fs = require('fs');
+fs.stat('./data.txt', function (err, stat) {
+    if (err) throw err;
+    console.dir(stat);
+    console.log('是否为文件(ifFile)?', stat.isFile());
+    console.log('是否为目录(isDirectory)?', stat.isDirectory());
+});
+```
+*运行结果:*
+```
+node stat.js
+{ dev: 2094910713,
+  mode: 33206,
+  nlink: 1,
+  uid: 0,
+  gid: 0,
+  rdev: 0,
+  blksize: undefined,
+  ino: 2533274790592340,
+  size: 162,
+  blocks: undefined,
+  atime: 2016-12-01T01:25:09.104Z,
+  mtime: 2016-12-01T01:25:09.105Z,
+  ctime: 2016-12-01T01:25:09.105Z,
+  birthtime: 2016-12-01T01:25:09.104Z }
+是否为文件(ifFile)? true
+是否为目录(isDirectory)? false
+```
+
+## fs.statSync
+fs.statSync(path) 方法是fs.stat() 方法的同步版本，返回值为fs.Stats对象的实例
+
+

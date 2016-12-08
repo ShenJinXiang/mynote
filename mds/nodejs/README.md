@@ -26,3 +26,4 @@
 9. [fs文件模块](./fs文件模块.md)    
  9.1 [同步和异步](./fs文件模块.md#同步和异步)    
  9.2 [fs.open](./fs文件模块.md#fsopen)    
+ 9.3 [fs.stat](./fs文件模块.md#fsstat)    
