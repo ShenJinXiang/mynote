@@ -22,4 +22,7 @@
  7.1 [url.parse](./url模块.md#urlparse)    
  7.2 [url.format](./url模块.md#urlformat)    
  7.3 [url.resolve](./url模块.md#urlresolve)    
-8. [path模块](./path模块.md)
+8. [path模块](./path模块.md)    
+9. [fs文件模块](./fs文件模块.md)    
+ 9.1 [同步和异步](./fs文件模块.md#同步和异步)    
+ 9.2 [fs.open](./fs文件模块.md#fsopen)    
