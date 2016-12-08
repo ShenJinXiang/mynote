@@ -513,8 +513,8 @@ fs.mkdir(path[, mode], callback)方法是创建目录的异步方式
 
 ```javascript
 // mkdir.js
-let fs = require('fs');
-let util = require('util');
+const fs = require('fs');
+const util = require('util');
 
 util.log('开始创建目录');
 fs.mkdir('./temp/a', function (err) {
