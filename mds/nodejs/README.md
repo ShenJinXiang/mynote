@@ -18,3 +18,7 @@
 6. [querystring模块](./querystring模块.md)    
  6.1 [querystring.stringify](./querystring模块.md#querystringstringify)    
  6.2 [querystring.parse](./querystring模块.md#querystringparse)    
+7. [url模块](./url模块.md)    
+ 7.1 [url.parse](./url模块.md#url.parse)    
+ 7.2 [url.format](./url模块.md#url.format)    
+ 7.3 [url.resolve](./url模块.md#url.resolve)    
