@@ -22,3 +22,4 @@
  7.1 [url.parse](./url模块.md#urlparse)    
  7.2 [url.format](./url模块.md#urlformat)    
  7.3 [url.resolve](./url模块.md#urlresolve)    
+8. [path模块](./path模块.md)
