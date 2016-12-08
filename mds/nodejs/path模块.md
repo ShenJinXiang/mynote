@@ -66,4 +66,4 @@ path.format({
 ```
 
 ## path.sep
-path.sep属性表示文件分隔符：windows中为\   linux中为 /
+path.sep属性表示文件分隔符：windows中为'\'   linux中为 '/'
