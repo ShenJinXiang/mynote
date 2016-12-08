@@ -238,3 +238,391 @@ node writeFile.js
 shenjinxiang追加内容
 申锦祥
 ```
+
+## fs.read
+fs.read(fd, buffer, offset, length, position, callback) 方法通过异步方式读取文件内容
+
+**参数**
+
+* fd - 通过fs.open() 方法返回的文件描述符
+* buffer - 数据写入的缓冲区
+* offset - 缓冲区写入的写入偏移量
+* length - 要从文件中读取的字节数
+* position - 文件读取的其实位置，如果position的值为null，则会从当前文件指针的位置读取
+* callback - 回调函数，有三个参数err, bytesRead, buffer，err为错误信息，bytesRead表示读取的字节数，buffer为缓存区对象
+
+**例子**
+
+*创建data.txt，内容:*
+```
+hello world
+申锦祥
+```
+创建read.js，内容:
+```javascript
+// read.js
+const fs = require('fs');
+const util = require('util');
+let buf = new Buffer(1024);
+
+util.log('准备打开data.txt');
+fs.open('./data.txt', 'r', function (err, fd) {
+	if (err) throw err;
+	util.log('文件打开成功，准备读取文件');
+	fs.read(fd, buf, 0, buf.length, 0, function (err, bytes) {
+		if (err) throw err;
+		util.log('读取了' + bytes + '字节的内容');
+		if (bytes > 0) {
+			util.log('读取的内容：');
+			console.log(buf.slice(0, bytes).toString());
+		}
+	});
+});
+```
+*运行read.js:*
+```
+node read.js
+1 Dec 10:21:01 - 准备打开data.txt
+1 Dec 10:21:01 - 文件打开成功，准备读取文件
+1 Dec 10:21:01 - 读取了24字节的内容
+1 Dec 10:21:01 - 读取的内容：
+hello world
+申锦祥
+```
+这个方法的强大之处在于，可以读取数据较大的文件内容，比如每次读取1024字节，然后继续读取下一个1024字节，直到读取完毕，即回调函数中bytes为0的时候，不过需要注意的是，需要嵌套回调函数，比较麻烦
+
+## fs.readSync
+fs.readSync(fd, buffer, offset, length, position) 方法是fs.read()方法的同步版本，返回值为bytesRead，即读取的字节数
+
+**例子**
+```javascript
+// readSync.js
+const fs = require('fs');
+const util = require('util');
+
+let buf = new Buffer(1024);
+util.log('准备打开文件');
+fs.open('./data.txt', 'r', function (err, fd) {
+	if (err) throw err;
+	util.log('文件打开成功，准备读取文件内容');
+	let bytes = 0;
+	while ((bytes = fs.readSync(fd, buf, 0, buf.length, null)) != 0) {
+		console.log(buf.slice(0, bytes).toString());
+	}
+});
+```
+*运行readSync.js:*
+```
+node readSync.js
+1 Dec 10:35:51 - 准备打开文件
+1 Dec 10:35:51 - 文件打开成功，准备读取文件内容
+hello world
+申锦祥
+```
+
+## fs.close
+fs.close(fd, callback) 方法以异步方式关闭文件
+
+**参数**
+
+* fd - 通过fs.open() 方法获取的文件描述符
+* callback - 回调函数，没有参数
+
+**例子**
+
+*创建文件data.txt 内容:*
+```
+hello world
+申锦祥
+```
+*close.js内容:*
+```javascript
+// close.js
+const fs = require('fs');
+const util = require('util');
+let buf = new Buffer(1024);
+
+util.log('准备打开文件');
+fs.open('./data.txt', 'r', function (err, fd) {
+    if (err) throw err;
+    util.log('文件打开成功');
+    util.log('准备读取文件内容');
+    fs.read(fd, buf, 0, buf.length, 0, function (err, bytes) {
+        if (err) throw err;
+        util.log('读取了' + bytes + '字节的数据');
+        if (bytes > 0) {
+            util.log('文件内容：');
+            console.log(buf.slice(0, bytes).toString());
+        }
+
+        util.log('准备关闭文件');
+        fs.close(fd, function (err) {
+            if (err) throw err;
+            util.log('文件已经关闭了');
+        });
+    });
+});
+```
+*运行close.js:*
+```
+node close.js
+1 Dec 10:39:59 - 准备打开文件
+1 Dec 10:39:59 - 文件打开成功
+1 Dec 10:39:59 - 准备读取文件内容
+1 Dec 10:39:59 - 读取了24字节的数据
+1 Dec 10:39:59 - 文件内容：
+hello world
+申锦祥
+
+1 Dec 10:39:59 - 准备关闭文件
+1 Dec 10:39:59 - 文件已经关闭了
+```
+
+## fs.closeSync
+
+fs.closeSync(fd) 方法是fs.close() 方法的同步版本
+
+## fs.ftruncate
+fs.ftruncate(fd, len, callback) 方法异步方式截取文件
+
+**参数**
+
+* fd - 通过fs.open() 方法返回的文件描述符
+* len - 文件内容截取的长度
+* callback - 回调函数，没有参数
+
+**例子**
+
+*创建data.txt文件，内容:*
+```
+shenjinxiang
+hello world
+申锦祥
+```
+*ftruncate.js 内容:*
+```javascript
+// ftruncate.js
+const fs = require('fs');
+const util = require('util');
+
+let buf = new Buffer(1024);
+
+util.log('准备打开文件');
+// 打开文件
+fs.open('./data.txt', 'r+', function (err, fd) {
+    if (err) throw err;
+    util.log('文件打开成功');
+    util.log('准备截取文件10个字节的内容');
+
+    // 截取文件
+    fs.ftruncate(fd, 10, function (err) {
+        if (err) throw err;
+        util.log('文件截取成功');
+
+        util.log('读取文件内容');
+        // 读取文件内容
+        fs.read(fd, buf, 0, buf.length, 0, function (err, bytes) {
+            if (err) throw err;
+            util.log('文件读取成功');
+            if (bytes > 0) {
+                util.log('文件内容');
+                console.log(buf.slice(0, bytes).toString());
+            }
+
+            // 关闭文件
+            fs.close(fd, function (err) {
+                if (err) throw err;
+                util.log('文件关闭成功');
+            });
+        });
+    });
+});
+```
+*运行ftruncate.js:*
+```
+node ftruncate.js
+1 Dec 10:45:07 - 准备打开文件
+1 Dec 10:45:07 - 文件打开成功
+1 Dec 10:45:07 - 准备截取文件10个字节的内容
+1 Dec 10:45:07 - 文件截取成功
+1 Dec 10:45:07 - 读取文件内容
+1 Dec 10:45:07 - 文件读取成功
+1 Dec 10:45:07 - 文件内容
+shenjinxia
+1 Dec 10:45:07 - 文件关闭成功
+```
+*查看data.txt的内容:*
+```
+cat data.txt
+shenjinxia
+```
+
+## fs.ftruncateSync
+fs.ftruncateSync(fd, len) 方法是fs.ftruncate() 方法的同步版本
+
+## fs.unlink
+fs.unlink(path, callback) 通过异步方式删除文件
+
+**参数**
+
+* path - 文件路径
+* callbcak - 回调函数，没有参数
+
+**例子**
+
+*创建文件data.txt，内容:*
+```
+hello world
+申锦祥
+```
+*unlink.js文件内容:*
+```javascript
+// unlink.js
+const fs = require('fs');
+const util = require('util');
+
+util.log('准备删除文件');
+fs.unlink('./data.txt', function (err) {
+    if (err) throw err;
+    util.log('文件删除成功');
+});
+```
+*运行unlink.js*
+```
+node unlink.js
+1 Dec 10:50:45 - 准备删除文件
+1 Dec 10:50:45 - 文件删除成功
+```
+查看当前目录下文件，data.txt文件已经删除了
+
+## fs.unlinkSync
+fs.unlinkSync(path) 方法是fs.unlink() 方法的同步版本
+
+## fs.mkdir
+fs.mkdir(path[, mode], callback)方法是创建目录的异步方式
+
+**参数**
+
+* path - 文件路径
+* mode - 设置目录权限，默认为0777
+* callback - 回调函数，没有参数
+
+**例子**
+
+*创建目录temp，创建mkdir.js，内容为:*
+
+```javascript
+// mkdir.js
+let fs = require('fs');
+let util = require('util');
+
+util.log('开始创建目录');
+fs.mkdir('./temp/a', function (err) {
+    if (err) throw err;
+    util.log('创建目录成功');
+});
+```
+*运行mkdir.js*
+```
+node mkdir.js
+1 Dec 10:57:12 - 开始创建目录
+1 Dec 10:57:12 - 创建目录成功
+```
+*查看temp目录下的文件:*
+```
+ll temp/
+total 0
+drwxr-xr-x 1 shenjinxiang 197608 0 12月  1 10:57 a
+```
+需要注意的是，**mkdir方法不能创建已经存在的目录，也不能在不存在的目录下创建目录**
+
+## fs.mkdirSync
+fs.mkdirSync(path[, mode]) 是fs.mkdir() 方法的同步版本
+
+## fs.readdir
+fs.readdir(path, callback)异步方式读取目录信息
+
+**参数**
+
+* path - 文件路径
+* callback - 回调函数，回调函数带有两个参数err, files，err 为错误信息，files 为 目录下的文件数组列表
+
+**例子**
+
+*创建temp目录，并在temp目录下创建a、b、c目录和temp.txt文件*
+```
+mkdir temp
+mkdir temp/a temp/b temp/c
+touch temp/temp.txt
+```
+*创建readdir.js，内容:*
+```javascript
+// readdir.js
+const fs = require('fs');
+const util = require('util');
+
+util.log('开始读取目录信息');
+fs.readdir('./temp', function (err, files) {
+    if (err) throw err;
+    util.log('目录信息读取完毕:');
+    console.log(files);
+});
+```
+运行readdir.js
+```
+node readdir.js
+1 Dec 11:02:57 - 开始读取目录信息
+1 Dec 11:02:57 - 目录信息读取完毕:
+[ 'a', 'b', 'c', 'temp.txt' ]
+```
+需要注意，使用readdir时，path必须存在且**必须为目录**，不能是文件
+
+## fs.readdirSync
+fs.readdirSync(path) 方法是fs.readdir()方法的同步版本，返回files，即目录下的文件列表
+
+## fs.rmdir
+fs.rmdir(path, callback) 方法是以异步方式删除目录
+
+**参数**
+
+* path - 文件路径
+* callback - 回调函数，没有参数
+
+**例子**
+
+*创建temp目录，并在temp目录下创建a、b、c目录和temp.txt文件*
+```
+mkdir temp
+mkdir temp/a temp/b temp/c
+touch temp/temp.txt
+```
+*创建rmdir.js 用于删除temp下的a文件:*
+```javascript
+// rmdir.js
+const fs = require('fs');
+const util = require('util');
+
+util.log('准备删除目录');
+fs.rmdir('./temp/a', function (err) {
+    if (err) throw err;
+    util.log('删除成功');
+});
+```
+*运行rmdir.js:*
+```
+node rmdir.js
+1 Dec 11:07:11 - 准备删除目录
+1 Dec 11:07:11 - 删除成功
+```
+查看temp文件下的内容:
+```
+ll temp/
+total 0
+drwxr-xr-x 1 shenjinxiang 197608 0 12月  1 11:01 b
+drwxr-xr-x 1 shenjinxiang 197608 0 12月  1 11:01 c
+-rw-r--r-- 1 shenjinxiang 197608 0 12月  1 11:02 temp.txt
+```
+需要注意的是，**rmdir只能删除目录，且要删除的目录必须为空目录**
+
+## fs.rmdirSync
+fs.rmdirSync(path) 方法是fs.rmdir()方法的同步版本
