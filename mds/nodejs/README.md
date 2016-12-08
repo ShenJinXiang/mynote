@@ -14,4 +14,7 @@
  4.1 [例子](./Node.js中的事件处理.md#一个简单的例子)    
  4.2 [EventEmitter常用API](./Node.js中的事件处理.md#eventemitter常用api)    
  4.3 [模仿events](./Node.js中的事件处理.md#模仿events)    
-5. [util模块](./Node.js中util模块.md)    
+5. [util模块](./util模块.md)    
+6. [querystring模块](./querystring模块.md)
+ 6.1 [querystring.stringify](./querystring模块.md#querystringstringify)
+ 6.2 [querystring.parse](./querystring模块.md#querystringparse)
