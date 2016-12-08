@@ -33,6 +33,6 @@
  9.6 [fs.close](./fs文件模块.md#fsclose)    
  9.7 [fs.ftruncate](./fs文件模块.md#fsftruncate)    
  9.8 [fs.unlink](./fs文件模块.md#fsunlink)    
- 9.9 [fs.mkdir](./fs文件模块.md#fsunlink)    
+ 9.9 [fs.mkdir](./fs文件模块.md#fsmkdir)    
  9.10 [fs.readdir](./fs文件模块.md#fsreaddir)    
  9.11 [fs.rmdir](./fs文件模块.md#fsrmdir)    
