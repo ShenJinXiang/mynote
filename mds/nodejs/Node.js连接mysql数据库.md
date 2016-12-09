@@ -1,4 +1,4 @@
-# Nodejs连接mysql数据库
+# Node.js连接mysql数据库
 开发过程中通常要涉及到数据库操作，node.js开发也免不了要操作数据库，由于比较熟悉mysql，所以先从mysql开始总结
 
 ## 环境准备
