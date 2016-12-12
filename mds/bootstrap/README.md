@@ -29,3 +29,6 @@
  3.2. [水平表单](./表单.md#水平表单)    
  3.3. [输入框input](./表单.md#输入框input)    
  3.4. [下拉选择框select](./表单.md#下拉选择框select)    
+ 3.5. [文本域textarea](./表单.md#文本域textarea)    
+ 3.6. [复选框checkbox和单选择按钮radio](./表单.md#复选框checkbox和单选择按钮radio)    
+ 3.7. [复选框和单选按钮水平排列](./表单.md#复选框和单选按钮水平排列)    
