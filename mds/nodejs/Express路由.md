@@ -337,19 +337,24 @@ $ node app.js
 Server running ar 3000 port.
 ```
 
-*浏览器中访问: "http://localhost:3000/" *
+浏览器中访问: "http://localhost:3000/" 
+
 ![](./img/009.png)
 
-*浏览器中访问: "http://localhost:3000/user" *
+浏览器中访问: "http://localhost:3000/user" 
+
 ![](./img/010.png)
 
-*浏览器中访问: "http://localhost:3000/user/addUser" *
+浏览器中访问: "http://localhost:3000/user/addUser" 
+
 ![](./img/011.png)
 
-*浏览器中访问: "http://localhost:3000/user/updUser" *
+浏览器中访问: "http://localhost:3000/user/updUser" 
+
 ![](./img/012.png)
 
-*浏览器中访问: "http://localhost:3000/user/delUser" *
+浏览器中访问: "http://localhost:3000/user/delUser" 
+
 ![](./img/013.png)
 
 这里都是采用的get方式，实际开发的时候，可能要用到post之类的请求方式，也可能用到重定向等响应方式
