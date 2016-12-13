@@ -131,6 +131,57 @@ app.get(/.*fly$/, function(req, res) {
 });
 ```
 
+## 路由参数
+路由参数其实算的路由路径的一部分，类似于正则表单时路由路径，只是比较特殊，而且可能经常用到，先来看个例子：
+```javascript
+app.get('/user/:name', function (req, res) {
+	let pathname = url.parse(req.url, true).pathname;
+	let name = req.params.name;
+	console.log('pathname: ' + pathname + "  name: " + name);
+	res.send('pathname: ' + pathname + "  name: " + name);
+});
+```
+
+浏览器中访问 "http://localhost:3000/user/abc" 得到结果是：
+
+```
+pathname: /user/abc name: abc
+```
+
+浏览器中访问 "http://localhost:3000/user/edf" 得到结果是：
+
+```
+pathname: /user/edf name: edf
+```
+
+浏览器中访问 "http://localhost:3000/user/edf?username=admin" 得到结果是：
+
+```
+pathname: /user/edf name: edf
+```
+
+现在明白了，':name'其实是个占位参数，可以是任意的路径名，可以通过req.params.name获取到这个路径的字符串，如果占位参数是':city'，获取的方式就是 req.params.city
+
+需要注意占位参数不解析 '/'， 也就是说上面的例子，可以解析 '/user/abc'、'/user/ddd'之类的路径，但是不能解析'/user/abc/edf'，可以看下面的例子:
+
+```javascript
+app.get('/person/:province/:city', function (req, res) {
+	let pathname = url.parse(req.url, true).pathname;
+	let province = req.params.province;
+	let city = req.params.city;
+	console.log('pathname: ' + pathname + '\nprovince: ' + province + '\ncity: ' + city);
+	res.send('pathname: ' + pathname + '<br>province: ' + province + '<br>city: ' + city);
+});
+```
+
+浏览器中访问 "http://localhost:3000/person/shanxi/taiyuan" 得到的结果是:
+
+```
+pathname: /person/shanxi/taiyuan
+province: shanxi
+city: taiyuan
+```
+
 ## 路由句柄
 可以为请求处理提供多个回调函数，可以有多重形式，可以是一个函数、一个函数数组、或者两者混合
 ```javascript
