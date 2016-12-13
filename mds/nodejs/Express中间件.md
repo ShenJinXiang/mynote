@@ -24,6 +24,7 @@
 应用级中间件绑定到 app 对象 使用 app.use() 和 app.METHOD()， 其中， METHOD 是需要处理的 HTTP 请求的方法，例如 GET, PUT, POST 等等，全部小写
 
 ```javascript
+// app.js
 const express = require('express');
 const url = require('url');
 const util = require('util');
@@ -140,8 +141,67 @@ app.get('/user/upduser', function (req, res) {
 浏览器中访问 "http://localhost:3000/user/adduser" 的时候 不会打印 第二个中间件的信息，但是访问 "http://localhost:3000/user/upduser" 的时候会打印第二个中间件输出的内容
 
 ## 路由级中间件
+路由级中间件和应用级中间件一样，只是它绑定的对象为 express.Router()，express.Router()的作用在上一节[Express路由-express.Router](./Express路由.md#expressrouter)有介绍，用于模块化路由管理
+
+路由级使用 router.use() 或 router.VERB() 加载中间件
+
+```javascript
+// routes/user.js
+const express = require('express');
+const util = require('util');
+
+let router = express.Router();
+
+router.use(function (req, res, next) {
+	util.log(req.method);
+	next();
+});
+
+router.use('/:name', function (req, res, next) {
+	console.log('use /user/:name  1');
+	next();
+}, function (req, res, next) {
+	console.log('use /user/:name  2');
+	next();
+});
+
+router.get('/:name', function (req, res, next) {
+	let name = req.params.name;
+	console.log('get /user:/name 1');
+	if (name === 'adduser') {
+		next('route');
+	} else {
+		next();
+	}
+}, function (req, res, next) {
+	console.log('get /user:/name 2');
+	next();
+});
+
+router.get('/', function (req, res) {
+	res.send('user page');
+});
+
+router.get('/adduser', function (req, res) {
+	res.send('add user page');
+});
+
+router.get('/upduser', function (req, res) {
+	res.send('update user page');
+});
+
+module.exports = router;
+```
 
 ## 错误处理中间件
+错误处理中间件和其他中间件定义类似，只是要使用4个参数：err、req、res、next，即使不需要 next 对象，也必须在签名中声明它，否则中间件会被识别为一个常规中间件，不能处理错误
+
+```javascript
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+```
 
 ## 内置中间件
 
