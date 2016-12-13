@@ -275,4 +275,165 @@ Server running at 3000 port.
 
 ![](./img/014.png)
 
+每个应用可以配置多个静态目录：
+```javascript
+app.use(express.static('public'));
+app.use(express.static('uploads'));
+app.use(express.static('files'));
+```
+
 ## 第三方中间件
+可以通过使用第三方中间件为express应用添加更多功能，可以在应用级加载，也可以在路由级加载
+
+**例子**
+
+*安装一个解析cookie的中间件：cookie-parser*
+```
+$ npm install cookie-parser
+```
+
+*加载中间件*
+```javascript
+var express = require('express');
+var app = express();
+var cookieParser = require('cookie-parser');
+
+// 加载用于解析 cookie 的中间件
+app.use(cookieParser());
+```
+
+**获取post请求参数的例子**
+最长用的http请求是get和post，对于get请求的参数，可以直接解析url获取到，但是对于post请求，请求数据在请求体中，我们可以通过自定义一个中间件来获取到请求参数， 看下面的代码:
+```javascript
+const express = require('express');
+const url = require('url');
+const querystring = require('querystring');
+
+let app = express();
+
+/**
+ * 自定义一个中间件，用于获取请求数据
+ * 只解析get和post请求的数据
+ * 数据保存在req.parameters中
+ */
+app.use(function (req, res, next) {
+	let method = req.method;
+	req.parameters = {};
+	if (method === 'GET' || method === 'get') {  // 对于get请求，直接解析即可
+		let urlObj = url.parse(req.url, true);
+		req.parameters = urlObj.query;
+		next();
+	} else if (method === 'POST' || method === 'post') {  // 对于post请求， 获取请求体内容
+		let data = '';
+
+		req.on('data', function (chunk) {
+			data += chunk;
+		});
+
+		req.on('end', function () {
+			req.parameters = querystring.parse(data);
+			next();
+		});
+	}
+});
+
+/**
+ * 一个简单的登陆表单，要求用户输入用户名和密码
+ * 采用post提交方式
+ */
+app.get('/', function(req, res) {
+	let str = '<form action="/login" method="post">' + 
+						'<label for="username">用户名：</label>' +
+						'<input type="text" id="username" name="username" /><br>' +
+						'<label for="password">密码：</label>' +
+						'<input type="password" id="password" name="password" /><br>' +
+						'<input type="submit" value="登录" />';
+	res.type('text/html');
+	res.send(str);
+});
+
+app.post('/login', function (req, res) {
+	let username = req.parameters.username;
+	let password = req.parameters.password;
+	res.type('text/html');
+	res.send('<p>用户名: ' + username + '</p><p>密码: ' + password + '</p>');
+});
+
+app.get('/user', function (req, res) {
+	let username = req.parameters.username;
+	let password = req.parameters.password;
+	res.type('text/html');
+	res.send('<p>用户名: ' + username + '</p><p>密码: ' + password + '</p>');
+});
+
+app.listen(3000, function () {
+	console.log('Server running at 3000 port.');
+});
+```
+
+*运行app.js*
+```
+$ node app.js
+Server running at 3000 port.
+```
+
+浏览器输入 "http://localhost:3000/user?username=admin&password=123456" 得到的结果是：
+```
+用户名: admin
+密码: 123456
+```
+
+浏览器输入 "http://localhost:3000/" 进入页面以后输入用户名和密码，登录，同样也可以获取到参数
+
+这里只是简单的一个例子，实际开发的时候不用这么麻烦，只需要引入第三方中间件 "body-parser" 既可
+
+*安装body-parser*
+```
+$ npm i body-parser --save
+```
+
+*应用中引入body-parser*
+```javascript
+const express = require('express');
+
+let app = express();
+
+// 加载 body-parser 中间件
+app.use(require('body-parser')());
+
+/**
+ * 一个简单的登陆表单，要求用户输入用户名和密码
+ * 采用post提交方式
+ */
+app.get('/', function(req, res) {
+	let str = '<form action="/login" method="post">' + 
+						'<label for="username">用户名：</label>' +
+						'<input type="text" id="username" name="username" /><br>' +
+						'<label for="password">密码：</label>' +
+						'<input type="password" id="password" name="password" /><br>' +
+						'<input type="submit" value="登录" />';
+	res.type('text/html');
+	res.send(str);
+});
+
+app.post('/login', function (req, res) {
+	let username = req.body.username;
+	let password = req.body.password;
+	res.type('text/html');
+	res.send('<p>用户名: ' + username + '</p><p>密码: ' + password + '</p>');
+});
+
+app.get('/user', function (req, res) {
+	let username = req.query.username;
+	let password = req.query.password;
+	res.type('text/html');
+	res.send('<p>用户名: ' + username + '</p><p>密码: ' + password + '</p>');
+});
+
+app.listen(3000, function () {
+	console.log('Server running at 3000 port.');
+});
+```
+
+运行app.js，可以发现同样可以实现获取post请求的数据，post请求数据在 req.body 中， get请求数据在 req.query中
+
