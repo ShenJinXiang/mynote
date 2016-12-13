@@ -205,4 +205,74 @@ app.use(function(err, req, res, next) {
 
 ## 内置中间件
 
+**express.static(root, [options])**
+express 4.x 版本开始，express.static是Express唯一内置的中间件，负责express应用中托管静态资源，如静态html文档、图片、客户端js脚本、css等文件
+
+**参数说明:**
+
+* root - 指提供静态资源的跟目录
+* options - 可选参数，是一个对象，一些配置信息
+
+*options参数说明:*
+
+|属性|描述|类型|默认值|
+|:--|:--|:--:|:--:|
+|dotfiles|是否对外输出文件名以点（.）开头的文件。可选值为 “allow”、“deny” 和 “ignore”|String|“ignore”|
+|etag|是否启用 etag 生成|Boolean|true|
+|extensions|设置文件扩展名备份选项|Array|[]|
+|index|发送目录索引文件，设置为 false 禁用目录索引。|Mixed|“index.html”|
+|lastModified|设置 Last-Modified 头为文件在操作系统上的最后修改日期。可能值为 true 或 false。|Boolean|true|
+|maxAge|以毫秒或者其字符串格式设置 Cache-Control 头的 max-age 属性|Number|0|
+|redirect|当路径为目录时，重定向至 “/”。Boolean|true|
+|setHeaders|设置 HTTP 头以提供文件的函数。|Function||
+
+**例子**
+```javascript
+// app.js
+const express = require('express');
+
+let app = express();
+
+app.use(express.static('public'));
+
+app.listen(3000, function () {
+	console.log('Server running at 3000 port.');
+});
+```
+
+*创建目录public*
+```
+$ mkdir public
+```
+
+*public目录下创建文件001.html*
+```
+$ touch public/001.html
+```
+
+*编辑001.html内容*
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>001.html</title>
+</head>
+<body>
+<h1>express</h1>
+<p>express 静态文件001.html</p>
+</body>
+</html>
+```
+
+*启动app.js*
+```
+$ node app.js
+Server running at 3000 port.
+```
+
+浏览器访问 "http://localhost:3000/001.html" 效果如下：
+
+![](./img/014.png)
+
 ## 第三方中间件
