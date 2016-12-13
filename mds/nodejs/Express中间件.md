@@ -302,7 +302,10 @@ var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 ```
 
-**获取post请求参数的例子**
+## 获取post请求参数的例子
+
+**自定义一个中间件实现功能**
+
 最长用的http请求是get和post，对于get请求的参数，可以直接解析url获取到，但是对于post请求，请求数据在请求体中，我们可以通过自定义一个中间件来获取到请求参数， 看下面的代码:
 ```javascript
 const express = require('express');
@@ -384,6 +387,8 @@ Server running at 3000 port.
 ```
 
 浏览器输入 "http://localhost:3000/" 进入页面以后输入用户名和密码，登录，同样也可以获取到参数
+
+**使用第三方中间件**
 
 这里只是简单的一个例子，实际开发的时候不用这么麻烦，只需要引入第三方中间件 "body-parser" 既可
 
