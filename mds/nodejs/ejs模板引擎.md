@@ -118,7 +118,7 @@ $ node app.js
 Server running at 3000 port.
 ```
 
-浏览器中访问 "http://localhost:3000/" 发现页面结果与之前是一样的，打开浏览器控制台，也没有任何输出，而在后台中输出了```hello ejs```，也就是说 ‘&lt;’、‘%%&gt;’之间可以执行js代码，这个还是在服务器端运行的，类似于jsp中使用```System.out.println()```一样的道理
+浏览器中访问 "http://localhost:3000/" 发现页面结果与之前是一样的，打开浏览器控制台，也没有任何输出，而在后台中输出了```hello ejs```，也就是说 ‘&lt;%’、‘%&gt;’之间可以执行js代码，运行在服务器端，类似于jsp中使用 ```System.out.println()```一样的道理
 
 下面我们给ejs传递值，并显示出来，修改app.js文件:
 ```javascript
@@ -276,3 +276,68 @@ table th, table td {border: 1px solid #ccc; line-height: 28px;text-indent:10px;}
 
 ![](./img/018.png)
 
+## ejs包含
+ejs同样可以包含其他的ejs页面，语法为:
+```
+<%- include(path) %>
+```
+
+这里的path要么是绝对路径，如果不是，则相对于视图根目录，即‘veiws’目录。例如，在‘views/users.ejs’ 中包含 ‘views/user/show.ejs’，应该使用```<%- include('user/show') %>```
+
+举个最简单的例子，比如我们可以创建head.ejs和foot.ejs文件
+```
+$ touch views/head.ejs
+$ touch views/foot.ejs
+```
+
+编辑head.ejs:
+```html
+<!doctype thml>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Express应用</title>
+	<!-- 
+	此处添加公用css文件 link
+	-->
+<style>
+table{border-collapse: collapse;width:80%;margin:10px auto;}
+table th, table td {border: 1px solid #ccc; line-height: 28px;text-indent:10px;}
+</style>
+</head>
+<body>
+```
+
+编辑foot.ejs:
+```html
+<!--
+此处添加公用JavaScript文件 
+-->
+</body>
+</html>
+```
+
+修改index.ejs
+```html
+<%- include('head') %>
+<h1><%= title %></h1>
+<table>
+	<tr>
+		<th>姓名</th>
+		<th>年龄</th>
+		<th>地址</th>
+	</tr>
+	<% for (var index = 0; index < data.length; index++) { %>
+		<tr>
+			<td><%= data[index].name %></td>
+			<td><%= data[index].age %></td>
+			<td><%= data[index].address %></td>
+		</tr>
+	<%}%>
+</table>
+<%- include('foot') %>
+```
+
+启动app.js应用，浏览器访问 "http://localhost:3000/" 运行结果和之前的例子一样
+
+到目前为止，我们已经可以用ejs的一些简单使用了，其实ejs还有很多特性，这里不做介绍了，其实是我也不会，在摸索中。。 哈~~

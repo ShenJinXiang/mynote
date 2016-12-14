@@ -76,3 +76,4 @@
  16.2. [express中加载ejs](./ejs模板引擎.md#express中加载ejs)    
  16.3. [使用ejs模板](./ejs模板引擎.md#使用ejs模板)    
  16.4. [ejs中的一些标签](./ejs模板引擎.md#ejs中的一些标签)    
+ 16.5. [ejs包含](./ejs模板引擎.md#ejs包含)    
