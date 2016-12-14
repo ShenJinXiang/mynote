@@ -1,4 +1,4 @@
-# querystring 模块
+# querystring模块
 Node.js内置模块，使用require('querystring') 引入
 
 ## querystring.stringify

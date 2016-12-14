@@ -1,4 +1,4 @@
-# Express 路由
+# Express路由
 express中的路由处理，相当于java Web框架中controller处理，针对不同的请求，调用不同的处理程序，给予用户不同的界面展示，express中路由是由一个url、http请求(get、post等)和若干句柄组成，结构如下:
 ```
 app.METHOD(path, [callback...], callback)

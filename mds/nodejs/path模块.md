@@ -1,4 +1,4 @@
-# path 路径模块
+# path路径模块
 Node.js path 模块提供了一些用于处理文件路径的小工具，可以通过require('path')方法引入paht模块
 
 ## path.normaliza
