@@ -72,3 +72,7 @@
  15.5. [第三方中间件](./Express中间件.md#第三方中间件)    
  15.5. [获取post请求参数的例子](./Express中间件.md#获取post请求参数的例子)    
 16. [ejs模板引擎](./ejs模板引擎.md#ejs模板引擎)    
+ 16.1. [安装ejs](./ejs模板引擎.md#安装ejs)    
+ 16.2. [express中加载ejs](./ejs模板引擎.md#express中加载ejs)    
+ 16.3. [使用ejs模板](./ejs模板引擎.md#使用ejs模板)    
+ 16.4. [ejs中的一些标签](./ejs模板引擎.md#ejs中的一些标签)    
