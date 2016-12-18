@@ -11,15 +11,36 @@
 	<title>index</title>
 </head>
 <body>
-<div style='margin:20px;'>
-<button class='btn btn-default'>default</button>
-<button class='btn btn-primary'>primary</button>
-<button class='btn btn-info'>info</button>
-<button class='btn btn-success'>success</button>
-<button class='btn btn-warning'>warning</button>
-<button class='btn btn-danger'>danger</button>
-<button class='btn btn-link'>link</button>
+<div style='margin: 20px;'>
+	<form>
+		<div class='form-group has-warning has-feedback'>
+			<input type='text' class='form-control' />
+			<span class='help-block'>提示信息</span>
+		</div>
+		<div class='form-group has_error has-feedback'>
+			<input type='text' class='form-control' />
+		</div>
+		<div class='form-group has-success has-feedback'>
+			<input type='text' class='form-control' />
+			<span class='help-block'>提示信息</span>
+		</div>
+	</form>
 </div>
+
+<form role="form">
+  <div class="form-group has-success">
+    <label class="control-label" for="inputSuccess1">成功状态</label>
+    <input type="text" class="form-control" id="inputSuccess1" placeholder="成功状态" >
+  </div>
+  <div class="form-group has-warning">
+    <label class="control-label" for="inputWarning1">警告状态</label>
+    <input type="text" class="form-control" id="inputWarning1" placeholder="警告状态">
+  </div>
+  <div class="form-group has-error">
+    <label class="control-label" for="inputError1">错误状态</label>
+    <input type="text" class="form-control" id="inputError1" placeholder="错误状态">
+  </div>
+</form>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
