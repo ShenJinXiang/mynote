@@ -590,3 +590,252 @@ app.listen(3000, function () {
 });
 ```
 
+## 添加页面css文件
+public目录下创建css目录
+```
+$ mkdir public/css
+```
+
+css目录中创建common.css文件
+```
+$ touch public/css/common.css
+```
+
+common.css内容
+```css
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+div {
+	box-sizing: border-box;
+}
+ul li {
+	list-style: none;
+}
+.clear {
+	clear: both;
+}
+.fl {
+	float: letf;
+}
+.fr {
+	float: right;
+}
+.index-content {
+	width: 500px;
+	margin: 200px auto;
+	border-radius: 5px;
+	box-shadow: 0px 0px 20px #ccc;
+	border: 1px solid #ddd;
+}
+.index-menu {
+	height: 60px;
+	line-height: 60px;
+}
+.index-menu li {
+	float: left;
+	width: 50%;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	background: #eee;
+	cursor: pointer;
+}
+.index-menu li.login-li {
+	border-radius: 5px 0 0 0;
+}
+.index-menu li.register-li {
+	border-radius: 0 5px 0 0;
+}
+.index-menu li:hover {
+	background: #ddd;
+}
+.index-menu li.active {
+	background: #428bca;
+	color: #fff;
+}
+.list-content {
+	display: none;
+	margin: 20px 0;
+}
+.list-content li{
+	line-height: 40px;
+	text-align: center;
+	padding: 5px;
+	margin: 5px;
+}
+.list-content li input[type='text'],
+.list-content li input[type='password'] {
+	width: 80%;
+	height: 32px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	padding: 2px 10px;
+}
+.list-content li input[type='button'] {
+	width: 85%;
+	height: 40px;
+	border-radius: 3px;
+	border: none;
+	background: #428bca;
+	color: #fff;
+	cursor: pointer;
+}
+.list-content li input[type='button']:hover {
+	background: #327bba;
+}
+.list-content.active{
+	display: block;
+}
+
+.header {
+	width: 100%;
+	height: 100px;
+	background: linear-gradient(#ddd, #fefefe);
+	line-height: 100px;
+}
+.header .title {
+	font-size: 26px;
+	width: 200px;
+	line-height: 100px;
+	float: left;
+	text-indent: 50px;
+}
+.header span {
+	font-size: 14px;
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+}
+.header a {
+	font-size: 12px;
+	display: inline-block;
+	float: right;
+}
+.left-content {
+	float: left;
+	width: 20%;
+	border: 1px solid #ccc;
+}
+.right-content {
+	float: right;
+	width: 79.5%;
+	border: 1px solid #ccc;
+}
+
+.box-title {
+	width: 100%;
+	height: 42px;
+	line-height: 42px;
+	text-indent: 15px;
+	background: #ddd;
+	color: #444;
+	font-weight: bold;
+	font-size: 14px;
+}
+.box-title a {
+	display: inline-block;
+	float: right;
+	line-height: 36px;
+	padding: 0 10px;
+	text-decoration: none;
+	color: #444;
+}
+.box-title a:hover {
+	color: #222;
+}
+.operate-box {
+	width: 100%;
+	height: 54px;
+	line-height: 54px;
+	border-bottom: 1px solid #eee;
+	text-align: center;
+}
+.operate-box button {
+	display: inline-block;
+	cursor: pointer;
+	border: 1px solid transparent;
+	padding: 0 10px;
+	width: 80px;
+	height: 28px;
+}
+
+#departmentTree {
+	overflow-y: auto;
+}
+.table-ware {
+	width: 100%;
+	overflow-y: auto;
+}
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.table th, 
+.table td {
+	border: 1px solid #ddd;
+	height: 34px;
+	line-height: 34px;
+	text-indent: 10px;
+}
+.table> tbody > tr:nth-child(odd) > td,
+.table> tbody > tr:nth-child(odd) > th {
+	background-color: #f9f9f9;
+}
+.table> tbody > tr:hover > td,
+.table> tbody > tr:hover > th {
+	background-color: #f5f5f5;
+}
+.form-ul {
+	line-height: 40px;
+	text-align: center;
+	padding: 5px;
+	margin: 5px;
+}
+.form-ul ._text {
+	width: 80%;
+	height: 32px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	padding: 2px 10px;
+}
+.form-ul ._text:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1pxrgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1pxrgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+.form-ul label {
+	display: inline-block;
+	text-align: left;
+	text-indent: 5px;
+	width: 80px;
+}
+.form-ul textarea._text {
+	height: 80px;
+	resize: none;
+	margin-top: 6px;
+}
+.form-ul ._btn {
+	width: 100px;
+	height: 32px;
+	color: #444;
+	background-color: #eee;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	margin: 10px 20px;
+}
+.form-ul ._btn:hover {
+	background-color: #fefefe;
+}
+```
