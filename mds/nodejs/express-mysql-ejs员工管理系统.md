@@ -934,3 +934,198 @@ function closeLayer() {
 	layer.closeAll();
 }
 ```
+
+## 登录、注册模块
+创建views目录
+```
+$ mkdir views
+```
+
+创建登录页面index.ejs
+```
+$ touch views/index.ejs
+```
+
+index.ejs 文件内容
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<link type='text/css' rel='stylesheet' href='/plugin/ztree/zTreeStyle.css' />
+	<link type='text/css' rel='stylesheet' href='/plugin/layer/skin/default/layer.css' />
+	<link type='text/css' rel='stylesheet' href='/css/common.css' />
+	<title>员工管理系统</title>
+</head>
+<body>
+<div class='index-content'>
+	<ul class='index-menu'>
+		<li class='login-li active' data='0'>登 录</li>
+		<li class='register-li' data='1'>注 册</li>
+	</ul>
+	<i class='clear'></i>
+	<div id='login-content' class='list-content active'>
+		<form id='loginForm'>
+			<ul>
+				<li>
+					<input type='text' id='login_username' name='username' placeholder='请输入用户名' />
+				</li>
+				<li>
+					<input type='password' id='login_password' name='password' placeholder='请输入密码' />
+				</li>
+				<li>
+					<input type='button' value='登  录' onclick='login()'/>
+				</li>
+			</ul>
+		</form>
+	</div>
+	<div id='register-content' class='list-content'>
+		<form id='registerForm'>
+			<ul>
+				<li>
+					<input type='text' id='register_name' name='name' placeholder='请输入姓名' />
+				</li>
+				<li>
+					<input type='text' id='register_username' name='username' placeholder='请输入用户名' />
+				</li>
+				<li>
+					<input type='password' id='register_password' name='password' placeholder='请输入密码' />
+				</li>
+				<li>
+					<input type='button' value='注  册' onclick='register()'/>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>
+<script type='text/javascript' src='/plugin/jquery.js'></script>
+<script type='text/javascript' src='/plugin/jquery.form.js'></script>
+<script type='text/javascript' src='/plugin/layer/layer.js'></script>
+<script type='text/javascript' src='/plugin/ztree/jquery.ztree.core-3.5.min.js'></script>
+<script type='text/javascript' src='/plugin/ztree/jquery.ztree.excheck-3.5.min.js'></script>
+<script type='text/javascript' src='/js/common.js'></script>
+<script type='text/javascript' src='/js/index.js'></script>
+</body>
+</html>
+```
+
+**登录、注册页面的js文件**
+
+public/js 目录下创建文件 index.js
+```
+$ touch public/js/index.js
+```
+
+public/js/index.js文件内容
+```javascript
+$(function () {
+	bindEvent();
+});
+
+/**
+ * 绑定事件
+ */
+function bindEvent() {
+	$('.index-menu li').click(function () {
+		$(this).addClass('active');
+		$(this).siblings().removeClass('active');
+		let data = $(this).attr('data');
+		$('.list-content').eq(data).addClass('active').siblings().removeClass('active');
+	});
+
+	$('#login_username').keypress(function (event) {
+		if (event.keyCode === 13) {
+			$('#login_password').focus();
+		}
+	});
+
+	$('#login_password').keypress(function (event) {
+		if (event.keyCode === 13) {
+			login();
+		}
+	});
+
+	$('#register_name').keypress(function (event) {
+		if (event.keyCode === 13) {
+			$('#register_username').focus();
+		}
+	});
+	
+	$('#register_username').keypress(function (event) {
+		if (event.keyCode === 13) {
+			$('#register_password').focus();
+		}
+	});
+
+	$('#register_password').keypress(function (event) {
+		if (event.keyCode === 13) {
+			register();
+		}
+	});
+
+	$('#register_username').blur(function () {
+		if ($.trim($(this).val()) != '') {
+			checkUsername($(this).val());
+		}
+	});
+}
+
+/**
+ * 登录
+ */
+function login() {
+	let data = $('#loginForm').getFormJson();
+	if (data.username === '' || $.trim(data.username) === '') {
+		tips('请输入用户名', 'login_username');
+		return;
+	}
+	if (data.password === '' || $.trim(data.password) === '') {
+		tips('请输入密码', 'login_password');
+		return;
+	}
+	doPost('/login', data, function(result) {
+		if (result.result) {
+			window.location.href = '/main';
+		} else {
+			alertMsg(result.msg);
+		}
+	});
+}
+
+/**
+ * 注册
+ */
+function register() {
+	let data = $('#registerForm').getFormJson();
+	if (data.name === '' || $.trim(data.name) === '') {
+		tips('请输入姓名', 'register_name');
+		return;
+	}
+	if (data.username === '' || $.trim(data.username) === '') {
+		tips('请输入用户名', 'register_username');
+		return;
+	}
+	if (data.password === '' || $.trim(data.password) === '') {
+		tips('请输入密码', 'register_password');
+		return;
+	}
+	doPost('/register', data, function (result) {
+		if (result.result) {
+			window.location.href = '/main';
+		} else {
+			alertMsg(result.msg);
+		}
+	});
+}
+
+/**
+ * 检测用户名是否重复
+ */
+function checkUsername(username) {
+	doPost('/checkUsername', {username: username}, function (result) {
+		if (!result.result) {
+			tips(result.msg, 'register_username');
+		}
+	});
+}
+```
