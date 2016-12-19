@@ -1,0 +1,11 @@
+{
+	"mysql": {
+		"user": "root",
+		"password": "6098",
+		"host": "localhost",
+		"port": 3306,
+		"database": "nodejs",
+		"connectionLimit": 10
+	},
+	"noLogin": ["/", "/login", "/register", "/checkUsername"]
+}

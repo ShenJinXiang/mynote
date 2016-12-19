@@ -1,0 +1,24 @@
+{
+  "name": "employee",
+  "version": "1.0.0",
+  "description": "express mysql ejs 实现员工管理系统",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "ejs"
+  ],
+  "author": "shenjinxiang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "mysql": "^2.12.0",
+    "node-uuid": "^1.4.7"
+  }
+}

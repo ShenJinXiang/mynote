@@ -112,3 +112,38 @@ mysql指明数据库配置信息
 * connectionLimit - 连接池连接数
 
 noLogin 指明拦截配置信息，除了noLogin指定的路由，其他所有请求都需要session验证
+
+## 创建MD5工具模块
+有登录、注册功能，针对密码做个简单的MD5处理，lib目录下创建utils目录
+```
+$ mkdir lib/utils
+```
+
+utils目录下创建MD5Util.js
+```
+$ touch lib/utils/MD5Util.js
+```
+
+编辑MD5Util.js
+```javascript
+// lib/utils/MD5Util.js
+const crypto = require('crypto');
+
+exports.md5 = function (content) {
+	if (typeof content !== 'string') {
+		return '';
+	}
+	let md5 = crypto.createHash('md5');
+	md5.update(content);
+	return md5.digest('hex');
+};
+
+exports.sha1 = function (content) {
+	if (typeof content !== 'string') {
+		return '';
+	}
+	let shasum = crypto.createHash('sha1');
+	shasum.update(content);
+	return shasum.digest('hex');
+};
+```

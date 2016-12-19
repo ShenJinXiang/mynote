@@ -82,3 +82,4 @@
  17.2. [目录结构](./express-mysql-ejs员工管理系统.md#目录结构)    
  17.3. [初始化环境](./express-mysql-ejs员工管理系统.md#初始化环境)    
  17.4. [项目配置文件](./express-mysql-ejs员工管理系统.md#项目配置文件)    
+ 17.5. [创建MD5工具模块](./express-mysql-ejs员工管理系统.md#创建md5工具模块)    
