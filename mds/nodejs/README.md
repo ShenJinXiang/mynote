@@ -89,3 +89,4 @@
  17.9. [添加自定义中间件](./express-mysql-ejs员工管理系统.md#添加自定义中间件)    
  17.10. [配置路由模块](./express-mysql-ejs员工管理系统.md#配置路由模块)    
  17.11. [添加页面css文件](./express-mysql-ejs员工管理系统.md#添加页面css文件)    
+ 17.12. [添加页面公用js文件](./express-mysql-ejs员工管理系统.md#添加页面公用js文件)    
