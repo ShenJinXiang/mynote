@@ -2033,6 +2033,7 @@ exports.queryOne = function (id, callback) {
 }
 ```
 
+## 运行效果
 至此，利用express、ejs、mysql完成一个简单的员工管理模块，可以运行app.js文件，浏览器中访问应用了
 
 ![](./img/019.png)
