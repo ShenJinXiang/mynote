@@ -13,51 +13,102 @@
 $ mkdir employee
 ```
 
-app.js - 应用启动文件    
-packag.json - 项目总信息文件    
-lib目录 - 存放后台js文件    
-  lib/middleware - 中间件目录，自定义的中间件    
-  lib/routes - 路由目录，用于配置路由    
-  lib/service - 业务层目录，后台主要业务都在这个目录下    
-  lib/sql - 数据库表设计sql文件    
-  lib/utils - 工具目录，包括md5加密和操作数据库的工具文件    
-  lib/config.json - 配置文件    
-node_modules - 保存依赖的第三方包    
-public - 静态文件目录，包括前段第三方插件、页面css、js文件    
-views - 存放前段ejs文件    
+1. app.js - 应用启动文件    
+2. packag.json - 项目总信息文件    
+3. lib目录 - 存放后台js文件    
+  3.1. lib/middleware - 中间件目录，自定义的中间件    
+  3.2. lib/routes - 路由目录，用于配置路由    
+  3.3. lib/service - 业务层目录，后台主要业务都在这个目录下    
+  3.4. lib/sql - 数据库表设计sql文件    
+  3.5. lib/utils - 工具目录，包括md5加密和操作数据库的工具文件    
+  3.6. lib/config.json - 配置文件    
+4. node_modules - 保存依赖的第三方包    
+5. public - 静态文件目录，包括前段第三方插件、页面css、js文件    
+6. views - 存放前段ejs文件    
 
 ## 初始化环境
 初始化包，创建package.json
 ```
-npm init
+$ npm init
 ```
 
 导入express
 ```
-npm install express --save
+$ npm install express --save
 ```
 
 导入mysql包
 ```
-npm install mysql --save
+$ npm install mysql --save
 ```
 
 导入ejs模板引擎
 ```
-npm install ejs --save
+$ npm install ejs --save
 ```
 
 导入uuid，用于生成数据库主键id
 ```
-npm install node-uuid --save
+$ npm install node-uuid --save
 ```
 
 导入body-parser包，用于解析post请求数据
 ```
-npm install body-parser --save
+$ npm install body-parser --save
 ```
 
 导入express-session包，用于管理session
 ```
-npm install express-session --save
+$ npm install express-session --save
 ```
+
+创建静态文件根目录public
+```
+$ mkdir public
+```
+
+public目录下创建plugin目录，存放前段第三方插件
+```
+$ mkdir public/plugin
+```
+
+plugin目录中导入第三方插件:
+* jquery.js - jquery插件
+* jquery.form.js - jquery from表单插件
+* ztrr - 树形控件
+* layer - 弹出框控件
+
+## 项目配置文件
+创建lib目录
+```
+$ mkdir lib
+```
+
+lib目录下创建config.json
+```
+$ touch lib/config.json
+```
+
+编辑config.json
+```json
+{
+	"mysql": {
+		"user": "root",
+		"password": "6098",
+		"host": "localhost",
+		"port": 3306,
+		"database": "nodejs",
+		"connectionLimit": 10
+	},
+	"noLogin": ["/", "/login", "/register", "/checkUsername"]
+}
+```
+mysql指明数据库配置信息
+* user - 数据库用户名
+* password - 数据库用户密码
+* host - 数据库地址
+* port - 数据库端口
+* database - 数据库名
+* connectionLimit - 连接池连接数
+
+noLogin 指明拦截配置信息，除了noLogin指定的路由，其他所有请求都需要session验证

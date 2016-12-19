@@ -81,3 +81,4 @@
  17.1. [功能说明](./express-mysql-ejs员工管理系统.md#功能说明)    
  17.2. [目录结构](./express-mysql-ejs员工管理系统.md#目录结构)    
  17.3. [初始化环境](./express-mysql-ejs员工管理系统.md#初始化环境)    
+ 17.4. [项目配置文件](./express-mysql-ejs员工管理系统.md#项目配置文件)    
