@@ -387,11 +387,162 @@ CREATE TABLE `employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-命令行登录mysql服务器，执行命令
+命令行登录mysql服务器，执行下面的命令，运行sql脚本
 ```
-使用nodejs数据库
 mysql> use nodejs;
-运行sql脚本创建数据库表
 mysql> source ~/Users/shenjinxiang/Documents/employee/lib/sql/mysql.sql;
 ```
 
+## 搭建express应用
+创建app.js文件
+```
+$ touch app.js
+```
+
+编辑app.js
+```
+// app.js
+const express = require('express');
+const path = require('path');
+const url = require('url');
+
+let app = express();
+
+/**
+ * 设置视图，引入ejs
+ */
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+/**
+ * 设置静态文件路面
+ */
+app.use(express.static(path.join(__dirname, 'public')));
+
+/**
+ * 引入express-session
+ */
+app.use(require('express-session')({
+	secret: 'shenjinxiang',
+	saveUninitialized: true
+}));
+
+/**
+ * 引入body-parser
+ */
+app.use(require('body-parser')());
+
+app.listen(3000, function () {
+	console.log('Server running at 3000 port.');
+});
+```
+
+一个简单的应用已经好了，当然，现在没有引入任何路由，项目启动起来也没有任何意义
+
+## 添加自定义中间件
+**创建路由日志中间件**
+
+lib目录下创建middleware目录
+```
+$ mkdir lib/middleware
+```
+
+middleware目录下创建routerLog.js文件
+```
+$ touch lib/middleware/routerLog.js
+```
+
+编辑routerLog.js文件
+```javascript
+// lib/middleware/routeLog.js
+const url = require('url');
+const util = require('util');
+
+/**
+ * 用于打印每次请求的路径和参数
+ */
+module.exports = function(req, res, next) {
+	let pathname = url.parse(req.url).pathname;
+	util.log('请求路径:', pathname);
+	if (req.method === 'GET' || req.method === 'get') {
+		util.log('Get请求，参数:', req.query);
+		next();
+	} else if (req.method === 'POST' || req.method === 'post') {
+		util.log('POST请求，参数:', req.body);
+		next();
+	}
+};
+```
+
+**登录session验证中间件**
+middleware目录下创建loginFilter.js
+```
+$ touch lib/middleware/loginFilter.js
+```
+
+编辑loginFilter.js文件
+```javascript
+// lib/middleware/loginFilter.js
+const noLogin = require('../config').noLogin;
+const url = require('url');
+
+/**
+ * 登录session验证 中间件
+ */
+module.exports = function (req, res, next) {
+	let pathname = url.parse(req.url).pathname;
+	if (noLogin.indexOf(pathname) < 0 && !req.session.currentUser) {
+		res.redirect('/');
+	} else {
+		next();
+	}
+};
+```
+
+app.js中添加自定义中间件
+```javascript
+// app.js
+const express = require('express');
+const path = require('path');
+const url = require('url');
+
+let app = express();
+
+/**
+ * 设置视图，引入ejs
+ */
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+/**
+ * 设置静态文件路面
+ */
+app.use(express.static(path.join(__dirname, 'public')));
+
+/**
+ * 引入express-session
+ */
+app.use(require('express-session')({
+	secret: 'shenjinxiang',
+	saveUninitialized: true
+}));
+
+/**
+ * 引入body-parser
+ */
+app.use(require('body-parser')());
+
+/**
+ * 引入路由日志
+ */
+app.use(require('./lib/middleware/routeLog'));
+
+/**
+ * 登录拦截器
+ */
+app.use(require('./lib/middleware/loginFilter'));
+
+app.listen(3000, function () {
+	console.log('Server running at 3000 port.');
+});
+```
