@@ -84,3 +84,4 @@
  17.4. [项目配置文件](./express-mysql-ejs员工管理系统.md#项目配置文件)    
  17.5. [创建MD5工具模块](./express-mysql-ejs员工管理系统.md#创建md5工具模块)    
  17.6. [创建数据库操作模块](./express-mysql-ejs员工管理系统.md#创建数据库操作模块)    
+ 17.7. [创建数据库表](./express-mysql-ejs员工管理系统.md#创建数据库表)    
