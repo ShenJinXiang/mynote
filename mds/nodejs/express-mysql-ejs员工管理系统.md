@@ -502,6 +502,41 @@ module.exports = function (req, res, next) {
 
 app.js中添加自定义中间件
 ```javascript
+/**
+ * 引入路由日志
+ */
+app.use(require('./lib/middleware/routeLog'));
+
+/**
+ * 登录拦截器
+ */
+app.use(require('./lib/middleware/loginFilter'));
+```
+
+## 配置路由模块
+lib目录下创建routes目录
+```
+$ mkdir lib/routes
+```
+
+routes目录下创建index.js、department.js、employee.js文件
+```
+$ touch lib/routes/index.js
+$ touch lib/routes/department.js
+$ touch lib/routes/employee.js
+```
+
+编辑刚创建的三个文件，内容都为:
+```javascript
+const express = require('express');
+
+let router = express.Router();
+
+module.exports = router;
+```
+
+app.js中配置这三个路由文件，app.js最终内容为:
+```javascript
 // app.js
 const express = require('express');
 const path = require('path');
@@ -543,7 +578,15 @@ app.use(require('./lib/middleware/routeLog'));
  */
 app.use(require('./lib/middleware/loginFilter'));
 
+app.use('/', require('./lib/routes/index'));
+// 部门路由
+app.use('/department', require('./lib/routes/department'));
+// 员工路由
+app.use('/employee', require('./lib/routes/employee'));
+
+
 app.listen(3000, function () {
 	console.log('Server running at 3000 port.');
 });
 ```
+
