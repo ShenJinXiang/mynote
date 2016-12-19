@@ -41,9 +41,9 @@ app.use(require('./lib/middleware/loginFilter'));
 
 app.use('/', require('./lib/routes/index'));
 // 部门路由
-app.use('/department', require('./lib/routes/department'));
+//app.use('/department', require('./lib/routes/department'));
 // 员工路由
-app.use('/employee', require('./lib/routes/employee'));
+//app.use('/employee', require('./lib/routes/employee'));
 
 
 app.listen(3000, function () {

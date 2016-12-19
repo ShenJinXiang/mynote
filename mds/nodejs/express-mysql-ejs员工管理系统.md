@@ -1129,3 +1129,163 @@ function checkUsername(username) {
 	});
 }
 ```
+
+**编辑lib/routes/index.js文件**
+```javascript
+// lib/routes/index.js
+const express = require('express');
+const userService = require('../service/user');
+const MD5 = require('../utils/MD5Util');
+
+let router = express.Router();
+
+/**
+ * 登录、注册页面
+ */
+router.get('/', function (req, res) {
+	res.render('index');
+});
+
+/**
+ * 登录验证
+ */
+router.post('/login', function (req, res) {
+	let username = req.body.username;
+	let password = req.body.password;
+	userService.queryUserByUsername(username, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: '用户不存在'});
+		} else {
+			if (data.length === 1 && data[0].password === MD5.md5(password)) {
+				req.session.currentUser = data[0];
+				res.json({result: true});
+			} else {
+				res.json({result: false, msg: '用户或密码错误'});
+			}
+		}
+	});
+});
+
+/**
+ * 注册用户
+ */
+router.post('/register', function (req, res) {
+	userService.register(req.body, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			req.session.currentUser = data;
+			res.json({result: true});
+		}
+	});
+});
+
+/**
+ * 验证用户名是否存在
+ */
+router.post('/checkUsername', function (req, res) {
+	userService.queryUserByUsername(req.body.username, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			if (data.length > 0) {
+				res.json({result: false, msg: '用户名已经存在'});
+			} else {
+				res.json({result: true});
+			}
+		}
+	});
+});
+
+/**
+ * 登出
+ */
+router.get('/logout', function (req, res) {
+	delete req.session.currentUser;
+	res.redirect('/');
+});
+
+/**
+ * 主页面
+ */
+router.get('/main', function (req, res){
+	let user = req.session.currentUser;
+	res.render('main', {name: user.name});
+});
+
+module.exports = router;
+```
+
+**业务处理**
+
+创建lib/service目录
+```
+$ mkdir lib/service
+```
+
+创建lib/service/user.js文件
+```
+$ touch lib/service/user.js
+```
+
+lib/service/user.js文件内容
+```javascript
+// lib/service/user.js
+
+const mysqlUtil = require('../utils/mysqlUtil');
+const uuid = require('node-uuid');
+const MD5 = require('../utils/MD5Util');
+
+/**
+ * 根据用户名获取用户信息
+ */
+let queryUserByUsername = exports.queryUserByUsername = function (username, callback) {
+	mysqlUtil.query({
+		sql: 'select * from user where username = ?',
+		values: [username]
+	}, callback);
+};
+
+/**
+ * 注册
+ */
+exports.register = function (obj, callback) {
+	queryUserByUsername(obj.username, function (err, data) {
+		if (err) {
+			callback(err);
+		} else if (data.length > 0) {
+			callback(new Error('用户名已存在'));
+		} else {
+			obj.id = uuid.v4();
+			obj.registerDate = new Date();
+			obj.password = MD5.md5(obj.password);
+			mysqlUtil.save('user', obj, function (err, data) {
+				if (err) {
+					callback(err);
+				} else {
+					mysqlUtil.findById('user', obj.id, function (err, data) {
+						callback(err, data);
+					});
+				}
+			});
+		}
+	});
+};
+```
+
+这个模块中，使用了node-uuid包，用于生成数据库中主键id，至此登录、注册功能完成
+
+## 主页面开发
+在lib/routes/index.js这个路由中配置了/main 路由，用于跳转至主页面
+```
+/**
+ * 主页面
+ */
+router.get('/main', function (req, res){
+	let user = req.session.currentUser;
+	res.render('main', {name: user.name});
+});
+```
+
+下面开始主页面的开发
+
