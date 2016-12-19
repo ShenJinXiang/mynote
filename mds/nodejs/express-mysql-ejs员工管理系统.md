@@ -1277,7 +1277,7 @@ exports.register = function (obj, callback) {
 
 ## 主页面开发
 在lib/routes/index.js这个路由中配置了/main 路由，用于跳转至主页面
-```
+```javascript
 /**
  * 主页面
  */
@@ -1289,3 +1289,751 @@ router.get('/main', function (req, res){
 
 下面开始主页面的开发
 
+创建views/main.ejs文件
+```
+$ touch views/main.ejs
+```
+
+编辑main.ejs文件
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<link type='text/css' rel='stylesheet' href='/plugin/ztree/zTreeStyle.css' />
+	<link type='text/css' rel='stylesheet' href='/plugin/layer/skin/default/layer.css' />
+	<link type='text/css' rel='stylesheet' href='/css/common.css' />
+	<title>员工管理系统</title>
+</head>
+<body>
+<div class='header'>
+	<div class='title'>员工管理</div>
+	<span>当前用户：<%= name %>&nbsp;&nbsp;<a href='/logout'>退出登录</a></span>
+</div>
+<div class='left-content'>
+	<div class='box-title'>部门</div>
+	<div class='operate-box'>
+		<button type='button' class='_btn' id='add_department_btn'>新增</button>
+		<button type='button' class='_btn' id='upd_department_btn'>修改</button>
+		<button type='button' class='_btn' id='del_department_btn'>删除</button>
+	</div>
+	<ul id='departmentTree' class='ztree'></ul>
+</div>
+<div class='right-content'>
+	<div class='box-title'>员工
+		<a href='javascript:addEmployee();'>添加员工</a>
+	</div>
+	<div class='table-ware'>
+	<table id='employeeTable' class='table'>
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>所属部门</th>
+				<th>地址</th>
+				<th>说明</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan='7'>暂无数据.</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+
+<div id='departmentContent' style='display: none;'>
+	<form id='departmentForm'>
+		<ul class='form-ul'>
+			<li>
+				<input type='hidden' id='department_pId' name='pId' />
+				<input type='text' id='department_pName'  class='_text' readonly />
+			</li>
+			<li>
+				<input type='hidden' id='department_id' name='id' />
+				<input type='text' id='department_name' name='name' class='_text' placeholder='请输入部门名称' />
+			</li>
+			<li>
+				<button type='button' class='_btn' onclick='saveDepartment()'>确定</button>
+				<button type='button' class='_btn' onclick='closeLayer()'>取消</button>
+			</li>
+		</ul>
+	</form>
+</div>
+
+<div id='employeeContent' style='display: none;'>
+	<form id='employeeForm'>
+		<ul class='form-ul'>
+			<li>
+				<input type='hidden' id='employee_id' name='id' />
+				<input type='text' id='employee_name' name='name' placeholder='请输入姓名' class='_text' />
+			</li>
+			<li>
+				<input type='number' id='employee_age' name='age' placeholder='请输入年龄' class='_text' />
+			</li>
+			<li>
+				<input type='radio' name='sex' checked value='1' id='sex_1'/><label for='sex_1'>男</label>
+				<input type='radio' name='sex' value='0' id='sex_0' /><label for='sex_0'>女</label>
+				
+			</li>
+			<li>
+				<input type='text' id='employee_address' name='address' class='_text' placeholder='请输入地址' />
+			</li>
+			<li>
+				<input type='hidden' id='employee_departmentId' name='departmentId' />
+				<input type='text' id='employee_departmentName' readonly  class='_text' />
+			</li>
+			<li>
+				<textarea id='employee_desc' name='desc' class='_text' placeholder='请输入说明'></textarea>
+			</li>
+			<li>
+				<button type='button' class='_btn' onclick='saveEmployee()'>确定</button>
+				<button type='button' class='_btn' onclick='closeLayer()'>取消</button>
+			</li>
+		</ul>
+	</form>
+</div>
+<script type='text/javascript' src='/plugin/jquery.js'></script>
+<script type='text/javascript' src='/plugin/jquery.form.js'></script>
+<script type='text/javascript' src='/plugin/layer/layer.js'></script>
+<script type='text/javascript' src='/plugin/ztree/jquery.ztree.core-3.5.min.js'></script>
+<script type='text/javascript' src='/plugin/ztree/jquery.ztree.excheck-3.5.min.js'></script>
+<script type='text/javascript' src='/js/common.js'></script>
+<script type='text/javascript' src='/js/main.js'></script>
+</body>
+</html>
+```
+
+**添加对应的页面js文件**
+
+创建 public/js/main.js文件
+```
+$ touch public/js/main.js
+```
+
+编辑public/js/main.js文件
+```javascript
+$(function () {
+	initUI();
+	bindEvent();
+	initDepartmentTree();
+});
+
+/**
+ * 初始化高度
+ */
+function initUI() {
+	$('.left-content').height($(window).height() - 120);
+	$('#departmentTree').height($(window).height() - 240);
+	$('.right-content').height($(window).height() - 120);
+	$('.table-ware').height($(window).height() - 170);
+}
+
+/**
+ * 绑定事件
+ */
+function bindEvent() {
+	$('#add_department_btn').click(addDepartment);
+	$('#upd_department_btn').click(updDepartment);
+	$('#del_department_btn').click(delDepartment);
+}
+
+/**
+ * 初始化部门树
+ */
+function initDepartmentTree() {
+	doPost('/department/treeData', {}, function (result) {
+		if (result.result) {
+			let zNodes = result.data;
+			let setting = {
+				data: {
+					simpleData: {
+						enable: true,
+						idKey: 'id',
+						pIdKey: 'pId',
+						rootPId: null
+					}
+				},
+				view: {
+					selectedMulti: false	// 设置只能选中一个节点
+				},
+				callback: {
+					onClick: deptClick
+				}
+			};
+			$.fn.zTree.init($('#departmentTree'), setting, zNodes);
+		}
+	});
+}
+
+/**
+ * 获取zTree对象
+ */
+function getZTreeObj(id) {
+	return $.fn.zTree.getZTreeObj(id);
+}
+
+/**
+ * 获取选中的节点
+ */
+function getSelectedNode(id) {
+	let nodes = getZTreeObj(id).getSelectedNodes();
+	if (!nodes || nodes.length === 0) {
+		return null;
+	}
+	return nodes[0];
+}
+
+/**
+ * 节点点击时触发 显示员工列表
+ */
+function deptClick (event, treeId, treeNode) {
+	let departmentId = treeNode.id;
+	initEmployeeList(departmentId);
+}
+
+/**
+ * 添加部门，弹出输入框
+ */
+function addDepartment () {
+	formReset('departmentForm');
+	let currentNode = getSelectedNode('departmentTree');
+	if (!currentNode) {
+		$('#department_pId').val('');
+		$('#department_pName').val('没有上级部门');
+	} else {
+		$('#department_pId').val(currentNode.id);
+		$('#department_pName').val(currentNode.name);
+	}
+	openContent('添加部门', 400, 'departmentContent');
+}
+
+/**
+ * 修改部门 弹出输入框
+ */
+function updDepartment () {
+	formReset('departmentForm');
+	let currentNode = getSelectedNode('departmentTree');
+	if (!currentNode) {
+		alertMsg('请选择需要修改的部门');
+		return;
+	}
+	doPost('/department/queryOne', {id: currentNode.id}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			$('#department_id').val(result.data.id);
+			$('#department_name').val(result.data.name);
+			$('#department_pName').val(result.data.pName || '没有上级部门');
+			openContent('修改部门', 400, 'departmentContent');
+		}
+	});
+}
+
+/**
+ * 保存部门数据 后台执行添加或修改操作
+ */
+function saveDepartment () {
+	let data = $('#departmentForm').getFormJson();
+	if (data.name === '' || $.trim(data.name) == '') {
+		tips('请输入部门名称', 'department_name');
+		return;
+	}
+	let url = '/department/addDepartment';
+	if (data.id) {
+		url = '/department/updDepartment';
+	}
+	doPost(url, data, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			let treeObj = getZTreeObj('departmentTree');
+			let currentNode = getSelectedNode('departmentTree');
+			if (result.data.type === 'add') {
+				treeObj.addNodes(currentNode, result.data.data);
+				alertMsg('添加成功', function () {
+					closeLayer();
+				});
+			} else if (result.data.type === 'upd') {
+				currentNode.name = result.data.data.name;
+				treeObj.updateNode(currentNode);
+				alertMsg('修改成功', function () {
+					closeLayer();
+				});
+			}
+		}
+	});
+}
+
+/**
+ * 删除部门，需要该部门没有下级部门，没有员工
+ */
+function delDepartment () {
+	let currentNode = getSelectedNode('departmentTree');
+	if (!currentNode || !currentNode.id) {
+		alertMsg('请选择需要删除的部门');
+		return;
+	}
+	if (currentNode.isParent) {
+		alertMsg('有下级部门，不能删除!');
+		return;
+	}
+
+	doPost('/department/delDepartment', {id: currentNode.id}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			let treeObj = getZTreeObj('departmentTree');
+			treeObj.removeNode(currentNode);
+			alertMsg('删除成功');
+		}
+	});
+}
+
+/**
+ * 显示员工列表
+ */
+function initEmployeeList(departmentId) {
+	doPost('/employee/queryList', {'departmentId': departmentId}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			if (result.data.length === 0) {
+				$('#employeeTable tbody').html('<tr><td colspan="7">暂无数据.</td></tr>');
+			} else {
+				$('#employeeTable tbody').html('');
+				result.data.forEach(function(item, index) {
+					let _html = '<tr>'
+										+ '	<td>' + item.name + '</td>'
+										+ '	<td>' + item.age + '</td>'
+										+ '	<td>' + ((item.sex == '1') ? '男' : '女') + '</td>'
+										+ '	<td>' + item.departmentName + '</td>'
+										+ '	<td>' + item.address + '</td>'
+										+ '	<td>' + item.desc + '</td>'
+										+ '	<td>'
+										+ "		<a href=\"javascript:updEmployee('" + item.id + "')\">修改</a>"
+										+ "		<a href=\"javascript:delEmployee('" + item.id + "')\">删除</a>"
+										+ '	</td>'
+										+ '</tr>';
+					$('#employeeTable tbody').append($(_html));
+				});
+			}
+		}
+	});
+}
+
+/**
+ * 添加员工 弹出窗口
+ */
+function addEmployee() {
+	let currentNode = getSelectedNode('departmentTree');
+	if (!currentNode || !currentNode.id) {
+		alertMsg('请选择部门');
+		return;
+	}
+	formReset('employeeForm');
+	$('#employeeForm #employee_departmentId').val(currentNode.id);
+	$('#employeeForm #employee_departmentName').val(currentNode.name);
+	openContent('添加员工', 500, 'employeeContent');
+}
+
+/**
+ * 修改员工，弹出窗口
+ */
+function updEmployee(employeeId) {
+	formReset('employeeForm');
+	doPost('/employee/queryOne', {id: employeeId}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			$("#employeeForm #employee_id").val(result.data.id);
+			$("#employeeForm #employee_name").val(result.data.name);
+			$("#employeeForm #employee_age").val(result.data.age);
+			$("#employeeForm #employee_address").val(result.data.address);
+			$("#employeeForm #employee_departmentName").val(result.data.departmentName);
+			$("#employeeForm #employee_departmentId").val(result.data.departmentId);
+			$("#employeeForm #employee_desc").val(result.data.desc);
+			if(result.data.sex == '1') {
+				$('#employeeForm #sex_1').prop('checked', true);
+			} else {
+				$('#employeeForm #sex_0').prop('checked', true);
+			}
+			openContent('修改员工', 500, 'employeeContent');
+		}
+	});
+}
+
+
+/**
+ * 删除员工
+ */
+function delEmployee(employeeId) {
+	doPost('/employee/delEmployee', {id: employeeId}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			let currentNode = getSelectedNode('departmentTree');
+			initEmployeeList(currentNode.id);
+			alertMsg('删除成功', function () {
+				closeLayer();
+			});
+		}
+	});
+}
+
+/**
+ * 保存员工信息，后台执行 新增或修改
+ */
+function saveEmployee() {
+	let data = $('#employeeForm').getFormJson();
+	let url = '/employee/addEmployee';
+	if (data.id) {
+		url = '/employee/updEmployee';
+	}
+	doPost(url, data, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			initEmployeeList(data.departmentId);
+			alertMsg('保存成功', function () {
+				closeLayer();
+			});
+		}
+	});
+}
+```
+
+**路由文件**
+
+编辑lib/routes/department.js文件
+```javascript
+// lib/routes/department.js
+
+const express = require('express');
+const department = require('../service/department');
+
+let router = express.Router();
+
+/**
+ * 获取部署数据
+ */
+router.post('/treeData', function (req, res) {
+	department.departmentTree(function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true, data: data});
+		}
+	});
+});
+
+/**
+ * 获取一条记录
+ */
+router.post('/queryOne', function (req, res) {
+	department.queryDepartmentById(req.body.id, function (err, data) {
+		if (err) {
+			res.json({'result': false, 'msg': err.message});
+		} else {
+			res.json({result: true, data: data});
+		}
+	});
+});
+
+/**
+ * 添加部门
+ */
+router.post('/addDepartment', function (req, res) {
+	department.addDepartment(req.body, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true, data: {type: 'add', data: data}});
+		}
+	});
+});
+
+/**
+ * 修改部门
+ */
+router.post('/updDepartment', function (req, res) {
+	department.updDepartment(req.body, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true, data: {type: 'upd', data: data}});
+		}
+	});
+});
+
+/**
+ * 删除部门
+ */
+router.post('/delDepartment', function (req, res) {
+	department.delDepartment(req.body.id, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true, data: data});
+		}
+	});
+});
+
+module.exports = router;
+```
+
+编辑 lib/routes/employee.js文件
+```javascript
+// lib/routes/employee.js
+
+const express = require('express');
+const employee = require('../service/employee');
+
+let router = express.Router();
+
+/**
+ * 获取员工列表信息
+ */
+router.post('/queryList', function (req, res) {
+	employee.queryList(req.body.departmentId, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true, data: data});
+		}
+	});
+});
+
+/**
+ * 添加员工信息
+ */
+router.post('/addEmployee', function (req, res) {
+	employee.addEmployee(req.body, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true, data: data});
+		}
+	});
+});
+
+/**
+ * 删除员工记录
+ */
+router.post('/delEmployee', function (req, res) {
+	employee.delEmployee(req.body.id, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true});
+		}
+	});
+});
+
+/**
+ * 查询一条记录
+ */
+router.post('/queryOne', function (req, res) {
+	employee.queryOne(req.body.id, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true, data: data});
+		}
+	});
+});
+
+/**
+ * 修改员工记录
+ */
+router.post('/updEmployee', function (req, res) {
+	employee.updEmployee(req.body, function (err, data) {
+		if (err) {
+			res.json({result: false, msg: err.message});
+		} else {
+			res.json({result: true});
+		}
+	});
+});
+
+module.exports = router;
+```
+
+**编辑业务处理文件**
+
+创建 lib/service/department.js文件
+```
+$ touch lib/service/department.js
+```
+
+编辑 lib/service/department.js文件
+```javascript
+// lib/service/department.js
+const uuid = require('node-uuid');
+const mysqlUtil = require('../utils/mysqlUtil');
+
+/**
+ * 获取部门数据
+ */
+exports.departmentTree = function (callback) {
+	mysqlUtil.query('select * from department order by createTime asc', callback);
+};
+
+/**
+ * 根据id获取部门信息
+ */
+exports.queryDepartmentById = function (id, callback) {
+	mysqlUtil.query({
+		sql: 'select a.id, a.name, a.pId, (select name from department where id = a.pId) pName from department a where a.id = ?',
+		values: [id]
+	}, function (err, data) {
+		if (err) {
+			callback(err);
+		} else {
+			if (data.length !== 1) {
+				callback(new Error('返回记录数量不正确'), data);
+			} else {
+				callback(null, data[0]);
+			}
+		}
+	});
+};
+
+/**
+ * 添加部门信息
+ */
+exports.addDepartment = function (obj, callback) {
+	obj.pId = obj.pId || null;
+	obj.id = uuid.v4();
+	mysqlUtil.save('department', obj, function (err, data) {
+		if (err) {
+			callback(err);
+		} else {
+			mysqlUtil.findById('department', obj.id, callback);
+		}
+	});
+};
+
+/**
+ * 修改部门信息
+ */
+exports.updDepartment = function (obj, callback) {
+	mysqlUtil.query({
+		sql: 'update department set name = ? where id = ?',
+		values: [obj.name, obj.id]
+	}, function (err, data) {
+		if (err) {
+			callback(err);
+		} else {
+			mysqlUtil.findById('department', obj.id, callback);
+		}
+	});
+};
+
+/**
+ * 删除部门信息
+ */
+exports.delDepartment = function (id, callback) {
+	mysqlUtil.query({
+		sql: 'select count(1) cnt from department where pId = ?',
+		values: [id]
+	}, function (err, data) {
+		if (err) {
+			callback(err);
+		} else {
+			if (data[0].cnt !== 0) {
+				callback(new Error('有下级部门，无法删除!'));
+			} else {
+				mysqlUtil.query({
+					sql: 'select count(1) cnt from employee where departmentId = ?',
+					values: [id]
+				}, function (err, data) {
+					if (err) {
+						callback(err);
+					} else {
+						if (data[0].cnt !== 0) {
+							callback(new Error('该部门有员工，无法删除!'));
+						} else {
+							mysqlUtil.delById('department', id, callback);
+						}
+					}
+				});
+			}
+		}
+	});
+};
+```
+
+创建 lib/service/employee.js文件
+```
+$ touch lib/service/employee.js
+```
+
+编辑 lib/service/employee.js文件
+```javascript
+// lib/service/employee.js
+
+const uuid = require('node-uuid');
+const mysqlUtil = require('../utils/mysqlUtil');
+
+/**
+ * 获取员工列表
+ */
+exports.queryList = function (departmentId, callback) {
+	mysqlUtil.query({
+		sql: 'select a.id, a.name, a.departmentId, (select name from department where id = a.departmentId) departmentName, a.age, a.sex, a.address, a.desc from employee a where a.departmentId = ?',
+		values: [departmentId]
+	}, callback);
+};
+
+/**
+ * 添加员工
+ */
+exports.addEmployee = function (obj, callback) {
+	obj.id = uuid.v4();
+	mysqlUtil.save('employee', obj, callback);
+};
+
+/**
+ * 删除员工
+ */
+exports.delEmployee = function (id, callback) {
+	mysqlUtil.delById('employee', id, callback);
+}
+
+/**
+ * 修改员工
+ */
+exports.updEmployee = function (obj, callback) {
+	delete obj.departmentId;
+	mysqlUtil.update('employee', obj, callback);
+}
+
+/**
+ * 获取一条员工记录
+ */
+exports.queryOne = function (id, callback) {
+	mysqlUtil.query ({
+		sql: 'select a.id, a.name, a.departmentId, (select name from department where id = a.departmentId) departmentName, a.age, a.sex, a.address, a.desc from employee a where a.id = ?',
+		values: [id]
+	}, function (err, data) {
+		if (err) {
+			callback(err);
+		} else {
+			if (data.length !== 1) {
+				callback(new Error('返回记录不正确'));
+			} else {
+				callback(null, data[0]);
+			}
+		}
+	});
+}
+```
+
+至此，利用express、ejs、mysql完成一个简单的员工管理模块，可以运行app.js文件，浏览器中访问应用了
+
+![](./img/019.png)
+![](./img/020.png)
