@@ -475,6 +475,7 @@ module.exports = function(req, res, next) {
 ```
 
 **登录session验证中间件**
+
 middleware目录下创建loginFilter.js
 ```
 $ touch lib/middleware/loginFilter.js
