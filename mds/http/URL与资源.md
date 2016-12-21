@@ -33,3 +33,22 @@ url: http://www.shenjinxiang.com/index.html
 |片段|一小片或一部分资源的名字，通过字符(#)与其他URL分割|无|
 
 ## URL快捷方式
+Web客户端可以理解并使用几种URL快捷方式：相对URL、自动扩展
+
+### 相对URL
+URL有两种方式：*绝对的*和*相对的*
+
+相对URL是不完整的，相对于基础的URL进行解析
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>text</title>
+</head>
+<body>
+<p>相对路径：<a href='./index.html'>hehe</a></p>
+</body>
+</html>
+```
