@@ -5,4 +5,5 @@
 * [java](./mds/java/README.md)
 * [Bootstrap](./mds/bootstrap/README.md)
 * [http](./mds/http/README.md)
+* [javascript](./mds/javascript/README.md)
 * [vim](./mds/vim/README.md)
