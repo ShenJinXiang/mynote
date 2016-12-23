@@ -3,7 +3,7 @@
 ## Canvas
 用于脚本绘图的HTML元素
 
-Canvas对象表现为HTML的canvas元素。该元素并不能做什么，但定义了一个支持在客户端使用脚本绘图的API，可以为这个对象定义width和height，也可以用toDataURL()方法从画布中导出图片，实际绘图的API是由getContext()方法返回的一个独立“上下文”对象事件的
+Canvas对象表现为HTML的canvas元素。该元素并不能做什么，但定义了一个支持在客户端使用脚本绘图的API，可以为这个对象定义width和height，也可以用```toDataURL()```方法从画布中导出图片，实际绘图的API是由```getContext()```方法返回的一个独立“上下文”对象事件的
 
 ### 属性
 **height**
@@ -34,7 +34,7 @@ Canvas对象表现为HTML的canvas元素。该元素并不能做什么，但定�
 
 > string toDataURL([string type], [any args...])
 
-toDataURL()以data://URL 的方式返回canvas位图的内容，这种方式可以很容易的在&lt;img&gt;标签中使用或者通过网络传输
+```toDataURL()```以data://URL 的方式返回canvas位图的内容，这种方式可以很容易的在&lt;img&gt;标签中使用或者通过网络传输
 
 ```
 var canvas = document.getElementById('my_canvas');
@@ -58,7 +58,7 @@ document.body.appendChild(image);
 
 > void addColorStop(double offset, string color)
 
-``addColorStop()```定义一种渐变中的固定颜色。参数color的值为一个css颜色字符串，参数offset是0.0～1.0之间的一个浮点数，对于渐变的起点到终点的位置。offset为0相当于起点，offset为1相当于终点
+```addColorStop()```定义一种渐变中的固定颜色。参数color的值为一个css颜色字符串，参数offset是0.0～1.0之间的一个浮点数，对于渐变的起点到终点的位置。offset为0相当于起点，offset为1相当于终点
 
 1. 如果定义两个或多个色标，各个颜色之间将平滑地过度。在第一个色标之前，渐变将显示第一个色标的颜色，在最后一个色标之后，渐变将显示最后一个色标的颜色。
 2. 如果只定义了一种色标，渐变将显示一种固定的颜色。如果没有设置颜色，渐变将全是清一色的透明黑色
