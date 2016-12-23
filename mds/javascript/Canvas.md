@@ -58,7 +58,7 @@ document.body.appendChild(image);
 
 > void addColorStop(double offset, string color)
 
-```addColorStop()```定义一种渐变中的固定颜色。参数color的值为一个css颜色字符串，参数offset是0.0～1.0之间的一个浮点数，对于渐变的起点到终点的位置。offset为0相当于起点，offset为1相当于终点
+``addColorStop()``定义一种渐变中的固定颜色。参数color的值为一个css颜色字符串，参数offset是0.0～1.0之间的一个浮点数，对于渐变的起点到终点的位置。offset为0相当于起点，offset为1相当于终点
 
 1. 如果定义两个或多个色标，各个颜色之间将平滑地过度。在第一个色标之前，渐变将显示第一个色标的颜色，在最后一个色标之后，渐变将显示最后一个色标的颜色。
 2. 如果只定义了一种色标，渐变将显示一种固定的颜色。如果没有设置颜色，渐变将全是清一色的透明黑色
