@@ -21,13 +21,13 @@ HTTP报文由三部分组成：对报文进行描述的*起始行*(start line)�
 所有的HTTP报文都可以分为两类：*请求报文*(request message)和*响应报文*(response message)。请求报文会向Web服务器请求一个动作。响应报文会将请求的结果返回给客户端。请求和响应报文的基本结构相同
 
 *请求报文的格式：*
-> &lt;method&gt; &lt;request-URL&gt; &lt;version&gt;
+> &lt;method&gt; &lt;request-URL&gt; &lt;version&gt;    
 > &lt;headers&gt;
 >
 > &lt;entity-body&gt;
 
 *响应报文的格式：*
-> &lt;version&gt; &lt;status&gt; &lt;reason-phrase&gt;
+> &lt;version&gt; &lt;status&gt; &lt;reason-phrase&gt;    
 > &lt;headers&gt;
 >
 > &lt;entity-body&gt;
