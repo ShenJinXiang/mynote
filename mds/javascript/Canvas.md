@@ -17,3 +17,23 @@ Canvas对象表现为HTML的canvas元素。该元素并不能做什么，但定�
 
 **方法**
 
+> object getContext(String contextID, [any args...])
+
+这个方法返回一个用于在Canvas元素上画图的对象。如果传入字符串“2d”，本方法将返回一个用于2D绘图的CanvasRenderingContext2D对象，在这种情况下不需要额外的args
+
+每个canvas元素只有一个CanvasRenderingContext2D对象，所以多次调用getContext('2d')返回的是同一个对象
+
+> string toDataURL([string type], [any args...])
+
+toDataURL()以data://URL 的方式返回canvas位图的内容，这种方式可以很容易的在&lt;img&gt;标签中使用或者通过网络传输
+
+```
+var canvas = document.getElementById('my_canvas');
+var image = document.createElement('img');
+image.src = canvas.toDataURL();
+document.body.appendChild(image);
+```
+
+*type*参数定义图片格式使用的MIME类型，如果省略该参数，默认值为'image/png'。只有PNG图片格式是要求支持的实现方式。除了PNG外的图片格式，可以传入额外的参数来定义编码细节。比如，如果*type*是'image/jpeg'，第二个参数应该为0~1之间的一个数字，用于定义图片的质量级别
+
+## CanvasGradient
