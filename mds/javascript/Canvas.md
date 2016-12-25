@@ -142,4 +142,31 @@ CanvasRenderingContext2D的```getImageData()```方法允许查询画布的原始
 > string font
 绘制文本时使用的字体，值为一段字符串，格式与CSS font属性格式相同。默认值为：'10px sans-serif'
 
+**globalAlpha**
+
+> double globalAlpha
+
+在画布上的所有内容定义一个额外的透明度。画布上的所有像素的alpha值将乘以这个值，这个值只能为0.0(所有内容完全透明) ~ 1.0 (默认值，没有额外透明度)之间的一个数字
+
+**globalCompositeOperation**
+
+> string globalCompositeOperation
+
+这个属性指定绘制到画布上的源像素与画布上已经存在的目标像素之间如何结合。一般只有在处理部分透明的颜色或设置globalAlpha属性后这个属性才有用，默认值为"source-over"，其它常用值为"destination-over"和"copy"
+
+**lineCap**
+
+> string lineCap
+
+lineCap属性定义线条末端的样式，只有在画粗线条时这个属性才有用
+
+|值|含义|
+|:--|:--|
+|'butt'|默认值，线条没有线帽，线条的终点上平直的，与线条方向垂直，线条不会超过终点|
+|'round'|线条由一个半圆形的线帽，半圆的直径等于线条的宽度，半圆在线条的终点处向外扩展、距离为线条宽度的一半|
+|'square'|这个值定义线条由一个矩形的纤毛，和'butt'类似，但线条的终点处会扩展出其宽度一半的距离|
+
+**lineJoin**
+
+> string lineJoin
 
