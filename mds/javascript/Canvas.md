@@ -119,3 +119,27 @@ CanvasRenderingContext2D可以给画的任何东西自动添加阴影。阴影�
 可以通过```save()```和```restore()```方法来保存或还原一个CanvasRenderingContext2D对象的状态。```save()```将当前状态压入栈中，```restore()```从栈的顶部弹出最近保存的状态，并将根据它的值设置当前绘图状态
 
 CanvasRenderingContext2D对象的所有属性(canvas属性除外，canvas属性是个常量)都可在绘图状态中保存。转换矩阵和裁剪区域也是状态的一部分，但当前路径和当前点不是。
+
+### 像素操作
+CanvasRenderingContext2D的```getImageData()```方法允许查询画布的原始像素，```putImageData()```允许设置单个像素的值
+
+### 属性
+
+**canvas**
+
+> readonly Canvas canvas
+
+用于绘图的Canvas元素
+
+**fillStyle**
+
+> any fillStyle
+
+当前用于填充路径的颜色、图案或渐变。这个属性的值可以是CSS颜色字符串，也可以是一个CanvasGradient或CanvasPattern对象，默认的填充样式是纯黑色
+
+**font**
+
+> string font
+绘制文本时使用的字体，值为一段字符串，格式与CSS font属性格式相同。默认值为：'10px sans-serif'
+
+
