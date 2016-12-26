@@ -1,5 +1,8 @@
 # Base64算法
 
+产生原因：邮件历史问题
+定义：基于64个字符的编码算法
+
 * jdk默认实现方式
 * Commons Codec
 * Bouncy Costle
