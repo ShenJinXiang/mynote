@@ -247,3 +247,29 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 beginPath()丢弃当前定义的路径，并开始一条新的路径，调用beginPath()之后没有当前点。
 
 首次创建画布上下文时，beginPath()会隐含地调用
+
+**bezierCurveTo()**
+
+> void bezierCurveTo(double cpx1, cpy1, cpx2, cpy2, x, y)
+
+bezierCurveTo()添加一条三次贝塞尔曲线到画布的当前子路径中。曲线的起点是画布的当前点，重点是(x, y)，两个贝塞尔控制点(cpX1, cpY1)及(cpX2, cpY2)定义曲线的形状，当这个方法返回时，当前点是(x, y)
+
+**clearRect()**
+
+> void clearRect(double x, y, width, height)
+
+clearRect() 使用透明黑色填充指定的矩形区域。不像```rect()```，它不会影响当前点或当前路径
+
+**clip()**
+
+> void clip()
+
+这个方法计算当前路径和当前裁剪区域中的相交部分，并将这个较小的区域作为新的裁剪区域返回
+
+类似于```fill()```方法，```clip()```将所有子路径视为关闭，并使用非零环绕规则来判定路径的内部与外部
+
+**closePath()**
+
+> void closePath()
+
+如果当前画布的子路径未关闭，```closePath()```会通过当前点与这条子路径的第一个点之间添加一条连接来闭合它，并在同一点开始一条新的子路径
