@@ -338,3 +338,15 @@ fill()方法使用```fillStyle```属性定义的颜色、渐变或图案对当�
 填充一条路径并不会清除掉这条路径，在调用```fill()```之后，仍然可以调用```stroke()```而不需重定义这条路径
 
 如果路径与自身相交或者与子路径重叠，填充画布将使用非零环绕规则来判定一个点是在路径的内部还是外部
+
+**fillRect()**
+
+> void fillRect(double x, y, width, height)
+
+```fillRect()``` 使用```fillStyle```属性定义的颜色、渐变或图案对指定的矩形进行填充，和```rect()```不同，```fillRect()```对当前点和当前路径没有影响
+
+**fillText()**
+
+> void fillTest(string text, double x, y, [double maxWidth])
+
+```fillText()```使用当前字体及```fillStyle```属性绘制text，参数x和y定义文本应该画在画布的什么位置，但这两个参数的实际值分别收到```textAlign```和```textBaseline```属性的影响
