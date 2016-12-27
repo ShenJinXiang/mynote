@@ -273,3 +273,49 @@ clearRect() 使用透明黑色填充指定的矩形区域。不像```rect()```�
 > void closePath()
 
 如果当前画布的子路径未关闭，```closePath()```会通过当前点与这条子路径的第一个点之间添加一条连接来闭合它，并在同一点开始一条新的子路径
+
+**createImageData()**
+
+> ImageData createImageData(ImageData imagedata)
+
+返回一个和传入的imagedata尺寸相同的新的ImageData对象
+
+**createImageData()**
+
+> ImageData createImageData(double w, double h)
+
+返回一个指定宽度和高度的新的ImageData对象，这个新的ImageData对象中的所有像素都初始化为透明黑色
+
+参数w和h定义图片的尺寸，单位为CSS像素
+
+**createLinearGradient()**
+
+> CanvasGradient createLinearGradient(double x0, y0, x1, y1)
+
+生成并返回一个新的CanvasGradient对象，其中颜色从起点(x0, y0)到终点(x1, y1)之间线性渐变。这个方法并没有指定渐变的颜色，要指定颜色，使用它返回对象的```addColorStop()```方法，如果要绘制渐变描边或填充区域，秩序将一个CanvasGradient对象赋值给```strokeStyle```或```fillStyle```属性
+
+**createPattern()**
+
+> CanvasPattern createPattern(Element image, string repetition)
+
+生成并返回一个CanvasPattern对象，这个对象表示一幅平铺图像定义的图案。参数```image```必须是一个&lt;img&gt;、&lt;canvas&gt;或&lt;video&gt;元素，包含图案中要使用的图像。 参数```repetition```定义图片如何平铺
+
+repetition的值：
+
+|值|含义|
+|:--|:--|
+|'repeat'|默认值，在x轴方向和y轴方向都平铺图像|
+|'repeat-x'|只在x轴方向平铺图像|
+|'repeat-y'|只在y轴方向平铺图像|
+|'no-repeat'|不平铺图像，图像只绘制一次|
+
+如果要使用图案来描边或填充一个区域，可将CanvasPattern对象作为```strokeStyle```或```fillStyle```属性的值
+
+**createRadiaGradient()**
+
+> CanvasGradient createRadialGradient(double x0, y0, r0, x1, y1, r1)
+
+创建并返回一个新的CanvasGradient对象，其中颜色在两个指定的圆的圆周之间辐射渐变。这个方法并没有指定渐变的颜色，如要要指定颜色，使用它返回对象的```addColorStop()```方法。如果要绘制渐变描边或填充区域，只须将一个CanvasGradient对象赋值给```strokeStyle```或```fillStyle```属性
+
+辐射渐变的渲染方式如下：在第一个圆的圆周出的颜色偏移量为0， 在第二个圆周处颜色偏移量为1，两个圆之间为渐变的中间色
+
