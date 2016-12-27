@@ -319,3 +319,22 @@ repetition的值：
 
 辐射渐变的渲染方式如下：在第一个圆的圆周出的颜色偏移量为0， 在第二个圆周处颜色偏移量为1，两个圆之间为渐变的中间色
 
+**drawImage()**
+
+> void drawImage(Element image, double dx, dy, [dw, dh])
+
+复制指定image(必须是一个&lt;img&gt;、&lt;canvas&gt;、&lt;video&gt;元素)到画布中，图像的左上角位置为(dx, dy)，如果指定dw和dh，图像的宽度和高度会缩放到dw像素宽和dh像素高
+
+> void drawImage(Element image, double sx, sy, sw, sh, dx, dy, dw, dh)
+
+复制指定的images的一个源矩形区域的内容到画布的目标矩形区域，(sx, sy)定义图像的源矩形区域的左上角，sw和sh定义源矩形区域的宽度和高度
+
+**fill()**
+
+> void fill()
+
+fill()方法使用```fillStyle```属性定义的颜色、渐变或图案对当前路径进行填充，没有闭合的子路径在填充时将表现得如同调用```closePath()```方法一样
+
+填充一条路径并不会清除掉这条路径，在调用```fill()```之后，仍然可以调用```stroke()```而不需重定义这条路径
+
+如果路径与自身相交或者与子路径重叠，填充画布将使用非零环绕规则来判定一个点是在路径的内部还是外部
