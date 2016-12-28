@@ -350,3 +350,40 @@ fill()方法使用```fillStyle```属性定义的颜色、渐变或图案对当�
 > void fillTest(string text, double x, y, [double maxWidth])
 
 ```fillText()```使用当前字体及```fillStyle```属性绘制text，参数x和y定义文本应该画在画布的什么位置，但这两个参数的实际值分别收到```textAlign```和```textBaseline```属性的影响
+
+可选参数```maxwidth```定义文本的最大宽度，如果text的宽度有可能超过maxwidth，文本就将使用更小或压缩版的字体来绘制
+
+**getImageData()**
+
+> ImageData getImageData(double sx, sy, sw, sh)
+
+这个方法的参数为未转换的坐标，定义画布中的一个矩形区域，将这个区域的像素数据复制到一个新的ImageData对象中并返回该对象
+
+这个方法会进行安全检验，避免跨域信息泄漏，只有当画布是同源时，该方法才会返回一个ImageData对象，否则抛出错误
+
+**isPointInPath()**
+
+> boolean isPointInPath(double x, y)
+
+如果指定的点在当前路径的边缘之内或智商，```isPointInPath()```返回true，否则返回false。指定的点没有根据当前转换矩阵转换，x值应该在0 ～ canvas.width之间，y值应该在0 ～ canvas.height之间
+
+isPointInPath()测试的是未转换的点，因此它的设计目的是做"命中测试"，比如判断用户的鼠标单击是否在画布上当亲啊路径描述的某个部分智商。
+
+```javascript
+function hittest(event) {
+	var canvas = this;
+	var c = canvas.getContext('2d');
+	var bb = canvas.getBoundingClientRect();
+
+	var x = (event.clientX - bb.left) * (canvas.width / bb.width);
+	var y = (event.clientY - bb.top) * (canvas.height / bb.height);
+
+	if (c.isPointInPath(x, y)) c.fill();
+}
+```
+
+**lineTo()**
+
+> void lineTo(double x, double y)
+
+该方法在当前子路径中添加一条直线，直线重当前点开始，到(x, y) 结束，这个方法返回后当前点是(x, y)
