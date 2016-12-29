@@ -490,3 +490,49 @@ c.closePath();
 将复制当前绘图状态，并将这个副本压入已保存的绘图状态栈中，这样就可以临时改变绘图状态，然后调用```restroe()```恢复到之前的值
 
 画布的绘图状态包含CanvasRenderingContext2D对象的所有属性(除了只读的canvas属性)，包含由于调用```rotate()```、```scale()```及```translate()```会影响到转换矩阵，以及由```clip()```方法定义的裁剪路径
+
+
+**scale()**
+
+> void scale(double sx, double sy)
+
+添加一个缩放转换到画布的当前转换矩阵中，缩放在水平方向与垂直方向上上相互独立的，如果参数为负数，则为反向
+
+
+**setTransform()**
+
+> void setTransform(double o, b, c, d, e, f)
+
+用于直接设置当前转换矩阵，无须多次调用```translate()```、```scale()```和```rotate()```
+
+
+**stroke()**
+
+> void stroke()
+
+为当前路径描边，定义线条的几何形态的路径将会显现出来，但是视觉效果取决于strokeStyle、lineWidth、lineCap、lineJoin以及miterLimit属性
+
+**strokeRect()**
+
+> void strokeRect(double x, y, w, h)
+
+根据指定的位置及尺寸，绘制一个矩形边框
+
+
+**strokeText()**
+
+> void strokeText(string text, double x, y, [maxWdith])
+
+和```fillText()```相似，不过是对每个字进行描边
+
+
+**transform()**
+
+> void transform(double a, b, c, d, e, f)
+
+
+**translate()**
+
+> void translate(double x, double y)
+
+为当前画布的转换矩阵添加水平垂直偏移量
