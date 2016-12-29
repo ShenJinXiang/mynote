@@ -433,3 +433,60 @@ function hittest(event) {
 > void moveTo(double x, double y)
 
 将当前点设置为(x, y)，并以这个点作为第一个点，开始一条新的子路径。如果之前有一条自路径，并且这条子路径只包含一个点，那么这条空子路径将会从路径中移除
+
+
+**putImageData()**
+
+> void putImageData(ImageData imagedata, double dx, dy, [sx, sy, sw, sh])
+
+从一个ImageData对象中复制一个矩形像素块到当前画布中。这是一个低级的像素复制操作：```globalCompositeOperation```和```globalAlpha```属性被忽略
+
+参数dx、dy定义画布上的目标点，data中的像素复制到画布中后会从这个点开始绘制
+
+最后4个参数定义ImageData中的源矩形区域，如果指定，则只有这个矩形之内的像素才会复制到画布中，如果这四个参数忽略，则ImageData中的所有像素都会复制。如果这四个参数定义的矩形区域大于ImageData的范围，则矩形区域会裁剪至这个范围，参数sx、sy的值可以为负数
+
+ImageData对象的用途之一：作为画布的备份，保存画布像素的一份副本到一个ImageData对象中，在画布临时绘画，然后使用```putImageData()```方法将它恢复到初识状态
+
+
+**quadraicCurveTo()**
+
+> void quadraticCurveTo(double cpx, cpy, x, y)
+
+添加一条二次贝塞尔曲线段到当前自路径中，曲线从当前点开始到(x, y)结束，控制点(cpx, cpy)指定起点与终点间的曲线的形状，调用完以后，当前点为(x, y)
+
+
+**rect()**
+
+> void rect(double x, y, w, h)
+
+这个方法添加一个矩形到当前路径中，这个矩形在自己的子路径中，与当前路径的其它路径都不相连，调用完毕以后，当前点就是(x, y)，等价于:
+```
+c.moveTo(x, y);
+c.lineTo(x + w, y);
+c.lineTo(x + w, y + h);
+c.lineTo(x, y + h);
+c.closePath();
+```
+
+
+**restore()**
+
+> void restore()
+
+从以保存的绘图状态的栈中弹出最后一个保存状态，并根据这个状态充值CanvasRenderingContext2D的各项属性、裁剪路径以及转换矩阵
+
+
+**rotate()**
+
+> void rotate(double angle)
+
+改变当前转换矩阵，加下来在画布上绘制的任何对象都将旋转指定的角度，&lt;canvas&gt;元素并没有旋转，angle角度的单位是弧度制。角度转换为弧度的方法：乘以Math.PI，再除以180
+
+
+**save()**
+
+> void save()
+
+将复制当前绘图状态，并将这个副本压入已保存的绘图状态栈中，这样就可以临时改变绘图状态，然后调用```restroe()```恢复到之前的值
+
+画布的绘图状态包含CanvasRenderingContext2D对象的所有属性(除了只读的canvas属性)，包含由于调用```rotate()```、```scale()```及```translate()```会影响到转换矩阵，以及由```clip()```方法定义的裁剪路径
