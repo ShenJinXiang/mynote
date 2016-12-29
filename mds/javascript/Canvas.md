@@ -131,16 +131,19 @@ CanvasRenderingContext2D的```getImageData()```方法允许查询画布的原始
 
 用于绘图的Canvas元素
 
+
 **fillStyle**
 
 > any fillStyle
 
 当前用于填充路径的颜色、图案或渐变。这个属性的值可以是CSS颜色字符串，也可以是一个CanvasGradient或CanvasPattern对象，默认的填充样式是纯黑色
 
+
 **font**
 
 > string font
 绘制文本时使用的字体，值为一段字符串，格式与CSS font属性格式相同。默认值为：'10px sans-serif'
+
 
 **globalAlpha**
 
@@ -148,11 +151,13 @@ CanvasRenderingContext2D的```getImageData()```方法允许查询画布的原始
 
 在画布上的所有内容定义一个额外的透明度。画布上的所有像素的alpha值将乘以这个值，这个值只能为0.0(所有内容完全透明) ~ 1.0 (默认值，没有额外透明度)之间的一个数字
 
+
 **globalCompositeOperation**
 
 > string globalCompositeOperation
 
 这个属性指定绘制到画布上的源像素与画布上已经存在的目标像素之间如何结合。一般只有在处理部分透明的颜色或设置globalAlpha属性后这个属性才有用，默认值为"source-over"，其它常用值为"destination-over"和"copy"
+
 
 **lineCap**
 
@@ -166,6 +171,7 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 |'round'|线条由一个半圆形的线帽，半圆的直径等于线条的宽度，半圆在线条的终点处向外扩展、距离为线条宽度的一半|
 |'square'|这个值定义线条由一个矩形的纤毛，和'butt'类似，但线条的终点处会扩展出其宽度一半的距离|
 
+
 **lineJoin**
 
 > string lineJoin
@@ -176,11 +182,13 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 
 属性值"round"定义交合部分顶点的外边缘为一段实心圆弧，直径与线条的宽度相等。属性值"bevel"定义交合部分顶点的外边缘为一个实心的三角形
 
+
 **lineWidth**
 
 > double lineWidth
 
 定义描边操作时的线条宽度，默认值为1，线条的中心在路径上，路径两边各占一半的宽度
+
 
 **miterLimit**
 
@@ -188,17 +196,20 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 
 如果```lineJoin```属性的值为"miter"，并且两条线以一个锐角斜交，那么它们的交合部分可能会很长，如果这个斜交的部分太长，看起来就很不协调，```miterLimit```属性设置斜交部分长度的上线。这个值定义斜交部分长度与线宽的一半之间的比例，默认为10，即斜交部分的长度不会超过线条宽度的5倍，如果超过了允许的最大值，这两条线条将以斜面而不是斜接的方式连接
 
+
 **shadowBlur**
 
 > double shadowBlur
 
 定义阴影的模糊程度，默认值为0，将生成边缘清晰的阴影。取值越大模糊成都也越大，不过需要注意，这个值的单位不是像素，也不受当前变换的影响
 
+
 **shadowColor**
 
 > string shadowColor
 
 定义阴影的颜色，格式同CSS颜色格式，默认情况是透明黑色
+
 
 **shadowOffsetX 和 shadowOffsetY**
 
@@ -207,17 +218,20 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 
 定义阴影的横向和纵向偏移量，取值越大，产生阴影的对象看起来就像在背景上飘得越高，默认值为0
 
+
 **strokeStyle**
 
 > any strokeStyle
 
 定义描边路径的颜色、图案或渐变，这个属性的值可以是一个CSS颜色字符串，也可以是一个CanvasGradien 或CanvasPattern对象
 
+
 **textAlign**
 
 > string textAlign
 
 定义文本水平对齐方式，其对应的x坐标值会传递给```fillText()```及```strokeText()```，允许的值由：'left'、'center'、'right'、'start'以及'end'，'start'和'end'的含义取决于当前&lt;canvas&gt;标签的dir(文字方向)属性，默认值为"start"
+
 
 **textBaseline**
 
@@ -234,11 +248,13 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 
 调用这个方法会在当前路径中的当前点和圆弧起点之间添加一条直线，然后再添加圆弧本身
 
+
 **arcTo()**
 
 > void arcTo(double x1, y1, x2, y2, radius)
 
 在当前子路径中添加一条直线和一个圆弧，并以某种方式描述圆弧，从而使它在为多边形添加圆角时特别有用，参数x1、y1定义点p1，参数x2、y2定义点p2添加到路径中的圆弧是一个半径为radius的圆的一部分，圆弧上有一点与当前点到p1之间的连线相切，一点与p1、p2之间的连线相切，这两个相切点也是圆弧的起点及终点，绘制的圆弧为连接这两个点的最短圆弧。
+
 
 **beginPath()**
 
@@ -248,17 +264,20 @@ beginPath()丢弃当前定义的路径，并开始一条新的路径，调用beg
 
 首次创建画布上下文时，beginPath()会隐含地调用
 
+
 **bezierCurveTo()**
 
 > void bezierCurveTo(double cpx1, cpy1, cpx2, cpy2, x, y)
 
 bezierCurveTo()添加一条三次贝塞尔曲线到画布的当前子路径中。曲线的起点是画布的当前点，重点是(x, y)，两个贝塞尔控制点(cpX1, cpY1)及(cpX2, cpY2)定义曲线的形状，当这个方法返回时，当前点是(x, y)
 
+
 **clearRect()**
 
 > void clearRect(double x, y, width, height)
 
 clearRect() 使用透明黑色填充指定的矩形区域。不像```rect()```，它不会影响当前点或当前路径
+
 
 **clip()**
 
@@ -268,17 +287,20 @@ clearRect() 使用透明黑色填充指定的矩形区域。不像```rect()```�
 
 类似于```fill()```方法，```clip()```将所有子路径视为关闭，并使用非零环绕规则来判定路径的内部与外部
 
+
 **closePath()**
 
 > void closePath()
 
 如果当前画布的子路径未关闭，```closePath()```会通过当前点与这条子路径的第一个点之间添加一条连接来闭合它，并在同一点开始一条新的子路径
 
+
 **createImageData()**
 
 > ImageData createImageData(ImageData imagedata)
 
 返回一个和传入的imagedata尺寸相同的新的ImageData对象
+
 
 **createImageData()**
 
@@ -288,11 +310,13 @@ clearRect() 使用透明黑色填充指定的矩形区域。不像```rect()```�
 
 参数w和h定义图片的尺寸，单位为CSS像素
 
+
 **createLinearGradient()**
 
 > CanvasGradient createLinearGradient(double x0, y0, x1, y1)
 
 生成并返回一个新的CanvasGradient对象，其中颜色从起点(x0, y0)到终点(x1, y1)之间线性渐变。这个方法并没有指定渐变的颜色，要指定颜色，使用它返回对象的```addColorStop()```方法，如果要绘制渐变描边或填充区域，秩序将一个CanvasGradient对象赋值给```strokeStyle```或```fillStyle```属性
+
 
 **createPattern()**
 
@@ -311,6 +335,7 @@ repetition的值：
 
 如果要使用图案来描边或填充一个区域，可将CanvasPattern对象作为```strokeStyle```或```fillStyle```属性的值
 
+
 **createRadiaGradient()**
 
 > CanvasGradient createRadialGradient(double x0, y0, r0, x1, y1, r1)
@@ -318,6 +343,7 @@ repetition的值：
 创建并返回一个新的CanvasGradient对象，其中颜色在两个指定的圆的圆周之间辐射渐变。这个方法并没有指定渐变的颜色，如要要指定颜色，使用它返回对象的```addColorStop()```方法。如果要绘制渐变描边或填充区域，只须将一个CanvasGradient对象赋值给```strokeStyle```或```fillStyle```属性
 
 辐射渐变的渲染方式如下：在第一个圆的圆周出的颜色偏移量为0， 在第二个圆周处颜色偏移量为1，两个圆之间为渐变的中间色
+
 
 **drawImage()**
 
@@ -329,6 +355,7 @@ repetition的值：
 
 复制指定的images的一个源矩形区域的内容到画布的目标矩形区域，(sx, sy)定义图像的源矩形区域的左上角，sw和sh定义源矩形区域的宽度和高度
 
+
 **fill()**
 
 > void fill()
@@ -339,11 +366,13 @@ fill()方法使用```fillStyle```属性定义的颜色、渐变或图案对当�
 
 如果路径与自身相交或者与子路径重叠，填充画布将使用非零环绕规则来判定一个点是在路径的内部还是外部
 
+
 **fillRect()**
 
 > void fillRect(double x, y, width, height)
 
 ```fillRect()``` 使用```fillStyle```属性定义的颜色、渐变或图案对指定的矩形进行填充，和```rect()```不同，```fillRect()```对当前点和当前路径没有影响
+
 
 **fillText()**
 
@@ -353,6 +382,7 @@ fillText()使用当前字体及```fillStyle```属性绘制text，参数x和y定�
 
 可选参数```maxwidth```定义文本的最大宽度，如果text的宽度有可能超过maxwidth，文本就将使用更小或压缩版的字体来绘制
 
+
 **getImageData()**
 
 > ImageData getImageData(double sx, sy, sw, sh)
@@ -360,6 +390,7 @@ fillText()使用当前字体及```fillStyle```属性绘制text，参数x和y定�
 这个方法的参数为未转换的坐标，定义画布中的一个矩形区域，将这个区域的像素数据复制到一个新的ImageData对象中并返回该对象
 
 这个方法会进行安全检验，避免跨域信息泄漏，只有当画布是同源时，该方法才会返回一个ImageData对象，否则抛出错误
+
 
 **isPointInPath()**
 
@@ -382,10 +413,23 @@ function hittest(event) {
 }
 ```
 
+
 **lineTo()**
 
 > void lineTo(double x, double y)
 
 该方法在当前子路径中添加一条直线，直线重当前点开始，到(x, y) 结束，这个方法返回后当前点是(x, y)
 
+
 **measureText()**
+
+> TextMetrics measureText(string text)
+
+测量在当前字体下指定text将占据多大的宽度，返回一个包含测量结果的TextMetrics对象
+
+
+**moveTo()**
+
+> void moveTo(double x, double y)
+
+将当前点设置为(x, y)，并以这个点作为第一个点，开始一条新的子路径。如果之前有一条自路径，并且这条子路径只包含一个点，那么这条空子路径将会从路径中移除
