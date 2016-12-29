@@ -349,7 +349,7 @@ fill()方法使用```fillStyle```属性定义的颜色、渐变或图案对当�
 
 > void fillTest(string text, double x, y, [double maxWidth])
 
-```fillText()```使用当前字体及```fillStyle```属性绘制text，参数x和y定义文本应该画在画布的什么位置，但这两个参数的实际值分别收到```textAlign```和```textBaseline```属性的影响
+fillText()使用当前字体及```fillStyle```属性绘制text，参数x和y定义文本应该画在画布的什么位置，但这两个参数的实际值分别收到```textAlign```和```textBaseline```属性的影响
 
 可选参数```maxwidth```定义文本的最大宽度，如果text的宽度有可能超过maxwidth，文本就将使用更小或压缩版的字体来绘制
 
@@ -387,3 +387,5 @@ function hittest(event) {
 > void lineTo(double x, double y)
 
 该方法在当前子路径中添加一条直线，直线重当前点开始，到(x, y) 结束，这个方法返回后当前点是(x, y)
+
+**measureText()**
