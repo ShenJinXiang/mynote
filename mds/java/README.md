@@ -22,3 +22,4 @@
  6.3. [创建邮件](./JavaMail创建和发送邮件.md#创建邮件)    
  6.4. [JavaMail相关API](./JavaMail创建和发送邮件.md#javamail相关api)    
  6.5. [发送邮件](./JavaMail创建和发送邮件.md#发送邮件)    
+7. [枚举](./java枚举.md#java枚举)    
