@@ -15,7 +15,9 @@ public class Grade {
 	public static final Grade D = new Grade();
 	public static final Grade E = new Grade();
 }
-
+```
+等价于:
+```java
 public enum Grade {
 	A, B, C, D, E;
 }
