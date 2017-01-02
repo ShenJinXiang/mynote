@@ -40,6 +40,8 @@ var b = [a[0], a[0] * 2, f(x)];
 * [Array.filter()](#arrayfilter)    
 * [Array.forEach()](#arrayforeach)    
 * [Array.indexOf()](#arrayindexof)    
+* [Array.join()](#arrayjoin)    
+* [Array.lastIndexOf()](#arraylastindexof)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -187,3 +189,54 @@ f的任何返回值都会忽略，**forEach()没有返回值**
 ['a', 'b', 'c'].indexOf('d'); // -1
 ['a', 'b', 'c'].indexOf('a', 1); // -1
 ```
+
+## Array.join()
+将数组元素衔接为字符串
+
+**概要**
+
+> array.join()    
+> array.join(separator)
+
+**参数**
+
+separator - 在返回的字符串中，用来分割数组的某个元素与下一个元素的可选字符或字符串，如果省略，默认是英文逗号','
+
+**返回值**
+
+一个字符串。将array的每一个元素转化为字符串，然后用separator字符串分割开，最后衔接为返回的字符串
+
+**描述**
+
+join()将数组的每一个元素转化为字符串，并通过在中间插入指定的separator字符串将它们衔接起来，最后返回衔接好的字符串
+
+可以进行相反操作———— 将字符串分割成数组元素：使用String对象的split()方法即可
+
+**示例**
+```javascript
+var a = new Array(1, 2, 3, 'testing');
+var s = a.join('+'); // s 是字符串 "1+2+3+testing"
+```
+
+## Array.lastIndexOf()
+反向查找数组
+
+**概要**
+
+> array.lastIndexOf(value)
+> array.lastIndexOf(value, start)
+
+**参数**
+
+* value - 要在array中查找的值
+* start - 开始查找的可选数组序号，如果省略，则从最后一个元素开始查找
+
+**返回值**
+
+一个小于或等于start的最大序号值，该序号值处的array元素与value全等，如果不存在匹配元素时，返回-1
+
+**描述**
+
+该方法在array中一个接一个地方向查找等于value的元素，并返回找到的第一个元素的序号，查找的其实为止是start指定的数组序号，如果没有指定，则从最后一个元素开始。判断是否相等使用的是"==="操作符，返回值是找到的第一个匹配元素的序号，如果没有找到匹配的，则返回-1
+
+
