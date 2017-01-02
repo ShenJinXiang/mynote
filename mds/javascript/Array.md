@@ -35,6 +35,10 @@ var b = [a[0], a[0] * 2, f(x)];
 
 ## 方法
 
+* [Array.concat()](arrayconcat)    
+* [Array.every()](arrayevery)    
+* [Array.filter()](arrayfilter)    
+
 ## Array.concat()
 将元素衔接到数组中
 
