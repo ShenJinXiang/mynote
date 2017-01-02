@@ -38,6 +38,8 @@ var b = [a[0], a[0] * 2, f(x)];
 * [Array.concat()](#arrayconcat)    
 * [Array.every()](#arrayevery)    
 * [Array.filter()](#arrayfilter)    
+* [Array.forEach()](#arrayforeach)    
+* [Array.indexOf()](#arrayindexof)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -131,4 +133,57 @@ filter()安装序号从小到大遍历array，对每个元素仅调用一次pred
 **示例**
 ```javascript
 [1, 2, 3].filter(function (x) { return x > 1; }); // [2, 3]
+```
+
+## Array.forEach()
+为每一个数组元素调用一个函数
+
+**概要**
+
+> array.forEach()    
+> array.forEach(f, o)    
+
+**参数**
+
+* f - 为array的每个元素调用的函数
+* o - 调用f时可选的this值
+
+**返回值**
+
+没有返回值
+
+**描述**
+
+forEach()安装序号从小到大遍历array，并对每一个元素调用一次f，对于序号i，调用f时带有三个参数：
+
+> f(array[i], i, array)
+
+f的任何返回值都会忽略，**forEach()没有返回值**
+
+## Array.indexOf()
+查找数组
+
+**概要**
+
+> array.indexOf(value)    
+> array.indexOf(value, start)
+
+**参数**
+
+* value - 要在array中查找的值
+* start - 开始查找的可选数组序号，如果省略，则为0
+
+**返回值**
+
+一个大于等于start的最小序号值，该序号值处的array元素与value全等，如果不存在匹配元素时，返回 -1
+
+**描述**
+
+该方法在array中查找等于value 的元素，并返回找到的第一个元素的序号，查找的起始位置时start指定的数组序号，如果没有指定，则从0开始，然后和一个接一个地查找，知道找到匹配的元素或检查完所有元素为止，判断是否相等使用的是"==="操作符，返回值是找到的第一个匹配元素的序号，如果没有找到匹配元素，则返回-1
+
+**示例**
+```javascript
+['a', 'b', 'c'].indexOf('b'); // 1
+['a', 'b', 'c'].indexOf('d'); // -1
+['a', 'b', 'c'].indexOf('a', 1); // -1
 ```
