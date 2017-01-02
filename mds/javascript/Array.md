@@ -96,3 +96,6 @@ predicate的返回值会当作布尔值解析，true和所有真值表示该数�
 [1, 2, 3].every(function (x) { return x < 3;}); // false
 [].every(function (x) { return false; }); // true
 ```
+
+### Array.filter()
+
