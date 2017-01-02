@@ -1,5 +1,6 @@
 # let和const命令
 * [let命令](#let命令)    
+* [块级作用域](#块级作用域)    
 
 
 ## let命令
@@ -77,3 +78,105 @@ let bar = 2;
 ### 暂时性死区
 只要块级作用域内存在```let```命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
 
+```javascript
+var tmp = 123;
+
+if (true) {
+  tmp = 'abc'; // ReferenceError
+  let tmp;
+}
+```
+
+上面代码中，存在全局变量```tmp```，但是块级作用域内```let```又声明了一个局部变量```tmp```，导致后者绑定这个块级作用域，所以在```let```声明变量前，对```tmp```赋值会报错。
+
+ES6明确规定，如果区块中存在```let```和```const```命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
+
+总之，在代码块内，使用```let```命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+
+```javascript
+if (true) {
+  // TDZ开始
+  tmp = 'abc'; // ReferenceError
+  console.log(tmp); // ReferenceError
+
+  let tmp; // TDZ结束
+  console.log(tmp); // undefined
+
+  tmp = 123;
+  console.log(tmp); // 123
+}
+```
+
+上面代码中，在```let```命令声明变量```tmp```之前，都属于变量```tmp```的“死区”。
+
+“暂时性死区”也意味着```typeof```不再是一个百分之百安全的操作。
+
+```javascript
+typeof x; // ReferenceError
+let x;
+```
+
+上面代码中，变量```x```使用```let```命令声明，所以在声明之前，都属于```x```的“死区”，只要用到该变量就会报错。因此，```typeof```运行时就会抛出一个```ReferenceError```。
+
+作为比较，如果一个变量根本没有被声明，使用```typeof```反而不会报错。
+
+```javascript
+typeof undeclared_variable // "undefined"
+```
+
+上面代码中，```undeclared_variable```是一个不存在的变量名，结果返回“undefined”。所以，在没有```let```之前，```typeof```运算符是百分之百安全的，永远不会报错。现在这一点不成立了。这样的设计是为了让大家养成良好的编程习惯，变量一定要在声明之后使用，否则就报错。
+
+有些“死区”比较隐蔽，不太容易发现。
+
+```javascript
+function bar(x = y, y = 2) {
+  return [x, y];
+}
+
+bar(); // 报错
+```
+
+上面代码中，调用```bar```函数之所以报错（某些实现可能不报错），是因为参数```x```默认值等于另一个参数```y```，而此时```y```还没有声明，属于”死区“。如果```y```的默认值是```x```，就不会报错，因为此时```x```已经声明了。
+
+```javascript
+function bar(x = 2, y = x) {
+  return [x, y];
+}
+bar(); // [2, 2]
+```
+
+ES6规定暂时性死区和```let```、```const```语句不出现变量提升，主要是为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。这样的错误在ES5是很常见的，现在有了这种规定，避免此类错误就很容易了。
+
+总之，暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。
+
+### 不允许重复声明
+关键字```let```不允许在相同作用域内，重复声明同一个变量。
+
+```javascript
+// 报错
+function () {
+  let a = 10;
+  var a = 1;
+}
+
+// 报错
+function () {
+  let a = 10;
+  let a = 1;
+}
+```
+因此，不能在函数内部重新声明参数。
+
+```javascript
+function func(arg) {
+  let arg; // 报错
+}
+
+function func(arg) {
+  {
+    let arg; // 不报错
+  }
+}
+```
+
+## 块级作用域
