@@ -1,7 +1,7 @@
 # API
 
 1. [arguments](./arguments.md#arguments)    
-2. [Arguments](./arguments.md#arguments_2)    
+2. [Arguments](./arguments.md#arguments-1)    
  2.1 [Arguments.callee](./arguments.md#argumentscallee)    
  2.2 [Arguments.length](./arguments.md#argumentslength)    
 3. [Array](./Array.md#array)    
