@@ -29,9 +29,31 @@ var b = [a[0], a[0] * 2, f(x)];
 
 ## 属性
 
-**length**
+* [Array.length](#arraylength)    
 
-一个可读／写 的整数，用来指明数组中的元素个数，当数组中的元素不连续时，length等于数组中最后一个元素的序号加一，改变length值会裁剪或扩充数组
+## Array.length
+数组大小
+
+**概要**
+
+> array.length
+
+**描述**
+
+数组的length 属性总是比该数组中定义的序号最大的元素的序号大一，一般来说，数组都是稠密数组，拥有连续的元素，并且序号从0开始，对于这种数组，length属性表示数组中的元素个数
+
+使用Array()构造函数创建数组时，会初始化该数组的length 属性，把新元素添加到数组中，如有必要时，会更新length属性
+
+```javascript
+a = new Array();  // a.length 初始化为 0
+b = new Array(10); // b.length 初始化为 10
+c = new Array('one', 'two', 'three'); // c.length初始化为 3
+c[3] = 'four';  // c.length 更新为 4
+c[10] = 'blastoff';  // c.length 变为 11
+```
+
+可以设置length 属性的值来改变数组的大小，如果设置的length小于原值，会裁剪数组，末尾处的元素会丢失，如果设置的length大于原值，数组会变大，新添加到末尾处的元素的值为undefined
+
 
 ## 方法
 
