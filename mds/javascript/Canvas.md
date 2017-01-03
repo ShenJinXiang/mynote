@@ -135,6 +135,9 @@ CanvasRenderingContext2D的```getImageData()```方法允许查询画布的原始
 * [shadowBlur](#canvasrenderingcontext2dshadowblur)    
 * [shadowColor](#canvasrenderingcontext2dshadowcolor)    
 * [shadowOffsetX 和 shadowOffsetY](#canvasrenderingcontext2dshadowoffsetx和canvasrenderingcontext2dshadowoffsety)    
+* [strokeStyle](#canvasrenderingcontext2dstrokestyle)    
+* [textAlign](#canvasrenderingcontext2dtextalign)    
+* [textBaseline](#canvasrenderingcontext2dtextbaseline)    
 
 ## CanvasRenderingContext2D.canvas
 
@@ -230,28 +233,62 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 定义阴影的横向和纵向偏移量，取值越大，产生阴影的对象看起来就像在背景上飘得越高，默认值为0
 
 
-**strokeStyle**
+## CanvasRenderingContext2D.strokeStyle
 
 > any strokeStyle
 
 定义描边路径的颜色、图案或渐变，这个属性的值可以是一个CSS颜色字符串，也可以是一个CanvasGradien 或CanvasPattern对象
 
 
-**textAlign**
+## CanvasRenderingContext2D.textAlign
 
 > string textAlign
 
 定义文本水平对齐方式，其对应的x坐标值会传递给```fillText()```及```strokeText()```，允许的值由：'left'、'center'、'right'、'start'以及'end'，'start'和'end'的含义取决于当前&lt;canvas&gt;标签的dir(文字方向)属性，默认值为"start"
 
 
-**textBaseline**
+## CanvasRenderingContext2D.textBaseline
 
 > string textBaseline
 
 定义文本的垂直对齐方式，对应的y坐标值传递给```fillText()```及```strokeText()```，允许的值：'top'、'middle'、'bottom'、'alphabetic'、'hanging'以及'ideographic'，默认值为'alphabetic'
 
-### 方法
-**arc()**
+## CanvasRenderingContext2D-方法
+* [arc()](canvasrenderingcontext2darc)
+* [arcTo()](canvasrenderingcontext2darcto)
+* [beginPath()](canvasrenderingcontext2dbeginpath)
+* [bezierCurveTo()](canvasrenderingcontext2dbeziercurveto)
+* [clearRect()](canvasrenderingcontext2dclearrect)
+* [clip()](canvasrenderingcontext2dclip)
+* [closePath()](canvasrenderingcontext2dclosepath)
+* [createImageData()](canvasrenderingcontext2dcreateimagedata)
+* [createLinearGradient()](canvasrenderingcontext2dcreatelineargradient)
+* [createPattern()](canvasrenderingcontext2dcreatePattern)
+* [createRadiaGradient()](canvasrenderingcontext2dcreateradiagradient)
+* [drawImage()](canvasrenderingcontext2ddrawimage)
+* [fill()](canvasrenderingcontext2dfill)
+* [fillRect()](canvasrenderingcontext2dfillrect)
+* [fillText()](canvasrenderingcontext2dfilltext)
+* [getImageData()](canvasrenderingcontext2dgetimagedata)
+* [isPointInPath()](canvasrenderingcontext2dispointinpath)
+* [lineTo()](canvasrenderingcontext2dlineto)
+* [measureText()](canvasrenderingcontext2dmeasuretext)
+* [moveTo()](canvasrenderingcontext2dmoveto)
+* [putImageData()](canvasrenderingcontext2dputimagedata)
+* [quadraicCurveTo()](canvasrenderingcontext2dquadraiccurveto)
+* [rect()](canvasrenderingcontext2drect)
+* [restore()](canvasrenderingcontext2drestore)
+* [rotate()](canvasrenderingcontext2drotate)
+* [save()](canvasrenderingcontext2dsave)
+* [scale()](canvasrenderingcontext2dscale)
+* [setTransform()](canvasrenderingcontext2dsettransform)
+* [stroke()](canvasrenderingcontext2dstroke)
+* [strokeRect()](canvasrenderingcontext2dstrokerect)
+* [strokeText()](canvasrenderingcontext2dstroketext)
+* [transform()](canvasrenderingcontext2dtransform)
+* [translate()](canvasrenderingcontext2dtranslate)
+
+## CanvasRenderingContext2D.arc()
 
 > void arc(double x, y, radius, startAngle, endAngle, [boolean anticlockwise])
 
@@ -260,14 +297,14 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 调用这个方法会在当前路径中的当前点和圆弧起点之间添加一条直线，然后再添加圆弧本身
 
 
-**arcTo()**
+## CanvasRenderingContext2D.arcTo()
 
 > void arcTo(double x1, y1, x2, y2, radius)
 
 在当前子路径中添加一条直线和一个圆弧，并以某种方式描述圆弧，从而使它在为多边形添加圆角时特别有用，参数x1、y1定义点p1，参数x2、y2定义点p2添加到路径中的圆弧是一个半径为radius的圆的一部分，圆弧上有一点与当前点到p1之间的连线相切，一点与p1、p2之间的连线相切，这两个相切点也是圆弧的起点及终点，绘制的圆弧为连接这两个点的最短圆弧。
 
 
-**beginPath()**
+## CanvasRenderingContext2D.beginPath()
 
 > void beginPath()
 
@@ -276,21 +313,21 @@ beginPath()丢弃当前定义的路径，并开始一条新的路径，调用beg
 首次创建画布上下文时，beginPath()会隐含地调用
 
 
-**bezierCurveTo()**
+## CanvasRenderingContext2D.bezierCurveTo()
 
 > void bezierCurveTo(double cpx1, cpy1, cpx2, cpy2, x, y)
 
 bezierCurveTo()添加一条三次贝塞尔曲线到画布的当前子路径中。曲线的起点是画布的当前点，重点是(x, y)，两个贝塞尔控制点(cpX1, cpY1)及(cpX2, cpY2)定义曲线的形状，当这个方法返回时，当前点是(x, y)
 
 
-**clearRect()**
+## CanvasRenderingContext2D.clearRect()
 
 > void clearRect(double x, y, width, height)
 
 clearRect() 使用透明黑色填充指定的矩形区域。不像```rect()```，它不会影响当前点或当前路径
 
 
-**clip()**
+## CanvasRenderingContext2D.clip()
 
 > void clip()
 
@@ -299,21 +336,19 @@ clearRect() 使用透明黑色填充指定的矩形区域。不像```rect()```�
 类似于```fill()```方法，```clip()```将所有子路径视为关闭，并使用非零环绕规则来判定路径的内部与外部
 
 
-**closePath()**
+## CanvasRenderingContext2D.closePath()
 
 > void closePath()
 
 如果当前画布的子路径未关闭，```closePath()```会通过当前点与这条子路径的第一个点之间添加一条连接来闭合它，并在同一点开始一条新的子路径
 
 
-**createImageData()**
+## CanvasRenderingContext2D.createImageData()
 
 > ImageData createImageData(ImageData imagedata)
 
 返回一个和传入的imagedata尺寸相同的新的ImageData对象
 
-
-**createImageData()**
 
 > ImageData createImageData(double w, double h)
 
@@ -322,14 +357,14 @@ clearRect() 使用透明黑色填充指定的矩形区域。不像```rect()```�
 参数w和h定义图片的尺寸，单位为CSS像素
 
 
-**createLinearGradient()**
+## CanvasRenderingContext2D.createLinearGradient()
 
 > CanvasGradient createLinearGradient(double x0, y0, x1, y1)
 
 生成并返回一个新的CanvasGradient对象，其中颜色从起点(x0, y0)到终点(x1, y1)之间线性渐变。这个方法并没有指定渐变的颜色，要指定颜色，使用它返回对象的```addColorStop()```方法，如果要绘制渐变描边或填充区域，秩序将一个CanvasGradient对象赋值给```strokeStyle```或```fillStyle```属性
 
 
-**createPattern()**
+## CanvasRenderingContext2D.createPattern()
 
 > CanvasPattern createPattern(Element image, string repetition)
 
@@ -347,7 +382,7 @@ repetition的值：
 如果要使用图案来描边或填充一个区域，可将CanvasPattern对象作为```strokeStyle```或```fillStyle```属性的值
 
 
-**createRadiaGradient()**
+## CanvasRenderingContext2D.createRadiaGradient()
 
 > CanvasGradient createRadialGradient(double x0, y0, r0, x1, y1, r1)
 
@@ -356,7 +391,7 @@ repetition的值：
 辐射渐变的渲染方式如下：在第一个圆的圆周出的颜色偏移量为0， 在第二个圆周处颜色偏移量为1，两个圆之间为渐变的中间色
 
 
-**drawImage()**
+## CanvasRenderingContext2D.drawImage()
 
 > void drawImage(Element image, double dx, dy, [dw, dh])
 
@@ -367,7 +402,7 @@ repetition的值：
 复制指定的images的一个源矩形区域的内容到画布的目标矩形区域，(sx, sy)定义图像的源矩形区域的左上角，sw和sh定义源矩形区域的宽度和高度
 
 
-**fill()**
+## CanvasRenderingContext2D.fill()
 
 > void fill()
 
@@ -378,14 +413,14 @@ fill()方法使用```fillStyle```属性定义的颜色、渐变或图案对当�
 如果路径与自身相交或者与子路径重叠，填充画布将使用非零环绕规则来判定一个点是在路径的内部还是外部
 
 
-**fillRect()**
+## CanvasRenderingContext2D.fillRect()
 
 > void fillRect(double x, y, width, height)
 
 ```fillRect()``` 使用```fillStyle```属性定义的颜色、渐变或图案对指定的矩形进行填充，和```rect()```不同，```fillRect()```对当前点和当前路径没有影响
 
 
-**fillText()**
+## CanvasRenderingContext2D.fillText()
 
 > void fillTest(string text, double x, y, [double maxWidth])
 
@@ -394,7 +429,7 @@ fillText()使用当前字体及```fillStyle```属性绘制text，参数x和y定�
 可选参数```maxwidth```定义文本的最大宽度，如果text的宽度有可能超过maxwidth，文本就将使用更小或压缩版的字体来绘制
 
 
-**getImageData()**
+## CanvasRenderingContext2D.getImageData()
 
 > ImageData getImageData(double sx, sy, sw, sh)
 
@@ -403,7 +438,7 @@ fillText()使用当前字体及```fillStyle```属性绘制text，参数x和y定�
 这个方法会进行安全检验，避免跨域信息泄漏，只有当画布是同源时，该方法才会返回一个ImageData对象，否则抛出错误
 
 
-**isPointInPath()**
+## CanvasRenderingContext2D.isPointInPath()
 
 > boolean isPointInPath(double x, y)
 
@@ -425,28 +460,28 @@ function hittest(event) {
 ```
 
 
-**lineTo()**
+## CanvasRenderingContext2D.lineTo()
 
 > void lineTo(double x, double y)
 
 该方法在当前子路径中添加一条直线，直线重当前点开始，到(x, y) 结束，这个方法返回后当前点是(x, y)
 
 
-**measureText()**
+## CanvasRenderingContext2D.measureText()
 
 > TextMetrics measureText(string text)
 
 测量在当前字体下指定text将占据多大的宽度，返回一个包含测量结果的TextMetrics对象
 
 
-**moveTo()**
+## CanvasRenderingContext2D.moveTo()
 
 > void moveTo(double x, double y)
 
 将当前点设置为(x, y)，并以这个点作为第一个点，开始一条新的子路径。如果之前有一条自路径，并且这条子路径只包含一个点，那么这条空子路径将会从路径中移除
 
 
-**putImageData()**
+## CanvasRenderingContext2D.putImageData()
 
 > void putImageData(ImageData imagedata, double dx, dy, [sx, sy, sw, sh])
 
@@ -459,14 +494,14 @@ function hittest(event) {
 ImageData对象的用途之一：作为画布的备份，保存画布像素的一份副本到一个ImageData对象中，在画布临时绘画，然后使用```putImageData()```方法将它恢复到初识状态
 
 
-**quadraicCurveTo()**
+## CanvasRenderingContext2D.quadraicCurveTo()
 
 > void quadraticCurveTo(double cpx, cpy, x, y)
 
 添加一条二次贝塞尔曲线段到当前自路径中，曲线从当前点开始到(x, y)结束，控制点(cpx, cpy)指定起点与终点间的曲线的形状，调用完以后，当前点为(x, y)
 
 
-**rect()**
+## CanvasRenderingContext2D.rect()
 
 > void rect(double x, y, w, h)
 
@@ -480,21 +515,21 @@ c.closePath();
 ```
 
 
-**restore()**
+## CanvasRenderingContext2D.restore()
 
 > void restore()
 
 从以保存的绘图状态的栈中弹出最后一个保存状态，并根据这个状态充值CanvasRenderingContext2D的各项属性、裁剪路径以及转换矩阵
 
 
-**rotate()**
+## CanvasRenderingContext2D.rotate()
 
 > void rotate(double angle)
 
 改变当前转换矩阵，加下来在画布上绘制的任何对象都将旋转指定的角度，&lt;canvas&gt;元素并没有旋转，angle角度的单位是弧度制。角度转换为弧度的方法：乘以Math.PI，再除以180
 
 
-**save()**
+## CanvasRenderingContext2D.save()
 
 > void save()
 
@@ -503,46 +538,46 @@ c.closePath();
 画布的绘图状态包含CanvasRenderingContext2D对象的所有属性(除了只读的canvas属性)，包含由于调用```rotate()```、```scale()```及```translate()```会影响到转换矩阵，以及由```clip()```方法定义的裁剪路径
 
 
-**scale()**
+## CanvasRenderingContext2D.scale()
 
 > void scale(double sx, double sy)
 
 添加一个缩放转换到画布的当前转换矩阵中，缩放在水平方向与垂直方向上上相互独立的，如果参数为负数，则为反向
 
 
-**setTransform()**
+## CanvasRenderingContext2D.setTransform()
 
 > void setTransform(double o, b, c, d, e, f)
 
 用于直接设置当前转换矩阵，无须多次调用```translate()```、```scale()```和```rotate()```
 
 
-**stroke()**
+## CanvasRenderingContext2D.stroke()
 
 > void stroke()
 
 为当前路径描边，定义线条的几何形态的路径将会显现出来，但是视觉效果取决于strokeStyle、lineWidth、lineCap、lineJoin以及miterLimit属性
 
-**strokeRect()**
+## CanvasRenderingContext2D.strokeRect()
 
 > void strokeRect(double x, y, w, h)
 
 根据指定的位置及尺寸，绘制一个矩形边框
 
 
-**strokeText()**
+## CanvasRenderingContext2D.strokeText()
 
 > void strokeText(string text, double x, y, [maxWdith])
 
 和```fillText()```相似，不过是对每个字进行描边
 
 
-**transform()**
+## CanvasRenderingContext2D.transform()
 
 > void transform(double a, b, c, d, e, f)
 
 
-**translate()**
+## CanvasRenderingContext2D.translate()
 
 > void translate(double x, double y)
 
