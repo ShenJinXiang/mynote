@@ -66,6 +66,7 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.lastIndexOf()](#arraylastindexof)    
 * [Array.map()](#arraymap)    
 * [Array.pop()](#arraypop)    
+* [Array.push()](#arraypush)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -247,8 +248,8 @@ var s = a.join('+'); // s 是字符串 "1+2+3+testing"
 
 **概要**
 
-> array.lastIndexOf(value)
-> array.lastIndexOf(value, start)
+> array.lastIndexOf(value)    
+> array.lastIndexOf(value, start)    
 
 **参数**
 
@@ -320,3 +321,22 @@ stack.push([4, 5])			// stack: [1, [4, 5]]	返回2
 stack.pop();				// stack: [1]			返回[4, 5]
 stack.pop();				// stack: []			返回1
 ```
+
+## Array.push()
+给数组追加元素
+
+**概要**
+
+> array.push(value, ...)
+
+**参数**
+
+* value,...  - 追加到array尾部的一个或多个值
+
+**返回值**
+
+把指定值追加到数组后数组的新长度
+
+**描述**
+
+push()会将参数按顺序追加到array尾部，会直接修改array，而不会创建新的数组，push()与pop()可以提供先进后出(FILO)的栈功能
