@@ -26,4 +26,4 @@
  7.8. [阴影](./Canvas.md#阴影)    
  7.9. [保存绘图状态](./Canvas.md#保存绘图状态)    
  7.10. [像素操作](./Canvas.md#像素操作)    
- 7.11. [属性](./Canvas.md#canvasrenderingcontext2d属性)    
+ 7.11. [属性](./Canvas.md#canvasrenderingcontext2d-属性)    

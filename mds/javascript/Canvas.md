@@ -123,11 +123,18 @@ CanvasRenderingContext2D对象的所有属性(canvas属性除外，canvas属性�
 CanvasRenderingContext2D的```getImageData()```方法允许查询画布的原始像素，```putImageData()```允许设置单个像素的值
 
 ## CanvasRenderingContext2D-属性
-* [CanvasRenderingContext2D.canvas](#canvasrenderingcontext2dcanvas)    
-* [CanvasRenderingContext2D.fillStyle](#canvasrenderingcontext2dfillstyle)    
-* [CanvasRenderingContext2D.font](#canvasrenderingcontext2dfont)    
-* [CanvasRenderingContext2D.globalAlpha](#canvasrenderingcontext2dglobalalpha)    
-* [CanvasRenderingContext2D.globalCompositeOperation](#canvasrenderingcontext2dglobalcompositeoperation)    
+* [canvas](#canvasrenderingcontext2dcanvas)    
+* [fillStyle](#canvasrenderingcontext2dfillstyle)    
+* [font](#canvasrenderingcontext2dfont)    
+* [globalAlpha](#canvasrenderingcontext2dglobalalpha)    
+* [globalCompositeOperation](#canvasrenderingcontext2dglobalcompositeoperation)    
+* [lineCap](#canvasrenderingcontext2dlinecap)    
+* [lineJoin](#canvasrenderingcontext2dlinejoin)    
+* [lineWidth](#canvasrenderingcontext2dlinewidth)    
+* [miterLimit](#canvasrenderingcontext2dmiterlimit)    
+* [shadowBlur](#canvasrenderingcontext2dshadowblur)    
+* [shadowColor](#canvasrenderingcontext2dshadowcolor)    
+* [shadowOffsetX 和 shadowOffsetY](#canvasrenderingcontext2dshadowoffsetx和canvasrenderingcontext2dshadowoffsety)    
 
 ## CanvasRenderingContext2D.canvas
 
@@ -163,7 +170,7 @@ CanvasRenderingContext2D的```getImageData()```方法允许查询画布的原始
 这个属性指定绘制到画布上的源像素与画布上已经存在的目标像素之间如何结合。一般只有在处理部分透明的颜色或设置globalAlpha属性后这个属性才有用，默认值为"source-over"，其它常用值为"destination-over"和"copy"
 
 
-**lineCap**
+## CanvasRenderingContext2D.lineCap
 
 > string lineCap
 
@@ -176,7 +183,7 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 |'square'|这个值定义线条由一个矩形的纤毛，和'butt'类似，但线条的终点处会扩展出其宽度一半的距离|
 
 
-**lineJoin**
+## CanvasRenderingContext2D.lineJoin
 
 > string lineJoin
 
@@ -187,35 +194,35 @@ lineCap属性定义线条末端的样式，只有在画粗线条时这个属性�
 属性值"round"定义交合部分顶点的外边缘为一段实心圆弧，直径与线条的宽度相等。属性值"bevel"定义交合部分顶点的外边缘为一个实心的三角形
 
 
-**lineWidth**
+## CanvasRenderingContext2D.lineWidth
 
 > double lineWidth
 
 定义描边操作时的线条宽度，默认值为1，线条的中心在路径上，路径两边各占一半的宽度
 
 
-**miterLimit**
+## CanvasRenderingContext2D.miterLimit
 
 > double miterLimit
 
 如果```lineJoin```属性的值为"miter"，并且两条线以一个锐角斜交，那么它们的交合部分可能会很长，如果这个斜交的部分太长，看起来就很不协调，```miterLimit```属性设置斜交部分长度的上线。这个值定义斜交部分长度与线宽的一半之间的比例，默认为10，即斜交部分的长度不会超过线条宽度的5倍，如果超过了允许的最大值，这两条线条将以斜面而不是斜接的方式连接
 
 
-**shadowBlur**
+## CanvasRenderingContext2D.shadowBlur
 
 > double shadowBlur
 
 定义阴影的模糊程度，默认值为0，将生成边缘清晰的阴影。取值越大模糊成都也越大，不过需要注意，这个值的单位不是像素，也不受当前变换的影响
 
 
-**shadowColor**
+## CanvasRenderingContext2D.shadowColor
 
 > string shadowColor
 
 定义阴影的颜色，格式同CSS颜色格式，默认情况是透明黑色
 
 
-**shadowOffsetX 和 shadowOffsetY**
+## CanvasRenderingContext2D.shadowOffsetX和CanvasRenderingContext2D.shadowOffsetY
 
 > double shadowOffsetX
 > double shadowOffsetY
