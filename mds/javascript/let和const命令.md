@@ -1,6 +1,7 @@
 # let和const命令
 * [let命令](#let命令)    
 * [块级作用域](#块级作用域)    
+* [const命令](#const命令)
 
 
 ## let命令
@@ -182,4 +183,189 @@ function func(arg) {
 ## 块级作用域
 
 ### 为什么需要块级作用域？
+ES5只有全局作用域和函数作用域，没有块级作用域，这带来很多不合理的场景。
 
+第一种场景，内层变量可能会覆盖外层变量。
+
+```javascript
+var tmp = new Date();
+
+function f() {
+  console.log(tmp);
+  if (false) {
+    var tmp = "hello world";
+  }
+}
+
+f(); // undefined
+```
+上面代码中，函数f执行后，输出结果为```undefined```，原因在于变量提升，导致内层的tmp变量覆盖了外层的tmp变量。
+
+第二种场景，用来计数的循环变量泄露为全局变量。
+```javascript
+ar s = 'hello';
+
+for (var i = 0; i < s.length; i++) {
+  console.log(s[i]);
+}
+
+console.log(i); // 5
+```
+上面代码中，变量i只用来控制循环，但是循环结束后，它并没有消失，泄露成了全局变量。
+
+### ES6的块级作用域
+关键字```let```实际上为JavaScript新增了块级作用域。
+
+```javascript
+function f1() {
+  let n = 5;
+  if (true) {
+    let n = 10;
+  }
+  console.log(n); // 5
+}
+```
+上面的函数有两个代码块，都声明了变量```n```，运行后输出5。这表示外层代码块不受内层代码块的影响。如果使用```var```定义变量```n```，最后输出的值就是10。
+
+ES6允许块级作用域的任意嵌套。
+
+```javascript
+{{{{{let insane = 'Hello World'}}}}};
+```
+
+上面代码使用了一个五层的块级作用域。外层作用域无法读取内层作用域的变量。
+
+```javascript
+{{{{
+  {let insane = 'Hello World'}
+  console.log(insane); // 报错
+}}}};
+```
+
+内层作用域可以定义外层作用域的同名变量。
+
+```javascript
+{{{{
+  let insane = 'Hello World';
+  {let insane = 'Hello World'}
+}}}};
+```
+
+块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了。
+
+```javascript
+// IIFE 写法
+(function () {
+  var tmp = ...;
+  ...
+}());
+
+// 块级作用域写法
+{
+  let tmp = ...;
+  ...
+}
+```
+
+### 块级作用域与函数声明
+函数能不能在块级作用域之中声明，是一个相当令人混淆的问题。
+
+ES5规定，函数只能在顶层作用域和函数作用域之中声明，不能在块级作用域声明。
+
+```javascript
+// 情况一
+if (true) {
+  function f() {}
+}
+
+// 情况二
+try {
+  function f() {}
+} catch(e) {
+}
+```
+
+上面代码的两种函数声明，根据ES5的规定都是非法的。
+
+但是，浏览器没有遵守这个规定，为了兼容以前的旧代码，还是支持在块级作用域之中声明函数，因此上面两种情况实际都能运行，不会报错。不过，“严格模式”下还是会报错。
+
+```javascript
+// ES5严格模式
+'use strict';
+if (true) {
+  function f() {}
+}
+// 报错
+```
+
+ES6 引入了块级作用域，明确允许在块级作用域之中声明函数。
+
+```javascript
+// ES6严格模式
+'use strict';
+if (true) {
+  function f() {}
+}
+// 不报错
+```
+
+ES6 规定，块级作用域之中，函数声明语句的行为类似于```let```，在块级作用域之外不可引用。
+
+```javascript
+function f() { console.log('I am outside!'); }
+(function () {
+  if (false) {
+    // 重复声明一次函数f
+    function f() { console.log('I am inside!'); }
+  }
+
+  f();
+}());
+```
+
+上面代码在 ES5 中运行，会得到“I am inside!”，因为在```if```内声明的函数```f```会被提升到函数头部，实际运行的代码如下。
+
+```javascript
+// ES5版本
+function f() { console.log('I am outside!'); }
+(function () {
+  function f() { console.log('I am inside!'); }
+  if (false) {
+  }
+  f();
+}());
+```
+
+ES6 的运行结果就完全不一样了，会得到“I am outside!”。因为块级作用域内声明的函数类似于```let```，对作用域之外没有影响，实际运行的代码如下。
+
+```javascript
+// ES6版本
+function f() { console.log('I am outside!'); }
+(function () {
+  f();
+}());
+```
+
+### do 表达式
+本质上，块级作用域是一个语句，将多个操作封装在一起，没有返回值。
+```javascript
+{
+  let t = f();
+  t = t * t + 1;
+}
+```
+
+上面代码中，块级作用域将两个语句封装在一起。但是，在块级作用域以外，没有办法得到```t```的值，因为块级作用域不返回值，除非```t```是全局变量。
+
+现在有一个提案，使得块级作用域可以变为表达式，也就是说可以返回值，办法就是在块级作用域之前加上```do```，使它变为```do```表达式。
+
+```javascript
+let x = do {
+  let t = f();
+  t * t + 1;
+};
+```
+
+上面代码中，变量```x```会得到整个块级作用域的返回值。
+
+## const命令
