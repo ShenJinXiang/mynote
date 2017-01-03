@@ -65,6 +65,7 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.join()](#arrayjoin)    
 * [Array.lastIndexOf()](#arraylastindexof)    
 * [Array.map()](#arraymap)    
+* [Array.pop()](#arraypop)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -291,4 +292,31 @@ map()会创建一个新数组，数组长度与array一样，数组元素通过�
 
 ```javascript
 [1, 2, 3].map(function(x) { return x * x; }); // [1, 4, 9]
+```
+
+## Array.pop()
+移除并返回数组的最后一个元素
+
+**概要**
+
+> array.pop()
+
+**返回值**
+
+array的最后一个元素
+
+**描述**
+
+pop()会移除array的最后一个元素，缩短数组的长度，并返回所移除元素的值。如果数组已经为空，pop()不会修改该数组，返回值是undefined
+
+**示例**
+
+pop()与push()方法，可以提供先进后出(FILO)的栈功能：
+```javascript
+var stack = [];				// stack: []
+stack.push(1, 2);			// stack: [1, 2]		返回2
+stack.pop();				// stack: [1]			返回2
+stack.push([4, 5])			// stack: [1, [4, 5]]	返回2
+stack.pop();				// stack: [1]			返回[4, 5]
+stack.pop();				// stack: []			返回1
 ```
