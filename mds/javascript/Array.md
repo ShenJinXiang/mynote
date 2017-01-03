@@ -64,6 +64,7 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.indexOf()](#arrayindexof)    
 * [Array.join()](#arrayjoin)    
 * [Array.lastIndexOf()](#arraylastindexof)    
+* [Array.map()](#arraymap)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -261,4 +262,33 @@ var s = a.join('+'); // s 是字符串 "1+2+3+testing"
 
 该方法在array中一个接一个地方向查找等于value的元素，并返回找到的第一个元素的序号，查找的其实为止是start指定的数组序号，如果没有指定，则从最后一个元素开始。判断是否相等使用的是"==="操作符，返回值是找到的第一个匹配元素的序号，如果没有找到匹配的，则返回-1
 
+## Array.map()
+在数组元素中计算新值
 
+**概要**
+
+> array.map(f)    
+> array.map(f, o)    
+
+**参数**
+
+* f - 为array的每个元素调用的函数，它的返回值会成为返回数组的元素
+* o - f调用时的可选this值
+
+**返回值**
+
+一个新数组，由函数f计算出的元素组成
+
+**描述**
+
+map()会创建一个新数组，数组长度与array一样，数组元素通过将array的元素传递给函数f计算得到。map()安装从小到大的顺序遍历array的序号，并为每一个元素调用f一次。对于序号i，调用f时带有三个参数，f的返回值则存储在新创建的数组的序号i处：
+
+> a[i] = f(array[i], i, array)
+
+一旦map()将array中的每一个元素都传递给f，并将其返回值存储在新数组中后，就会返回新数组
+
+**示例**
+
+```javascript
+[1, 2, 3].map(function(x) { return x * x; }); // [1, 4, 9]
+```
