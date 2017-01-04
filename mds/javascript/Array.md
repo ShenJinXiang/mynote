@@ -67,6 +67,7 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.map()](#arraymap)    
 * [Array.pop()](#arraypop)    
 * [Array.push()](#arraypush)    
+* [Array.reduce()](#arrayreduce)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -340,3 +341,26 @@ stack.pop();				// stack: []			返回1
 **描述**
 
 push()会将参数按顺序追加到array尾部，会直接修改array，而不会创建新的数组，push()与pop()可以提供先进后出(FILO)的栈功能
+
+## Array.reduce()
+从数组元素中计算出一个值
+
+**概要**
+
+> array.reduce(f)    
+> array.reduce(f, inital)
+
+**参数**
+
+* f - 一个函数，可以合并两个值（比如两个数组元素），并返回一个“缩减”的新值
+* initial - 用来缩减数组的可选初始值。如果指定该参数，reduce()的行为会像是吧该参数插入array的头部一样
+
+**返回值**
+
+数组的化简值，该值是最后一次调用f时的返回值
+
+**描述**
+
+reduce()方法接受函数f作为第一个参数。该函数的行为应该像一个二元操作符一样：接受两个数值，执行某些操作，然后返回结果。如果array有n个元素，reduce()方法会调用n-1次来将这些元素缩减为一个合并值。
+
+第一次调用f时传入的是array的前两个元素。接下来的调用传入之前的计算值和array的下一个元素。最后一次调用f的返回值会成为reduce()方法的返回值
