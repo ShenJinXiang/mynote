@@ -364,3 +364,15 @@ push()会将参数按顺序追加到array尾部，会直接修改array，而不�
 reduce()方法接受函数f作为第一个参数。该函数的行为应该像一个二元操作符一样：接受两个数值，执行某些操作，然后返回结果。如果array有n个元素，reduce()方法会调用n-1次来将这些元素缩减为一个合并值。
 
 第一次调用f时传入的是array的前两个元素。接下来的调用传入之前的计算值和array的下一个元素。最后一次调用f的返回值会成为reduce()方法的返回值
+
+reduce()在调用可以传入可选的第二个参数：initial。如果指定initial，reduce()的行为会像是把该参数插入array的头部一样（实际上并没有修改array）。换种说法，initial就像是之前f 的返回值一样，第一次调用f时传入的是initial和array的第一个元素。当指定initial时，要缩减的元素有n+1个，调用n次f函数
+
+如果array为空，又没有指定initial，reduce()会抛出TypeError异常。如果array为空，但指定initial，则reduce()返回initial，且永远不调用f。如果array只有一个元素，且没有指定initial，reduce()不调用f，则返回array的单个元素
+
+reduce()调用f时传入4个参数，第三个参数是第二个参数的数组序号。第四个参数则是array自身，f永远当作函数调用，而不是方法
+
+**示例**
+
+```javascript
+[1, 2, 3, 4].reduce(function (x, y) { return x * y; });  // 24 : ((1 * 2) * 3) * 4
+```
