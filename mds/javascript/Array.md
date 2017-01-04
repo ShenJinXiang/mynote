@@ -69,6 +69,8 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.push()](#arraypush)    
 * [Array.reduce()](#arrayreduce)    
 * [Array.reduceRight()](#arrayreduceright)    
+* [Array.reverse()](#arrayreverse)    
+* [Array.shift()](#arrayshift)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -410,3 +412,39 @@ reduceRight()与reduce()方法一样，调用f函数n-1次，来讲array的n个�
 **概要**
 
 > array.reverse()
+
+**描述**
+
+Array对象的reverse()方法可以颠倒数组元素的顺序，会在愿数组中进行操作：重新调整array中的元素，而不会创建一个新数组。如果array又多个引用，该数组元素的新顺序在所有引用中可见
+
+**示例**
+
+```javascript
+a = new Array(1, 2, 3);
+a.reverse();
+```
+
+## Array.shift()
+移除数组的第一个元素
+
+**概要**
+
+> array.shift()
+
+**返回值**
+
+数组原来的第一个元素
+
+**描述**
+
+shift()会移除会返回array的第一个元素，并将所有后续元素前移一位，填补数组头部的空缺。如果数组为空，shift()什么也不干，直接返回undefined值，shift()没有创建新数组，会直接修改array
+
+shift()与Array.pop()类似，除了操作的是数组的头部而不是尾部。shift()经常与unshift()一起使用
+
+**示例**
+
+```javascript
+var a = [1, [2, 3], 4];
+a.shift(); // 返回1  a = [[2, 3], 4]
+a.shift(); // 返回[2, 3]  a = [4]
+```
