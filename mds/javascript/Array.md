@@ -71,6 +71,7 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.reduceRight()](#arrayreduceright)    
 * [Array.reverse()](#arrayreverse)    
 * [Array.shift()](#arrayshift)    
+* [Array.slice()](#arrayslice)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -447,4 +448,36 @@ shift()与Array.pop()类似，除了操作的是数组的头部而不是尾部�
 var a = [1, [2, 3], 4];
 a.shift(); // 返回1  a = [[2, 3], 4]
 a.shift(); // 返回[2, 3]  a = [4]
+```
+
+## Array.slice()
+返回数组的一部分
+
+**概要**
+
+> array.slice(start, end)
+
+**参数**
+
+* start - 数组片段开始处的数组序号，如果为负数，则表示从数组的尾部开始计算，-1代表最后一个元素，-2代表倒数第二个元素
+* end - 数组片段结束处的后一个元素的数组序号，如果没有指定，片段会包含从start开始到数组尾部的所有数组元素。如果为负数，则表示从数组尾部开始计算
+
+**返回值**
+
+一个新数组，包含array中从start一直到end之间的所有元素（包含start指定的元素，但不包含end指定的元素）
+
+**描述**
+
+slice()返回array的片段，或称为子数组。返回的数组包含从start一直到end之间的所有元素，如果没有指定end，返回的数组包含start到array尾部的所有元素
+
+slice()没有修改数组，如果要移除数组的一部分，使用[Array.splice()](#arraysplice)
+
+**示例**
+
+```javascript
+var a = [1, 2, 3, 4, 5];
+a.slice(0, 3);  // 返回 [1, 2, 3]
+a.slice(3);  // 返回 [4, 5]
+a.slice(1, -1); // 返回 [2, 3, 4]
+a.slice(-3, -2); // 返回 [3] 
 ```
