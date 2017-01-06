@@ -72,6 +72,8 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.reverse()](#arrayreverse)    
 * [Array.shift()](#arrayshift)    
 * [Array.slice()](#arrayslice)    
+* [Array.some()](#arraysome)    
+* [Array.sort()](#arraysort)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -480,4 +482,70 @@ a.slice(0, 3);  // 返回 [1, 2, 3]
 a.slice(3);  // 返回 [4, 5]
 a.slice(1, -1); // 返回 [2, 3, 4]
 a.slice(-3, -2); // 返回 [3] 
+```
+
+## Array.some()
+测试是否有元素满足断言函数
+
+**概要**
+
+> array.some(predicate)    
+> array.some(predicate, o)    
+
+**参数**
+
+* predicate - 用来测试数据元素的断言函数
+* o - 调用predicate时可选的this值
+
+**返回值**
+
+如果array中至少有一个元素调用predicate时返回真值，则返回true，如果所有元素调用predicate都返回假值，则返回false
+
+**描述**
+
+some()方法用来测试数组中是否有元素满足某些条件，会按照从小到大的顺序遍历array的元素，并依次对每个元素调用指定的predicate函数。如果predicate返回true(或任何可以转化为true的值)，则some()会停止遍历，并例子返回true，如果predicate每次都返回false，则some()返回fals，**遍历的数组为空时，soms()返回false**
+
+**示例**
+
+```javascript
+[1, 2, 3].some(function (x) { return x > 5; }); // false
+[1, 2, 3].some(function (x) { return x > 2; }); // true
+[].some(function (x) { return false; }); // false;
+```
+
+## Array.sort()
+对数组元素进行排序
+
+**概要**
+
+> array.sort()    
+> array.sort(orderfunc)
+
+**参数**
+
+* orderfunc - 用来指定如何排序的可选函数
+
+**返回值**
+
+该数组的引用，sort()方法是在愿数组中进行排序，没有新建数组
+
+**描述**
+
+sort()方法在愿数组中对数组元素进行排序，没有创建新数组，如果在调用sort()时不带参数，将按字母顺序（字符编码顺序）对数组元素进行排序，要实现这一点，首先要把元素转化为字符串，以便进行比较
+
+如果按照其它顺序来进行排序，就必须提供比较函数，这个函数要比较两个值，然后返回一个数字来表明这两个值的相对顺序，比较函数接收两个参数a和b，返回按：
+* 一个小于0的值，即 a 小于 b， 排序后a应该在b的前面
+* 等于0的值，a和b是相等的
+* 大于0的值，a大于b，b在前面
+
+**示例**
+
+```javascript
+function numberorder (a, b) {
+	return a - b;
+}
+a = new Array(33, 4, 1111, 22);
+
+a.sort(); // 字符排序 1111, 222, 33, 4
+a.sort(numberorder); // 数值排序： 4, 33, 222, 1111
 ```
