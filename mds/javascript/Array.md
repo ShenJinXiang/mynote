@@ -75,6 +75,8 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.some()](#arraysome)    
 * [Array.sort()](#arraysort)    
 * [Array.splice()](#arraysplice)    
+* [Array.toLocalString()](#arraytolocalstring)    
+* [Array.toString()](#arraytostring)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -576,4 +578,45 @@ splice()将删除从start开始的零个或多个元素，并且用参数列表�
 ```javascript
 var a = [1, 2, 3, 4, 5, 6, 7, 8];
 a.splice(1, 2);  // 返回 [2, 3], a : [1, 4, 5, 6, 7, 8]
+a.splice(1, 1);  // 返回 [4], a: [1, 5, 6, 7, 8];
+a.splice(1, 0, 2, 3); // 返回[], a: [1, 2, 3, 5, 6, 7, 8]
 ```
+
+## Array.toLocalString()
+将数组转化成本地字符串
+
+**概要**
+
+> array.toLocalString()
+
+**返回值**
+
+数组的本地化字符串表示
+
+**异常**
+
+* TypeError - 调用该方法时，如果对象不是Array，则掏出该异常
+
+**描述**
+
+数组的toLocalString()方法返回数组的本地化字符串表示。它首先调用所有数组元素的toLocalString()方法，然后使用地区特定的分割字符将结果字符串连接起来
+
+## Array.toString()
+将数组转化成字符串
+
+**概要**
+
+> array.toString()
+
+**返回值**
+
+array的字符串表示
+
+**异常**
+
+* TypeError - 调用该方法时，如果对象不是Array，则抛出该异常
+
+**描述**
+
+数组的toString()方法把数组转化为字符串，并返回该字符串，当数组用于字符串上下文中时，JavaScript会调用该方法将数组自动转成一个字符串，但是在某些情况下，还是需要显式调用toString()方法
+
