@@ -74,6 +74,7 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.slice()](#arrayslice)    
 * [Array.some()](#arraysome)    
 * [Array.sort()](#arraysort)    
+* [Array.splice()](#arraysplice)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -548,4 +549,31 @@ a = new Array(33, 4, 1111, 22);
 
 a.sort(); // 字符排序 1111, 222, 33, 4
 a.sort(numberorder); // 数值排序： 4, 33, 222, 1111
+```
+
+## Array.splice()
+插入、删除或替换数组元素
+
+**概要**
+
+> array.splice(start, deleteCount, value, ...)
+
+**参数**
+
+* start - 开始插入或删除处数组元素的序号
+* deleteCount - 要删除的元素个数，从start开始，并包含start处的元素，如果指定为0，表示插入元素，而不用删除任何元素
+* value, ... - 要插入数组中的零个或多个值，从start序号处开始插入
+
+**返回值**
+
+如果从array中删除了元素，则返回一个新数组，包含这些删除的元素
+
+**描述**
+
+splice()将删除从start开始的零个或多个元素，并且用参数列表指定零个或多个值来替换掉那些删除的元素。位于插入或删除的元素之后的数组元素，再有必要时都会移动，以保持剩余元素的连续性。注意，虽然splice()与slice()的方法名类型，但作用不是类似的，splice()会直接修改数组
+
+**示例**
+```javascript
+var a = [1, 2, 3, 4, 5, 6, 7, 8];
+a.splice(1, 2);  // 返回 [2, 3], a : [1, 4, 5, 6, 7, 8]
 ```
