@@ -77,6 +77,7 @@ c[10] = 'blastoff';  // c.length 变为 11
 * [Array.splice()](#arraysplice)    
 * [Array.toLocalString()](#arraytolocalstring)    
 * [Array.toString()](#arraytostring)    
+* [Array.unshift()](#arrayunshift)    
 
 ## Array.concat()
 将元素衔接到数组中
@@ -620,3 +621,30 @@ array的字符串表示
 
 数组的toString()方法把数组转化为字符串，并返回该字符串，当数组用于字符串上下文中时，JavaScript会调用该方法将数组自动转成一个字符串，但是在某些情况下，还是需要显式调用toString()方法
 
+## Array.unshift()
+在数组头部插入元素
+
+**概要**
+
+> array.unshift(value, ...)
+
+**参数**
+
+* value, ... - 要插入array 头部的一个或多个值
+
+**返回值**
+
+数组的新长度
+
+**描述**
+
+unshift()会把参数插入array的头部，并将已经存在的元素顺次往后移动，以便流出控件，该方法的第一个参数会成为数组新的元素0，如果还有第二个参数的话，会成为新的元素1，以此类推，unshift()不会创建新数组，而是直接修改数组本身
+
+**示例**
+```javascript
+var a = [];            // a: []
+a.unshift(1);          // a: [1]
+a.unshift(22);         // a: [22, 1]
+a.shift();             // a: [1]
+a.unshift(33, [4, 5]); // a: [33, [4, 5], 1]
+```
