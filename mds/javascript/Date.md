@@ -27,6 +27,9 @@
 ## 方法
 * [Date.getDate()](#dategetdate)
 * [Date.getDay()](#dategetday)
+* [Date.getFullYear()](#dategetfullyear)
+* [Date.getHours()](#dategethours)
+* [Date.getMillisecondes()](#date.getmillisecondes)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -49,5 +52,38 @@
 **返回**
 
 给定Date对象的date的一周中的日期值，使用本地时间，返回值介于0（星期天）～6（星期六）之间
+
+## Date.getFullYear()
+返回一个Date对象的年份值
+
+**概要**
+
+> date.getFullYear()
+
+**返回**
+
+date以本地时间表示的年份值，返回值是一个完整的4为数字的年份，包含实际，而不是一个两位数字的缩写
+
+## Date.getHours()
+返回一个Date对象的小时值
+
+**概要**
+
+> date.getHours()
+
+**返回**
+
+指定的Date对象date以本地时间表示的小时值，返回值在0（午夜）～23（晚上11点）之间
+
+## Date.getMillisecondes()
+返回一个Date对象的毫秒值
+
+**概要**
+
+> date.getMillisecondes()
+
+**返回**
+
+指定额date以本地时间表示的毫秒值
 
 ## 静态方法
