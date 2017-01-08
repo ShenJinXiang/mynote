@@ -12,7 +12,7 @@
 4. [Boolean](./Boolean.md#boolean)    
  4.1. [构造函数](./Boolean.md#构造函数)    
  4.2. [方法](./Boolean.md#方法)    
-5. [Date](./Date.me#date)    
+5. [Date](./Date.md#date)    
 6. [Canvas](./Canvas.md#canvas)    
  6.1. [属性](./Canvas.md#canvas的属性)    
  6.2. [方法](./Canvas.md#canvas的方法)    
