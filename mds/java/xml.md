@@ -89,3 +89,34 @@ XML文档必须有一个元素是所有其他元素的父元素。该元素称�
 |\&apos;|'|单引号|
 |\&quot;|"|引号|
 
+### XML中的注释
+在XML中编写注释的语法与 HTML 的语法很相似：
+```xml
+<!-- 这里是注释 --> 
+```
+
+## XML元素
+XML 元素指的是从（且包括）开始标签直到（且包括）结束标签的部分。元素可包含其他元素、文本或者两者的混合物。元素也可以拥有属性
+```xml
+<bookstore>
+<book category="CHILDREN">
+  <title>Harry Potter</title> 
+  <author>J K. Rowling</author> 
+  <year>2005</year> 
+  <price>29.99</price> 
+</book>
+<book category="WEB">
+  <title>Learning XML</title> 
+  <author>Erik T. Ray</author> 
+  <year>2003</year> 
+  <price>39.95</price> 
+</book>
+</bookstore>
+```
+在上例中，&lt;bookstore&gt; 和 &lt;book&gt; 都拥有元素内容，因为它们包含了其他元素。&lt;author&gt; 只有文本内容，因为它仅包含文本。只有 &lt;book&gt; 元素拥有属性 (category="CHILDREN")。
+
+XML 元素必须遵循以下命名规则：
+* 名称可以含字母、数字以及其他的字符
+* 名称不能以数字或者标点符号开始
+* 名称不能以字符 “xml”（或者 XML、Xml）开始
+* 名称不能包含空格
