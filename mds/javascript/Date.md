@@ -34,6 +34,8 @@
 * [Date.getMonth()](#dategetmonth)
 * [Date.getSeconds()](#dategetseconds)
 * [Date.getTime()](#dategettime)
+* [Date.getTimezoneOffset()](#dategettimezoneoffset)
+* [Date.getUTCDate()](#dategetutcdate)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -138,5 +140,30 @@ date以本地时间表示的年份值，返回值是一个完整的4为数字的
 
 getTime()将日期和时间转换为一个单独的整数，在比较两个Date对象或判断两个日期之间的时间差时，这个方法很有用
 
+## Date.getTimezoneOffset()
+取得与GMT时间之间的差
+
+**概要**
+
+> date.getTimezoneOffset()
+
+**返回**
+
+GMT时间与本地时间的差，用分钟表示
+
+**描述**
+
+getTimezoneOffset()以分钟为单位返回GMT或UTC时间与本地时间的差，实际上这个函数可以知晓代码运行在哪个时区
+
+## Date.getUTCDate()
+返回一个Date对象的一月中的日期值（全球时间)
+
+**概要**
+
+> date.getUTCDate()
+
+**返回**
+
+以全球时间表示的date的一月中的日期值（介于1～31之间）
 
 ## 静态方法
