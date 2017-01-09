@@ -29,7 +29,11 @@
 * [Date.getDay()](#dategetday)
 * [Date.getFullYear()](#dategetfullyear)
 * [Date.getHours()](#dategethours)
-* [Date.getMillisecondes()](#date.getmillisecondes)
+* [Date.getMillisecondes()](#dategetmillisecondes)
+* [Date.getMinutes()](#dategetminutes)
+* [Date.getMonth()](#dategetmonth)
+* [Date.getSeconds()](#dategetseconds)
+* [Date.getTime()](#dategettime)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -85,5 +89,54 @@ date以本地时间表示的年份值，返回值是一个完整的4为数字的
 **返回**
 
 指定额date以本地时间表示的毫秒值
+
+## Date.getMinutes()
+返回一个Date对象的分钟值
+
+**概要**
+
+> date.getMinutes()
+
+**返回**
+
+指定Date对象date以本地事件表示是的分钟值，返回值是在0～59之间的整数
+
+## Date.getMonth()
+返回一个Date对象的月份值
+
+**概要**
+
+> date.getMonth()
+
+**返回**
+
+指定Date对象的date以本地时间表示的月份值。返回值是在0（1月）～11（12月）之间
+
+## Date.getSeconds()
+返回一个Date对象的秒钟值
+
+**概要**
+
+> date.getSeconds()
+
+**返回**
+
+指定Date对象date以本地时间表示的秒钟值。返回值在0～59之间
+
+## Date.getTime()
+将一个Date对象以毫秒形式返回
+
+**概要**
+
+> date.getTime()
+
+**返回**
+
+指定的Date对象date的毫秒表示形式，即1970-01-01午夜（GMT）到指定日期之间的毫秒数
+
+**描述**
+
+getTime()将日期和时间转换为一个单独的整数，在比较两个Date对象或判断两个日期之间的时间差时，这个方法很有用
+
 
 ## 静态方法
