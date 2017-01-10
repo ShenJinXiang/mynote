@@ -36,6 +36,13 @@
 * [Date.getTime()](#dategettime)
 * [Date.getTimezoneOffset()](#dategettimezoneoffset)
 * [Date.getUTCDate()](#dategetutcdate)
+* [Date.getUTCDay()](#dategetutcday)
+* [Date.getUTCFullYear()](#dategetutcfullyear)
+* [Date.getUTCHours()](#dategetutchours)
+* [Date.getUTCMilliseconds()](#dategetutcmilliseconds)
+* [Date.getUTCMinutes()](#dategetutcminutes)
+* [Date.getUTCMonth()](#dategetutcmonth)
+* [Date.getUTCSeconds()](#dategetutcseconds)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -165,5 +172,82 @@ getTimezoneOffset()以分钟为单位返回GMT或UTC时间与本地时间的差�
 **返回**
 
 以全球时间表示的date的一月中的日期值（介于1～31之间）
+
+## Date.getUTCDay()
+返回一个Date对象的一周中的日期值（全球时间）
+
+**概要**
+
+> date.getUTCDay()
+
+**返回**
+
+以全球时间表示的date一周中的日期值。返回值在0（星期天）～6（星期六）之间
+
+## Date.getUTCFullYear()
+返回一个Date对象的年份值（全球时间）
+
+**概要**
+
+> date.getUTCFullYear()
+
+**返回**
+
+以全球时间表示的date的年份值，返回值是一个完整的4位数字的年份，而不是两位数字的缩写
+
+## Date.getUTCHours()
+返回一个Date对象的小时值（全球时间）
+
+**概要**
+
+> date.getUTCHours()
+
+**返回**
+
+以全球时间表示的date的小时值，返回值是0（午夜）～23（晚上11点）之间的一个整数
+
+## Date.getUTCMilliseconds()
+返回一个Date对象的毫秒值（全球时间）
+
+**概要**
+
+> date.getUTCMilliseconds()
+
+**返回**
+
+以全球时间表示的date的毫秒值
+
+## Date.getUTCMinutes()
+返回一个Date对象的分钟值（全球时间）
+
+**概要**
+
+> date.getUTCMinutes()
+
+**返回**
+
+以全球时间表示的date的分钟值。返回值是0～59之间的一个整数
+
+## Date.getUTCMonth()
+返回一个Date对象的一年中的月份值（全球时间）
+
+**概要**
+
+> date.getUTCMonth()
+
+**返回**
+
+以全球时间表示的date的一年中的月份值。返回值是0（1月）～11（12月）之间的一个整数。注意Date对象用1表示一个月中的第一天，但用0表示一年中的第一个月
+
+## Date.getUTCSeconds()
+返回一个Date的秒数值（全球时间）
+
+**概要**
+
+> date.getUTCSeconds()
+
+**返回**
+
+以全球时间表示的date的秒数值，返回值是0～59之间的一个整数
 
 ## 静态方法
