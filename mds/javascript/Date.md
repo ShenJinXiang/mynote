@@ -43,6 +43,7 @@
 * [Date.getUTCMinutes()](#dategetutcminutes)
 * [Date.getUTCMonth()](#dategetutcmonth)
 * [Date.getUTCSeconds()](#dategetutcseconds)
+* [Date.getYear()](#dategetyear)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -250,4 +251,60 @@ getTimezoneOffset()以分钟为单位返回GMT或UTC时间与本地时间的差�
 
 以全球时间表示的date的秒数值，返回值是0～59之间的一个整数
 
+## Date.getYear()
+返回一个Date对象的年份值
+
+**概要**
+
+> date.getYear()
+
+**返回**
+
+给定Date对象的年份值减去1900
+
+**描述**
+
+getYear()返回给定Date对象的Date的年份值减去1900，自ECMAScript3开始使用getFullYear()替代该方法
+
+
 ## 静态方法
+* [Date.now()](#datenow)
+* [Date.parse()](#dateparse)
+
+## Date.now()
+以毫秒的形式返回当前时间
+
+**概要**
+
+> Date.now()
+
+**返回**
+
+从1970-01-01午夜（GMT）到现在的时间，以毫秒表示
+
+**描述**
+
+在ECMAScript5之前，可以如下来实现：
+```javascript
+Date.now = function () {
+	return (new Date()).getTime();
+};
+```
+
+## Date.parse()
+解析一个日期／时间字符串
+
+**概要**
+
+> Date.parse()
+
+**参数**
+
+* date - 一个包含待解析的日期和时间的字符串
+
+**返回**
+
+从1970-01-01午夜（GMT）到给定日期之间的毫秒数
+
+**描述**
+Date.parse()是Date的一个静态方法。返回从纪元开始到给定字符串参数所指定的日期之间的毫秒数。返回值可以直接用于创建一个新的Date对象，或用于通过Date.setTime()设置一个已存在的Date对象的日期
