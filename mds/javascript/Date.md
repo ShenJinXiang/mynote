@@ -44,6 +44,8 @@
 * [Date.getUTCMonth()](#dategetutcmonth)
 * [Date.getUTCSeconds()](#dategetutcseconds)
 * [Date.getYear()](#dategetyear)
+* [Date.setDate()](#datesetdate)
+* [Date.setFullYear()](#datesetfullyear)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -265,6 +267,40 @@ getTimezoneOffset()以分钟为单位返回GMT或UTC时间与本地时间的差�
 **描述**
 
 getYear()返回给定Date对象的Date的年份值减去1900，自ECMAScript3开始使用getFullYear()替代该方法
+
+## Date.setDate()
+设置一个Date对象的一个月中的日期值
+
+**概要**
+
+> date.setDate(day_of_month)
+
+**参数**
+
+* day_of_month - 1~31之间的一个整数，将用作date的对应月中的日期值（本地时间）
+
+**返回值**
+
+调整后的日期的毫秒表示形式
+
+## Date.setFullYear()
+设置一个Date的年份值，以及可选的月份值和日期值
+
+**概要**
+
+> date.setFullYear(year)    
+> date.setFullYear(year, month)    
+> date.setFullYear(year, month, day)    
+
+**参数**
+
+* year - date中待设置的年份值，本地形式，应该是一个包含世纪的整数，如1999不能缩写成99
+* month - 0~11之间的可选整数，将用作date的月份值（本地时间）
+* day - 1~31之间的可选整数，用作date对应月中的日期值（本地时间）
+
+**返回**
+
+调整后的日期的内部毫秒表示形式
 
 
 ## 静态方法
