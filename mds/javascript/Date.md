@@ -46,6 +46,7 @@
 * [Date.getYear()](#dategetyear)
 * [Date.setDate()](#datesetdate)
 * [Date.setFullYear()](#datesetfullyear)
+* [Date.setHours()](#datesethours)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -301,6 +302,27 @@ getYear()返回给定Date对象的Date的年份值减去1900，自ECMAScript3开
 **返回**
 
 调整后的日期的内部毫秒表示形式
+
+## Date.setHours()
+设置一个Date的小时、分钟、秒以及毫秒值
+
+**概要**
+
+> date.setHours(hours)    
+> date.setHours(hours, minutes)    
+> date.setHours(hours, minutes, seconds)    
+> date.setHours(hours, minutes, seconds, millis)    
+
+**参数**
+
+* hours - 0（午夜）～23（晚上11点）之间的一个整数，将用做date的新的小时值（本地时间）
+* minutes - 0 ～59之间的一个可选整数，将用做date的新的分钟值（本地时间）
+* seconds - 0 ～ 59之间的一个可选参数，将用做date的新的秒钟值（本地时间）
+* millis - 0 ～ 999之间的一个可选整数，将用做date的新的毫秒数（本地时间）
+
+**返回**
+
+调整后的时间的毫秒表示形式
 
 
 ## 静态方法
