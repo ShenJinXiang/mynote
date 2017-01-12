@@ -47,6 +47,10 @@
 * [Date.setDate()](#datesetdate)
 * [Date.setFullYear()](#datesetfullyear)
 * [Date.setHours()](#datesethours)
+* [Date.setMilliseconds()](#datesetmilliseconds)
+* [Date.setMinutes()](#datesetminutes)
+* [Date.setMonth()](#datesetmonth)
+* [Date.setSeconds()](#datesetseconds)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -324,6 +328,89 @@ getYear()返回给定Date对象的Date的年份值减去1900，自ECMAScript3开
 
 调整后的时间的毫秒表示形式
 
+## Date.setMilliseconds()
+设置一个日期的毫秒值
+
+**概要**
+
+> date.setMilliseconds(millis)
+
+**参数**
+
+* millis - 将用于date本地时间表示的毫秒值，这个参数应该是0～999之间的一个整数
+
+**返回**
+
+吊证后的日期的毫秒表示形式
+
+
+## Date.setMinutes()
+设置一个Date的分钟、秒钟以及毫秒值
+
+**概要**
+
+> date.setMinutes(minutes)    
+> date.setMinutes(minutes, seconds)    
+> date.setMinutes(minutes, seconds, millis)    
+
+**参数**
+
+* minutes - 0~59之间的一个整数，将用做Date对象的分钟值（本地时间）
+* seconds - 0~59之间的一个可选整数，将用做date 的秒钟值（本地时间）
+* millis - 0~999之间的一个可选整数，将用做date的毫秒数（本地时间）
+
+**返回**
+
+调整后的日期的毫秒表示形式
+
+## Date.setMonth()
+设置一个Date的月份及日期值
+
+**概要**
+
+> date.setMonth(month)    
+> date.setMonth(month, day)    
+
+**参数**
+
+* month - 0（1月）～11（12月）之间的一个整数，将用做该Date对象date 的新月份值（本地时间）
+* day - 1～31之间的一个可选整数，将用做该date的对应月份中的日期值（本地时间）
+
+**返回**
+
+调整后的日期的毫秒表现形式
+
+## Date.setSeconds()
+设置一个Date的秒钟及毫秒值
+
+**概要**
+
+> date.setSeconds(seconds)    
+> date.setSeconds(seconds, millis)    
+
+**参数**
+
+* seconds - 0～59之间的一个整数，将用做Date对象date的秒钟值
+* millis - 0~999之间的一个可选整数，将用做该date的新毫秒值（本地时间）
+
+**返回**
+
+调整后的日期的毫秒表现值
+
+## Date.setTime()
+使用毫秒值设置一个时间
+
+**概要**
+
+> date.setTime(milliseconds)
+
+**参数**
+
+* milliseconds - 需要的日期及时间与1970-01-01午夜（GMT）之间的毫秒数
+
+**返回**
+
+milliseconds参数
 
 ## 静态方法
 * [Date.now()](#datenow)
