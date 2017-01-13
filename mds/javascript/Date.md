@@ -56,6 +56,10 @@
 * [Date.setUTCHours()](#datesetutchours)
 * [Date.setUTCMilliseconds()](#datesetutcmilliseconds)
 * [Date.setUTCMinutes()](#datesetutcminutes)
+* [Date.setUTCMonth()](#datesetutcmonth)
+* [Date.setUTCSeconds()](#datesetutcseconds)
+* [Date.setYear()](#datesetyear)
+* [Date.toDateString()](#datetodatestring)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -505,6 +509,70 @@ milliseconds参数
 **返回**
 
 调整后的日期的毫秒表示形式
+
+## Date.setUTCMonth()
+设置一个Date的月份值及日期值（全球时间）
+
+**概要**
+
+> date.setUTCMonth(month)    
+> date.setUTCMonth(month, day)    
+
+**参数**
+
+* month - 用做date 的以全球时间表示的月份值，应是0～11之间的整数
+* day - 1～31之间的一个可选整数，用做date对应月中的日期值
+
+**返回**
+
+调整后的日期的毫秒表示形式
+
+## Date.setUTCSeconds()
+设置一个Date的秒钟及毫秒值（全球时间）
+
+**概要**
+
+> date.setUTCSeconds(seconds)    
+> date.setUTCSeconds(seconds, millis)    
+
+**参数**
+
+* seconds - 用做date的以全球时间表示的秒钟值，应该为0～59之间的整数
+* millis - 0～999之间的一个可选整数，用做date的毫秒值（全球时间）
+
+**返回**
+
+调整后的日期的毫秒表示形式
+
+## Date.setYear()
+设置一个Date的年份值
+
+**概要**
+
+> date.setYear(year)    
+
+**参数**
+
+* year - 一个将用做该Date对象date的年份值（全球时间）的整数，如果值在0～99之间，会加上1900，以便把它当作1900～1999之间的年份处理
+
+**返回**
+
+调整后的日期毫秒表示形式
+
+**描述**
+
+setYear()设置给Date对象的年份值，JavaScript实现中已不再对这个函数有要求，建议用setFullYear()代替
+
+## Date.toDateString()
+以字符串的形式返回一个Date的日期部分
+
+**概要**
+
+> date.toDateString()    
+
+**返回**
+
+某个date日期部分与具体实现相关的、人类可读的字符串表示形式
 
 
 ## 静态方法
