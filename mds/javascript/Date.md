@@ -51,6 +51,11 @@
 * [Date.setMinutes()](#datesetminutes)
 * [Date.setMonth()](#datesetmonth)
 * [Date.setSeconds()](#datesetseconds)
+* [Date.setUTCDate()](#datesetutcdate)
+* [Date.setUTCFullYear()](#datesetutcfullyear)
+* [Date.setUTCHours()](#datesetutchours)
+* [Date.setUTCMilliseconds()](#datesetutcmilliseconds)
+* [Date.setUTCMinutes()](#datesetutcminutes)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -411,6 +416,96 @@ getYear()返回给定Date对象的Date的年份值减去1900，自ECMAScript3开
 **返回**
 
 milliseconds参数
+
+## Date.setUTCDate()
+设置一个Date的对应月中的日期值（全球时间）
+
+**概要**
+
+> date.setUTCDate(day_of_month)
+
+**参数**
+
+* day_of_month - 将用做date的对应月中的日期值，以全球时间表示，1～31之间的一个整数
+
+**返回**
+
+调整后的日期的内部毫秒表示形式
+
+## Date.setUTCFullYear()
+设置一个Date的年份、月份以及日期值（全球时间）
+
+**概要**
+
+> date.setUTCFullYear(year)    
+> date.setUTCFullYear(year, month)    
+> date.setUTCFullYear(year, month, day)    
+
+**参数**
+
+* year - 将用做date的以全球时间表示的年份值，这个参数应该是一个包含时间的参数，1999不能写成99
+* month - 0~11之间的一个可选整数，将用做date的月份值（全球时间），注意月份是从0开始的数字，而月份中的日期则从1开始
+* day - 1～31之间的一个可选整数，将用做date的对应月中的新日期值（全球时间）
+
+**返回**
+
+调整后的时间的毫秒表示形式
+
+## Date.setUTCHours()
+设置一个Date的小时、分钟以及毫秒值
+
+**概要**
+
+> date.setUTCHours(hours)    
+> date.setUTCHours(hours, minutes)    
+> date.setUTCHours(hours, minutes, seconds)    
+> date.setUTCHours(hours, minutes, seconds, millis)    
+
+**参数**
+
+* hourf - 将用做date 的以全球时间表示的小时值，这个参数应该为0（午夜）～23（晚上11点）之间的一个整数
+* minutes - 0～59之间的一个可选整数，将用做date的新分钟值（全球时间）
+* seconds - 0～59之间的一个可选整数，将用做date的新秒钟值（全球时间）
+* millis - 0～999之间的一个可选整数，用用做date的新毫秒值（全球时间)
+
+**返回**
+
+调整后的日期的毫秒表示形式
+
+## Date.setUTCMilliseconds()
+设置一个Date的毫秒值（全球时间）
+
+**概要**
+
+> date.setUTCMilliseconds(millis)    
+
+**参数**
+
+* millis - 将用做date的以全球时间表示的毫秒值，这个参数应该为0～999之间的一个整数
+
+**返回**
+
+调整后的日期的毫秒表示形式
+
+## Date.setUTCMinutes()
+设置一个Date的分钟、秒钟以及毫秒值（全球时间）
+
+**概要**
+
+> date.setUTCMinutes(minutes)    
+> date.setUTCMinutes(minutes, seconds)    
+> date.setUTCMinutes(minutes, seconds, millis)    
+
+**参数**
+
+* minutes - 将用做date的以全球时间表示的分钟值，应该为0～59之间的一个整数
+* seconds - 0～59之间的一个可选整数，用做date的秒钟值（全球时间）
+* millis - 0～999之间的一个可选整数，用做date的毫秒值（全球时间）
+
+**返回**
+
+调整后的日期的毫秒表示形式
+
 
 ## 静态方法
 * [Date.now()](#datenow)
