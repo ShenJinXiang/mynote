@@ -60,6 +60,8 @@
 * [Date.setUTCSeconds()](#datesetutcseconds)
 * [Date.setYear()](#datesetyear)
 * [Date.toDateString()](#datetodatestring)
+* [Date.toGMTString()](#datetogmtstring)
+* [Date.toISOString()](#datetoisostring)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -573,6 +575,47 @@ setYear()设置给Date对象的年份值，JavaScript实现中已不再对这个
 **返回**
 
 某个date日期部分与具体实现相关的、人类可读的字符串表示形式
+
+## Date.toGMTString()
+讲一个Date转换为全球时间表示的一个字符串
+
+**概要**
+
+> date.toGMTString()
+
+**返回**
+
+由Date对象date定义的日期及时间的一个字符串表示形式，在转换为字符串之前，日期将先从本地时区转换为GMT时区
+
+**描述**
+
+toGMTString()已弃用，建议使用Date.toUTCString()
+
+
+## Date.toISONString()
+将一个Date转换为ISO-8601格式的字符串
+
+**概要**
+
+> date.toISOString()
+
+**返回**
+
+date的一个字符串表示形式，以ISO-8601标准以及时区为“Z”的UTC时间表示形式，包含日期和时间的完整京都，格式为：
+
+> yyyy-mm-ddThh:mm:ss:sssZ
+
+## Date.toJSON
+JSON序列化一个Date对象
+
+**概要**
+
+> date.toJSON(key)
+
+**参数**
+
+* key - JSON.stringify() 会传递这个参数，但是toJSON方法会忽略它
+
 
 
 ## 静态方法
