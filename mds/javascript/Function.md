@@ -33,14 +33,25 @@ functionname(argument_value_list)     // 函数调用
 * [Function.arguments\[\]](#functionarguments)
 
 ## Function.arguments[]
+传递给函数的参数
+
+### 概要
+
+> function.arguments[i]    
+> function.arguments.length    
+
+### 描述
+Function对象的arguments属性是一个参数数组，它的元素是传递给函数的参数，只有函数执行时才定义，arguments.length是表示数组中的元素个数，不推荐使用该属性，赞成使用Arguments对象
 
 ## 方法
 * [Function.apply()](#functionapply)    
+* [Function.bind()](#functionbind)    
+
 
 ## Function.apply()
 将函数作为一个对象的方法调用
 
-**概要**
+### 概要
 
 > function.apply(thisobj, args)
 
@@ -72,4 +83,33 @@ Object.prototype.toString.apply(o);
 
 var data = [1, 2, 3, 4, 5, 6, 7, 8];
 Max.max.apply(null, data);
+```
+
+## Function.bind()
+返回一个作为方法调用的函数
+
+### 概要
+
+> function.bind(o)    
+> function.bind(o, args...)    
+
+**参数**
+
+* o - 要绑定到函数上的对象
+* args... - 要绑定到函数上的零个或多个参数值
+
+**返回**
+
+一个新函数，该函数会当作o的方法来调用，并向它传入args参数
+
+### 描述
+bind()方法返回一个新函数，这个函数会当作对象o的方法来调用，传递给该函数的参数由两部分组成，一部分是传递给bind()的args数组指定的参数，剩下的是传递给这个新函数的所有值
+
+#### 示例
+假设f是个函数
+```javascript
+var g = f.bind(o, 1, 2);
+g(3)
+// 等价于
+f.call(o, 1, 2, 3)
 ```

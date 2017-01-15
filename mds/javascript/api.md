@@ -19,6 +19,8 @@
 6. [Function](./Function.md#function)    
  6.1[概要](./Function.md#概要)    
  6.2[构造函数](./Function.md#构造函数)    
+ 6.3[属性](./Function.md#属性)    
+ 6.4[方法](./Function.md#方法)    
 7. [Canvas](./Canvas.md#canvas)    
  7.1. [属性](./Canvas.md#canvas的属性)    
  7.2. [方法](./Canvas.md#canvas的方法)    
