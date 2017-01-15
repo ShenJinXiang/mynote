@@ -62,6 +62,12 @@
 * [Date.toDateString()](#datetodatestring)
 * [Date.toGMTString()](#datetogmtstring)
 * [Date.toISOString()](#datetoisostring)
+* [Date.toJSON()](#datetojson)
+* [Date.toLocaleDateString()](#datetolocaledatestring)
+* [Date.toLocaleString()](#datetolocalestring)
+* [Date.toLocaleTimeString()](#datetolocaletimestring)
+* [Date.toString()](#datetostring)
+* [Date.valueOf()](#datevalueof)
 
 ## Date.getDate()
 返回一个Date对象的月份中的日期值
@@ -592,7 +598,7 @@ setYear()设置给Date对象的年份值，JavaScript实现中已不再对这个
 toGMTString()已弃用，建议使用Date.toUTCString()
 
 
-## Date.toISONString()
+## Date.toISOString()
 将一个Date转换为ISO-8601格式的字符串
 
 **概要**
@@ -616,11 +622,69 @@ JSON序列化一个Date对象
 
 * key - JSON.stringify() 会传递这个参数，但是toJSON方法会忽略它
 
+## Date.toLocaleDateString()
+以本地格式的字符串形式返回一个Date的日期部分
 
+**概要**
+
+> date.toLocaleDateString()
+
+**返回**
+
+date的日期部分的一个与具体实现相关的，类人可读的字符串表示形式，使用本地时区以及本地习惯格式
+
+## Date.toLocaleString()
+将Date转换为一个本地格式的字符串
+
+**概要**
+
+> date.toLocaleString()
+
+**返回**
+
+由date指定的日期与时间的一个字符串表示形式。
+
+**用法**
+
+toLocaleString()使用本地时区，将一个日期转换为一个字符串，也使用本地习惯来格式化日期及时间，所以在不同的国家或平台上，格式可能会不一样
+
+## Date.toLocaleTimeString()
+返回使用本地格式表示的Date的时间部分
+
+**概要**
+
+> date.toLocaleTimeString()
+
+**返回**
+
+一个与实现相关的、人类可读的表示date的时间部分的字符串
+
+## Date.toString()
+将一个Date转换为一个字符串
+
+**概要**
+
+> date.toString()
+
+**返回**
+
+date的一个人类刻度的字符串表示形式，使用本地时区
+
+## Date.valueOf()
+将一个Date转为毫秒表示形式
+
+**概要**
+
+> date.valueOf()
+
+**返回**
+
+date 的毫秒表示形式，返回值与Date.getTime()的返回值相同
 
 ## 静态方法
 * [Date.now()](#datenow)
 * [Date.parse()](#dateparse)
+* [Date.UTC()](#dateutc)    
 
 ## Date.now()
 以毫秒的形式返回当前时间
@@ -659,3 +723,24 @@ Date.now = function () {
 
 **描述**
 Date.parse()是Date的一个静态方法。返回从纪元开始到给定字符串参数所指定的日期之间的毫秒数。返回值可以直接用于创建一个新的Date对象，或用于通过Date.setTime()设置一个已存在的Date对象的日期
+
+## Date.UTC()
+将一个Date说明转为毫秒形式
+
+**概要**
+
+> Date.UTC(year, month, day, hours, minutes, seconds, ms)    
+
+**参数**
+
+* year - 以4位格式表示的年份。如果这个参数在0～99之间（包括0和99）则将加上1900，当作1900～1999之间的年份处理
+* month - 月份，指定为0（1月）～11（12月）之间的一个整数
+* day - 对应月中的日期值，指定为1～31之间的一个整数，这个参数最小值为1
+* hours - 小时，指定为0（午夜）～23（晚上11点）之间的一个整数
+* minutes - 小时中的分钟值，0～59之间的一个整数
+* seconds - 分钟中的秒钟值，指定为0～59之间的一个整数
+* ms - 毫秒值，指定为0~999之间的一个整数
+
+**返回**
+
+指定的全球时间的毫秒表示形式，即1070-01-01午夜到指定时间的毫秒数
