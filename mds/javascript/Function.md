@@ -31,6 +31,8 @@ functionname(argument_value_list)     // 函数调用
 
 ## 属性
 * [Function.arguments\[\]](#functionarguments)
+* [Function.length](#functionlength)    
+* [Function.prototype](#functionprototype)    
 
 ## Function.arguments[]
 传递给函数的参数
@@ -43,10 +45,29 @@ functionname(argument_value_list)     // 函数调用
 ### 描述
 Function对象的arguments属性是一个参数数组，它的元素是传递给函数的参数，只有函数执行时才定义，arguments.length是表示数组中的元素个数，不推荐使用该属性，赞成使用Arguments对象
 
+## Function.length
+声明的参数的个数
+
+### 概要
+> function.length
+
+### 描述
+函数的length属性指定定义函数时所声明的形参的个数，实际调用函数时，传入的参数的个数可以比函数的length属性多，也可以少
+
+## Function.prototype
+对象类的原型
+
+### 概要
+> function.prototype
+
+### 描述
+prototype属性会在函数作为构造函数时使用。它指代作为整个对象类的原型对象。用构造函数创建的任何对象都会继承prototype对象引用的对象的所有属性
+
 ## 方法
 * [Function.apply()](#functionapply)    
 * [Function.bind()](#functionbind)    
-
+* [Function.call()](#functioncall)    
+* [Function.toString()](#functiontostring)    
 
 ## Function.apply()
 将函数作为一个对象的方法调用
@@ -113,3 +134,52 @@ g(3)
 // 等价于
 f.call(o, 1, 2, 3)
 ```
+
+## Function.call()
+将函数作为对象的方法调用
+
+### 概要
+> function.call(thisobj, args...)    
+
+**参数**
+
+* thisobj - 调用function的对象。在函数体中，thisobj是关键字this的值。这个参数为null，则使用全局对象
+* args... - 任意多个参数，它们会作为参数传递给function
+
+**返回**
+
+调用函数function的返回值
+
+**异常**
+
+* TypeError - 如果调用该函数的对象不是函数，则抛出该异常
+
+### 描述
+call()将指定的函数function作为对象thisobj的方法来调用，并传入参数列表中thisobj之后的参数。返回的是调用function的返回值。在函数体内，关键字this指代thisobj对象，如果thisobj为null，则使用全局对象
+
+如果向用数组来指定传递函数的参数，使用Function.apply()方法
+
+### 示例
+
+```javascript
+// 将默认的Object.toString()应用在一个对象上
+// 以便覆盖该对象上的toString()方法
+Object.prototype.toString().call(o);
+```
+
+## Function.toString()
+将函数转换成字符串
+
+### 概要
+> function.toString()
+
+**返回**
+
+表示函数的字符串
+
+**异常**
+
+* TypeError - 如果调用该函数的对象不是函数，则抛出该异常
+
+### 描述
+Function对象的toString()方法能将函数转换为字符串，但其功能与具体实现相关。
