@@ -167,3 +167,40 @@ function constant(o, n, n) {
 Object.freeze()将o设置为不可扩展，同时就像Object.seal()那也，将它所有自有属性设置为不可配置。除此以外，将所有非继承的数据属性设置为只读，意味者不能向o添加新属性，同时已有属性也不能设置或删除
 
 Object.freeeze()不会影响继承属性
+
+## Object.getOwnPropertyDescriptor()
+查询一个属性的特性
+
+### 概要
+> Object.getOwnPropertyDescriptor(o, name)
+
+### 参数
+* o - 待查询其属性特性的对象
+* name - 待查询的属性名（或数组元素的索引）
+
+### 返回
+指定对象指定属性的一个属性描述符对象，如果不存在指定属性则返回undefined
+
+### 描述
+Object.getOwnPropertyDescriptor()返回指定对象指定属性的一个属性描述符。属性描述符是一个对象，描述该属性的特性和值。
+
+**属性描述符**
+一个普通的JavaScript对象，描述某个属性的特性，可枚举性（enumerable）、可写性（writable）以及可配置型（configurable）
+
+```javascript
+// 数据属性的描述符类似这样：
+{
+	value: /* 任意JavaScript值 */
+	writable: /* true 或 false */
+	enumberable: /* true 或 false */
+	configurable: /* true 或 false */
+}
+
+// 访问器的描述符类似这样：
+{
+	get: /* function 或 undefined替换属性值 */
+	set: /* function 或undefined 体啊还可写性 */
+	enumerable: /* true或false */
+	configurable: /* true或false */
+}
+```
