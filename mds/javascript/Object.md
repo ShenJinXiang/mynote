@@ -44,7 +44,7 @@ function isArray(x) {
 * [toString()](#tostring)    
 * [valueOf()](#valueof)    
 
-### 静态方法
+## 静态方法
 * [Object.create()](#objectcreate)    
 * [Object.defineProperties()](#objectdefineproperties)    
 * [Object.defineProperty()](#objectdefineproperty)    
@@ -57,3 +57,38 @@ function isArray(x) {
 * [Object.keys()](#objectkeys)    
 * [Object.perventExtensions()](#objectpreventextensions)    
 * [Object.seal()](#objectseal)    
+
+## Object.create()
+使用指定的原先和属性来创建一个对象
+
+### 概要
+> Object.create(proto)    
+> Object.create(proto, descriptors)    
+
+### 参数
+
+* proto - 性创建对象的原型，可为null
+* descriptors - 一个可选对象，吧属性名映射到属性描述符
+
+### 返回
+
+一个新创建的对象，继承自proto，同时拥有descriptors所描述的属性
+
+### 异常
+* TypeError 如果proto不是对象也不是null，或指定descriptors但引发`Object.defineProperties()`跑出一个TypeError
+
+### 描述
+Object.create()创建并返回一个新的以proto为原型的对象，新对象将继承proto的属性
+
+如果指定可选的descriptors参数，则`Object.create()`将把它指定的属性添加到新对象中，等同于调用`Object.defineProperties()`，使用两个参数调用`Object.create(p, d)`等同于：
+```javascript
+Object.defineProperties(Object.create(p), d);
+```
+
+### 示例
+```javascript
+var p = Object.create({z: 0}, {
+	x: {value: 1, writable: false, enumerable: true, configurable: true},
+	y: {value: 2, writable: false, enumerable: true, configurable: true},
+});
+```
