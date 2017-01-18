@@ -35,4 +35,5 @@
  8.4. [XML语法规则](./xml.md#xml语法规则)    
  8.4. [XML元素](./xml.md#xml元素)    
  8.5. [XML属性](./xml.md#xml属性)    
+ 8.6. [XML验证](./xml.md#xml验证)    
 9. [properties工具](./properties工具.md#properties工具)    
