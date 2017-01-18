@@ -92,3 +92,78 @@ var p = Object.create({z: 0}, {
 	y: {value: 2, writable: false, enumerable: true, configurable: true},
 });
 ```
+
+## Object.defineProperties()
+创建或配置对象的多个属性
+
+### 概要
+> Object.defineProperties(o, descriptors)    
+
+### 参数
+* o - 要在其上创建或配置属性的对象
+* descriptors - 将属性名映射到属性描述符的对象
+
+### 返回
+对象o
+
+### 异常
+* TypeError - 如果o不是一个对象，或者不能创建或配置某个指定的属性，就抛出该异常。这个函数不是原子性的：可能在创建或配置几个属性后，同时还有别的属性未创建或配置时抛出异常
+
+### 描述
+Object.defineProperties()在对象o上创建或配置由descriptors指定及描述的属性。
+
+object.defineProperties()的行为非常类似Object.defineProperty()
+
+### 示例
+```javascript
+var p = Object.defineProperties({}, {
+	x: {value: 0, writable: false, enumerable: true, configurable: true},
+	y: {value: 1, writable: false, enumerable: true, configurable: true},
+});
+```
+
+## Object.defineProperty()
+创建或配置对象的一个属性
+
+### 概要
+> Object.defineProperty(o, name, desc)
+
+### 参数
+* o - 将在其上创建或配置属性的对象
+* name - 将创建或配置的属性的名字
+* desc - 一个属性描述符对象，描述要创建的新属性或对现有属性的修改
+
+### 返回
+对象o
+
+### 异常
+* TypeError - 如果o不是一个对象，或者指定属性不能创建（比如o不可扩展）或配置（比如该属性已经存在，并且不可配置）
+
+### 描述
+Object.defineProperty() 使用属性描述符desc来创建或配置对象o中名为name的属性。如果o还不存在名为name 的属性，则这个函数将简单地使用desc指定的属性和值来创建一个新的属性，对于desc中未指定的属性，对应属性值将设置为false或null
+
+如果name为o中已经存在的属性名，则Object.defineProperty()将通过改变它的值或属性来配置这个属性，这种情况下，desc只需要包含要改变的属性，不包含的属性将不会改变
+
+### 示例
+```javascript
+function constant(o, n, n) {
+	Object.defineProperty(o, n, {value: v, writable: false, enumerable:true, configurable: false});
+}
+```
+
+## Object.freeze()
+将一个对象设置为不可改变
+
+### 概要
+> object.freeze(o)
+
+### 参数
+* o - 要冻结的对象
+
+### 返回
+现在处于冻结状态的参数对象o
+
+### 描述
+Object.freeze()将o设置为不可扩展，同时就像Object.seal()那也，将它所有自有属性设置为不可配置。除此以外，将所有非继承的数据属性设置为只读，意味者不能向o添加新属性，同时已有属性也不能设置或删除
+
+Object.freeeze()不会影响继承属性
