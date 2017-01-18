@@ -249,7 +249,7 @@ public class PropKit {
 	
 	public static Prop getProp() {
 		if (prop == null)
-			throw new IllegalStateException("Load propties file by invoking PropKit.use(String fileName) method first.");
+			throw new IllegalStateException("先使用Prop.use()加载properties文件");
 		return prop;
 	}
 	
