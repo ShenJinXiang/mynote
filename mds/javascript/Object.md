@@ -37,12 +37,48 @@ function isArray(x) {
 只对核心JavaScript中的内置对象有效
 
 ## 方法
-* [hasOwnProperty()](#hasownproperty)    
-* [isPrototypeOf()](#isprototypeof)    
+* [Object.hasOwnProperty()](#objecthasownproperty)    
+* [Object.isPrototypeOf()](#objectisprototypeof)    
 * [propertyIsEnumerable()](#propertyisenumerable)    
 * [toLocaleString()](#tolocalestring)    
 * [toString()](#tostring)    
 * [valueOf()](#valueof)    
+
+## Object.hasOwnProperty()
+检查一个属性是否是继承的
+
+### 概要
+> object.hasOwnProperty(propname)    
+
+### 参数
+* propname - 包含对象的属性名的字符串
+
+### 返回
+如果对象由一个指定名字的非继承的属性则返回true，如果该对象没有指定名称的属性或者个属性是从它的原型对象继承而来的，则返回false
+
+### 描述
+JavaScript对象可以由自己的属性，也可以从它们的原型对象那儿继承属性。hasOwnProperty()方法提供一个识别继承属性和非继承的本地属性的方法
+
+### 示例
+```javascript
+var o = new Object();
+o.x = 3.14;
+o.hasOwnProperty("x");			// 返回true
+o.hasOwnProperty("y");			// 返回false
+o.hasOwnProperty("toString");   // 返回false
+```
+
+## Object.isPrototypeOf()
+判断当前对象是否为另一个对象的原型
+
+### 概要
+> object.isPrototypeOf(o)    
+
+### 参数
+* o - 任意对象
+
+### 返回
+如果object是o的原型则返回true，如果o不是一个对象，或者object不是o的原型则返回false
 
 ## 静态方法
 * [Object.create()](#objectcreate)    
@@ -50,6 +86,7 @@ function isArray(x) {
 * [Object.defineProperty()](#objectdefineproperty)    
 * [Object.freeze()](#objectfreeze)    
 * [Object.getOwnPropertyDescriptor()](#objectgetownpropertydescriptor)    
+* [Object.getOwnPropertyNames()](#objectgetownpropertynames)    
 * [Object.getPrototypeOf()](#objectgetprototypeof)    
 * [Object.isExtensible()](#objectisextensible)    
 * [Object.isFrozen()](#objectisfrozen)    
@@ -204,3 +241,86 @@ Object.getOwnPropertyDescriptor()返回指定对象指定属性的一个属性�
 	configurable: /* true或false */
 }
 ```
+
+## Object.getOwnPropertyNames()
+返回非继承属性的名字
+
+### 概要
+> Object.getOwnPropertyNames(o)    
+
+### 参数
+* o - 一个对象
+
+### 返回
+一个包含o的所有非继承属性的名字的数组，包含那些不可枚举的属性
+
+### 描述
+Object.getOwnPropertyNames()返回一个包含o的所有非继承属性的名字的数组，包含那些不可枚举的属性。
+
+这个方法不可在对象上调用，上一个全局函数，必须传入一个对象
+
+### 示例
+```javascript
+Object.getOwnPropertyNames([]); // ['length']
+```
+
+## Object.getPrototypeOf()
+返回一个对象的原型
+
+### 概要
+> Object.getPrototypeOf(o)    
+
+### 参数
+* o - 一个对象
+
+### 返回
+o的原型对象
+
+### 描述
+Object.getPrototypeOf()返回它的参数的原型，全局函数，必须传入一个对象
+
+### 示例
+```javascript
+var p = {};
+Object.getPrototypeOf(p);  // Object.prototype
+var o = Object.create(p);
+Object.getPrototypeOf(p); // p
+```
+
+## Object.isExtensible()
+判断某个对象上是否可以添加新属性
+
+### 概要
+> Object.isExtensible(o)    
+
+### 参数
+* o - 待检查可扩展性的对象
+
+### 返回
+如果可以向该对象添加新属性则返回true，否则返回false
+
+### 描述
+如果可以向一个对象添加新的属性，则称它为可扩展的。所有对象在创建后都是可扩展的，直到作为参数传入Object.preventExtensions()、Object.seal()、Object.freeze()
+
+### 示例
+```javascript
+var o = {};
+Object.isExtensible(o);	// true
+Object.preventExtensions(o); // 设置为不可扩展的
+Object.isExtensible(o);  // false
+```
+
+## Object.isFrozen()
+判断对象是否不可改变
+
+### 概要
+> Object.isFrozen(o)    
+
+### 参数
+* o - 待检测的对象
+
+### 返回
+如果o已冻结并不改变则为true；否则为false
+
+### 描述
+如果一个对象的所有非继承属性都为只读，或者它是封闭的（sealed）,则处于冻结状态。如果可以向一个对象添加新的属性，并且不可删除现有的属性，则称为封闭的。Object.isFrozen()检测它的参数是否为冻结状态。对象一旦冻结就不能再解冻
