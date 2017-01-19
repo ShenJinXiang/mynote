@@ -37,3 +37,4 @@
  8.5. [XML属性](./xml.md#xml属性)    
  8.6. [XML验证](./xml.md#xml验证)    
 9. [properties工具](./properties工具.md#properties工具)    
+10. [字符串工具](./字符串工具.md#字符串工具)    
