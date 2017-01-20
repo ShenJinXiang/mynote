@@ -80,6 +80,18 @@ o.hasOwnProperty("toString");   // 返回false
 ### 返回
 如果object是o的原型则返回true，如果o不是一个对象，或者object不是o的原型则返回false
 
+### 示例
+```javascript
+var o = new Object();
+Object.prototype.isPrototypeOf(o);	// true
+Function.prototype.isPrototypeOf(o.toString);  // true  toString是一个函数
+Array.prototype.isPrototypeOf([1, 2, 3]);   // true  [1, 2, 3] 是一个数组
+
+o.constructor == Object  // true  
+o.toString.constructor = Function // ture
+Object.prototype.isPrototypeOf(Function.prototype)
+```
+
 ## 静态方法
 * [Object.create()](#objectcreate)    
 * [Object.defineProperties()](#objectdefineproperties)    
