@@ -92,6 +92,31 @@ o.toString.constructor = Function // ture
 Object.prototype.isPrototypeOf(Function.prototype)
 ```
 
+## Object.propertyIsEnumerable()
+检测某个属性是否在for／in循环中可见
+
+### 概要
+> object.propertyIsEnumerable(propname)     
+
+### 参数
+* propname - 包含对象的指定属性名的一个字符串
+
+### 返回
+如果对象由一个名为propname的非继承属性，并且该属性可枚举，则返回true，意味着这个属性可以通过该对象的for／in循环枚举
+
+### 描述
+for/in语句遍历给定对象的可枚举性，对象的属性不全是可枚举的：由JavaScript代码添加到对象中的属性是可枚举的，内置对象的预定义的属性（如方法）通常不可枚举，propertyIsEnumerable()方法提供了一个曲风可枚举与不可枚举属性的方法
+
+### 示例
+```javascript
+var o = new Object();
+o.x = 3.14;
+o.propertyIsEnumerable("x");  // true
+o.propertyIsEnumerable("y");  // false
+o.propertyIsEnumerable("toString");  // false
+Object.prototype.propertyIsEnumerable("toString"); // false 
+```
+
 ## 静态方法
 * [Object.create()](#objectcreate)    
 * [Object.defineProperties()](#objectdefineproperties)    
@@ -104,7 +129,7 @@ Object.prototype.isPrototypeOf(Function.prototype)
 * [Object.isFrozen()](#objectisfrozen)    
 * [Object.isSealed()](#objectissealed)    
 * [Object.keys()](#objectkeys)    
-* [Object.perventExtensions()](#objectpreventextensions)    
+* [Object.preventExtensions()](#objectpreventextensions)    
 * [Object.seal()](#objectseal)    
 
 ## Object.create()
@@ -365,3 +390,21 @@ Object.isExtensible(o);  // false
 
 ### 描述
 Object.keys()返回指定对象o的属性名组成的数组。这个数组只包含那些可枚举且直接定义在o上的属性的名字，不包含继承的属性。返回数组中的属性名的顺序即它们通过for／in循环枚举时的顺序
+
+## Object.preventExtensions()
+禁止在一个对象上添加新的属性
+
+### 概要
+> Object.preventExtensions(o)    
+
+### 参数
+* o - 带设置可扩展性的对象
+
+### 返回
+传入的参数对象o
+
+### 描述
+Object.preventExtensions()将o的可扩展性设置为false，之后将不能向它添加新的属性，是一个永久性的改变：一旦一个对象设置为不可扩展的，它就再也不能改为可扩展的
+
+Object.preventExtensions()不会影响原型链，不可扩展的对象仍然可以获得新的继承属性
+
