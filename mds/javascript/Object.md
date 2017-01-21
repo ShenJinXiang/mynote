@@ -39,10 +39,9 @@ function isArray(x) {
 ## 方法
 * [Object.hasOwnProperty()](#objecthasownproperty)    
 * [Object.isPrototypeOf()](#objectisprototypeof)    
-* [propertyIsEnumerable()](#propertyisenumerable)    
-* [toLocaleString()](#tolocalestring)    
-* [toString()](#tostring)    
-* [valueOf()](#valueof)    
+* [propertyIsEnumerable()](#objectpropertyisenumerable)    
+* [toLocaleString()](#objecttolocalestring)    
+* [toString()](#objecttostring)    
 
 ## Object.hasOwnProperty()
 检查一个属性是否是继承的
@@ -116,6 +115,32 @@ o.propertyIsEnumerable("y");  // false
 o.propertyIsEnumerable("toString");  // false
 Object.prototype.propertyIsEnumerable("toString"); // false 
 ```
+
+## Object.toLocaleString()
+返回对象的本地化的字符串表示
+
+### 概要
+> object.toLocaleString()
+
+### 返回
+一个表示该对象的字符串
+
+### 描述
+用于返回一个表示当前对象的字符串，使用合适的本地化格式。Object类提供的默认的otLocaleString()方法值是简单地调用toString()方法，并返回字符串
+
+## Object.toString()
+定义一个对象的字符串表示形式
+
+### 概要
+> object.toString()
+
+### 返回
+一个表示该对象的字符串
+
+### 描述
+在JavaScript程序中一般不会经常显式的调用toString()方法，一般情况下，在对象中定义这个方法，系统会在需要时自动调用它以便将对象转换为字符串
+
+
 
 ## 静态方法
 * [Object.create()](#objectcreate)    
@@ -408,3 +433,14 @@ Object.preventExtensions()将o的可扩展性设置为false，之后将不能向
 
 Object.preventExtensions()不会影响原型链，不可扩展的对象仍然可以获得新的继承属性
 
+## Object.seal()
+阻止添加或删除对象的属性
+
+### 参数
+* o - 待封闭的对象
+
+### 返回
+现在处于封闭状态的参数对象o
+
+### 描述
+Object.seal()将o设置为不可扩展，同时将它的所有自有属性设置为不可配置的，效果为阻止添加新的属性以及阻止删除现有属性，封闭一个对象是永久性的，一旦封闭，就不能解封
