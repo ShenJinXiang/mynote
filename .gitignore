@@ -3,3 +3,7 @@
 
 # node
 node_modules
+
+# idea
+mynode.iml
+.idea
