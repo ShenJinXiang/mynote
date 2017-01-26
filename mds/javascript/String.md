@@ -18,6 +18,7 @@ length
 * [String.charAt()](#stringcharat)    
 * [String.charCodeAt()](#stringcharcodeat)    
 * [String.concat()](#stringconcat)    
+* [String.indexOf()](#stringindexof)    
 
 ## String.charAt()
 取得一个字符串中第“n”个字符
@@ -63,6 +64,25 @@ charCodeAt()类似charAt()，不同之处是它返回指定为止的字符的编
 
 ### 描述
 concat()将每个参数转换为字符串，并按顺序追加到string的末尾，返回最后的连接结果，string本身没有改变
+
+## String.indexOf()
+搜索一个字符串
+
+### 概要
+> string.indexOf(substring)     
+> string.indexOf(substring, start)    
+
+### 参数
+* substring - 要在string中搜索的子串
+* start - 一个可选的整数参数，指定该次搜索在字符串string中的开始位置。合法的值为0（字符串中的第一个字符的位置）到string.length - 1 (字符串中最后一个字符的位置，如果省略这个参数，将从第一个字符开始
+
+### 返回
+在字符串string中start位置之后，substring第一次出现的位置，如果没有找到则返回-1
+
+### 描述
+String.indexOf()搜素指定的字符串string，从前到后搜索，检测它是否包含指定的子串substring。搜索开始于string中的start位置，如果没有指定start则从string的开始开始搜索，如果发现了子串substring，则string.indexOf()将返回substring在string中的第一次出现时第一个字符所在的位置
+
+如果在string中没有找到substring，则返回-1
 
 ## 静态方法
 * [String.fromCharCode()](#stringfromcharcode)
