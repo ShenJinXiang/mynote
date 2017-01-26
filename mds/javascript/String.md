@@ -12,13 +12,23 @@
 当使用new操作符将String()作为一个构造函数使用时，它将返回一个String对象，内容为字符串s或s的字符串表示。当不带new操作符调用String()构造函数时，它只是简单地将s转换为原始字符串并返回转换后的值
 
 ## 属性
-length
+* [String.length](#stringlength)    
+
+## String.length
+一个字符串的长度
+
+### 概要
+> string.length    
+
+### 描述
+String.length属性是一个只读的整数，指明指定的字符串string的字符个数，对任意字符串s来说。最后一个字符的索引都是s.length - 1。字符串的length属性不会在for/in循环中枚举，不可通过delete操作符删除
 
 ## 方法
 * [String.charAt()](#stringcharat)    
 * [String.charCodeAt()](#stringcharcodeat)    
 * [String.concat()](#stringconcat)    
 * [String.indexOf()](#stringindexof)    
+* [String.lastIndexOf()](#stringlastindexof)    
 
 ## String.charAt()
 取得一个字符串中第“n”个字符
@@ -83,6 +93,23 @@ concat()将每个参数转换为字符串，并按顺序追加到string的末尾
 String.indexOf()搜素指定的字符串string，从前到后搜索，检测它是否包含指定的子串substring。搜索开始于string中的start位置，如果没有指定start则从string的开始开始搜索，如果发现了子串substring，则string.indexOf()将返回substring在string中的第一次出现时第一个字符所在的位置
 
 如果在string中没有找到substring，则返回-1
+
+## String.lastIndexOf()
+从后面开始搜索一个字符串
+
+### 概要
+> string.lastIndexOf(substring)    
+> string.lastIndexOf(substring, start)    
+
+### 参数
+* substring - 要在字符串string中搜索的子串
+* strrt - 一个可选的整数参数，指定string中搜索开始的位置，合法址为0到string.length - 1,如果忽略这个参数，将从字符串string的最后一个字符开始搜索
+
+### 返回
+子串substring在字符串string的start位置之前最后一次出现的位置，如果没有找到则返回-1
+
+### 描述
+String.lastIndexOf()从字符串string的结尾开始搜索到开头，检查是否包含子串substring。开始与字符串string中的start位置，如果没有指定start则开始与string的尾部，如果找到子串substring则返回子串的第一个字符的位置。**由于本方法从字符串string的末尾搜索到开头，因此找到的第一个匹配子串将是string中start位置前的最后一个匹配**
 
 ## 静态方法
 * [String.fromCharCode()](#stringfromcharcode)
