@@ -29,6 +29,7 @@ String.length属性是一个只读的整数，指明指定的字符串string的�
 * [String.concat()](#stringconcat)    
 * [String.indexOf()](#stringindexof)    
 * [String.lastIndexOf()](#stringlastindexof)    
+* [String.localeCompare()](#stringlocalecompare)    
 
 ## String.charAt()
 取得一个字符串中第“n”个字符
@@ -110,6 +111,23 @@ String.indexOf()搜素指定的字符串string，从前到后搜索，检测它�
 
 ### 描述
 String.lastIndexOf()从字符串string的结尾开始搜索到开头，检查是否包含子串substring。开始与字符串string中的start位置，如果没有指定start则开始与string的尾部，如果找到子串substring则返回子串的第一个字符的位置。**由于本方法从字符串string的末尾搜索到开头，因此找到的第一个匹配子串将是string中start位置前的最后一个匹配**
+
+## String.localeCompare()
+使用本地特定的顺序比较两个字符串
+
+### 概要
+> string.localeCompare(target)    
+
+### 参数
+* target - 要与string使用区分地区设置的方式比较的字符串
+
+### 返回
+一个表示比较结果的数字，如果string比taget“小”，则localeCompare()将返回一个比0小的数，如果string比target“大”，则返回一个比0大的数，如果相同，或无法区分，则返回0
+
+###  描述
+当在字符串上使用“&lt;”或“&gt;”操作时，只比较这些字符的Unicode编码，而不考虑本地的顺序，这种方式的顺序并不总是正确的，localeCompare()提供一个根据默认的本地排序来比较字符串的方法，利用底层的操作系统提供的排序
+
+
 
 ## 静态方法
 * [String.fromCharCode()](#stringfromcharcode)
