@@ -30,6 +30,7 @@ String.length属性是一个只读的整数，指明指定的字符串string的�
 * [String.indexOf()](#stringindexof)    
 * [String.lastIndexOf()](#stringlastindexof)    
 * [String.localeCompare()](#stringlocalecompare)    
+* [String.match()](#stringmatch)    
 
 ## String.charAt()
 取得一个字符串中第“n”个字符
@@ -127,7 +128,29 @@ String.lastIndexOf()从字符串string的结尾开始搜索到开头，检查是
 ###  描述
 当在字符串上使用“&lt;”或“&gt;”操作时，只比较这些字符的Unicode编码，而不考虑本地的顺序，这种方式的顺序并不总是正确的，localeCompare()提供一个根据默认的本地排序来比较字符串的方法，利用底层的操作系统提供的排序
 
+## String.match()
+找到一个或多个正则表达式匹配结果
 
+### 概要
+> string.match(regexp)    
+
+### 参数
+* regexp - 一个指定要匹配的模式的RegExp对象。如果这个参数不是一个RegExp对象，则将先被传入RegExp()构造函数，后转换为RegExp对象
+
+### 返回
+一个包含匹配结果的数组。数组的内容取决于regexp是否设置了“g”属性。
+
+### 描述
+match()在字符串string中寻找一个或多个regexp的匹配结果，这个方法的行为取决于regexp是否有“g”属性
+
+如果regexp没有“g”属性，match()将只在string中执行一次匹配，如果没有找到匹配结果，match()将返回null。其它情况下，将返回一个包含它所发现的匹配结果的信息的数组。该数组的元素0为匹配文本，剩下的元素为匹配正则表达式中圆括号子表达式的文本，除了常规的数组元素，返回的数组还有两个额外的对象属性，其中index属性指明了匹配文本在string中的开始位置，input属性则是对该string本身的引用
+
+如果regexp有“g”标志，则match()将执行一次全局搜索，在string中寻找所有匹配的子串，如果没有找到匹配的结果则返回null。如果找到一个或多个匹配结果则返回一个数组
+
+### 示例
+```javascript
+"1 plus 2 equals 3".match(/\d+/g);   // ["1", "2", "3"]
+```
 
 ## 静态方法
 * [String.fromCharCode()](#stringfromcharcode)
