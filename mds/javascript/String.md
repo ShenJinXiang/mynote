@@ -31,6 +31,8 @@ String.length属性是一个只读的整数，指明指定的字符串string的�
 * [String.lastIndexOf()](#stringlastindexof)    
 * [String.localeCompare()](#stringlocalecompare)    
 * [String.match()](#stringmatch)    
+* [String.replace()](#stringreplace)    
+* [String.search()](#stringsearch)    
 
 ## String.charAt()
 取得一个字符串中第“n”个字符
@@ -150,6 +152,59 @@ match()在字符串string中寻找一个或多个regexp的匹配结果，这个�
 ### 示例
 ```javascript
 "1 plus 2 equals 3".match(/\d+/g);   // ["1", "2", "3"]
+```
+
+## String.replace()
+替换匹配给定正则表达式的（一个或多个）子串
+
+### 概要
+> string.replace(regexp, replacement)    
+
+### 参数
+* regexp - 指定了要替换的模式的RegExp对象，如果这个参数是一个字符串，将用做一个要搜索的直接量文本模式，不会转化为RegExp对象
+* replacement - 一个内容替换文本的字符串，或者一个函数，用于在调用时生成对应的替换文本
+
+### 返回
+一个新的字符串，其中匹配regexp的第一个或所有的地方已替换为replacement
+### 描述
+replace()在字符串string上执行查找与替换的操作。它在string中搜索一个或多个匹配regexp的子串并使用replacement替换，如果regexp指定全局属性“g”，则replace()将替换所有匹配的子串，其它情况下只替换第一个匹配的子串
+
+replacement可以是一个字符串或一个函数，如果是一个字符串，则每个匹配子串都将替换为该子串。注意replacement字符串中的$字符有特殊含义。
+
+### 示例
+```javascript
+// 确保单词“JavaScript”的大小写是正确的
+text.replace(/javascript/i, "JavaScript");
+
+// 将一个单独的名字从格式“Done,John”替换为“John Done”
+name.replace(/(\w+)\s,\s*(\w+)/, "$2 $1");
+
+// 将所有双引号替换为成堆的前后单引号
+text.replace(/"([^"]*)"/g, "''$1''");
+```
+
+## String.search()
+根据一个正则表达式查找
+
+### 概要
+> string.search(regexp)    
+
+### 参数
+* regexp - 一个RegExp对象，指定要在字符串string中查找的模式，如果这个参数不是一个RegExp，将先传入RegExp()构造函数，转换为一个RegExp对象
+
+### 返回
+string中第一个匹配regexp的子串的开始位置，如果没有找到匹配则返回-1
+
+### 描述
+search()在string中寻找匹配regexp的子串，并返回匹配子串的第一个字符的位置，如果没有找到则返回-1
+
+search()不会执行全局匹配，会忽略g标志，也会忽略regexp的lastIndex属性，总是从string的开始位置开始搜索，总是返回string中第一个匹配子串的位置
+
+### 示例
+```javascript
+var s = "JavaScript is fun";
+s.search(/script/i);  // 4
+s.search(/a(.)a/); // 4
 ```
 
 ## 静态方法
