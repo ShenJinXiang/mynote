@@ -41,3 +41,15 @@ canvas.height = 450;
 Canvas对象的`getContext()`方法，这个方法返回一个用于在Canvas元素上画图的对象。如果传入字符串“2d”，本方法将返回一个用于2D绘图的CanvasRenderingContext2D对象，在这种情况下不需要额外的args
 
 每个Canvas元素只有一个CanvasRenderingContext2D对象，所以多次调用getContext('2d')返回的是同一个对象，我们在canvas上实现绘制图案大部分都是通过调用CanvasRenderingContext2D对象的方法和属性来实现的
+
+```javascript
+let canvas = document.getElementById('mycanvas');
+let context1 = canvas.getContext();
+let context2 = canvas.getContext();
+console.log(context1 === context2); // true
+```
+
+## Canvas中的坐标系统
+通过脚本绘图时，经常需要传入像素点对应的坐标值，在canvas 中默认的坐标原点为canvas左上角。水平向右x坐标值增加，竖直向下y坐标值增加。即canvas左上角的坐标为`(0, 0)`，canvas右下角的坐标为`(canvas.width, canvas.height)`
+
+CanvasRenderingContext2D有一些方法可以更改坐标系统，以后会涉及到
