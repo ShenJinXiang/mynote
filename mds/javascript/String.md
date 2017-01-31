@@ -33,6 +33,7 @@ String.length属性是一个只读的整数，指明指定的字符串string的�
 * [String.match()](#stringmatch)    
 * [String.replace()](#stringreplace)    
 * [String.search()](#stringsearch)    
+* [String.slice()](#stringslice)    
 
 ## String.charAt()
 取得一个字符串中第“n”个字符
@@ -205,6 +206,35 @@ search()不会执行全局匹配，会忽略g标志，也会忽略regexp的lastI
 var s = "JavaScript is fun";
 s.search(/script/i);  // 4
 s.search(/a(.)a/); // 4
+```
+
+## String.slice()
+提取一个子串
+
+### 概要
+> string.slice(start, end)    
+
+### 参数
+* start - 切片开始的字符串索引。如果为负，则将从该字符串的尾部开始计算
+* end - 紧跟着切片结尾的字符串索引，如果不指定，则切片将包括从start到当前字符串结尾的索引字符，如果参数是负的，将从字符串的尾部开始计算
+
+### 返回
+一个新的字符串，内容为string中自start位置开始并且包含start的位置，直到但不包含end位置的所有字符
+
+### 描述
+slice()返回一个字符串，内容为string的一个切片或子串，不修改string
+
+String的方法slice()、substring()以及弃用的substr()都返回一个字符串的指定部分。slice()比substring()更灵活，因为它允许负数参数值。slice()与substr()的不同之处是，前者通过两个字符位置来定义一个子串，后者使用一个位置和一个长度。
+
+### 示例
+```javascript
+var s = "abcdefg";
+s.slice(0, 4); // "abcd"
+s.slice(2, 4); // "cd"
+s.slice(4); // "efg"
+s.slice(3, -1); // "def"
+s.slice(3, -2); // "de"
+s.slice(-3, -1);  // "ef"
 ```
 
 ## 静态方法
