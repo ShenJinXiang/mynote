@@ -34,6 +34,7 @@ String.length属性是一个只读的整数，指明指定的字符串string的�
 * [String.replace()](#stringreplace)    
 * [String.search()](#stringsearch)    
 * [String.slice()](#stringslice)    
+* [String.split()](#stringsplit)    
 
 ## String.charAt()
 取得一个字符串中第“n”个字符
@@ -236,6 +237,22 @@ s.slice(3, -1); // "def"
 s.slice(3, -2); // "de"
 s.slice(-3, -1);  // "ef"
 ```
+
+## String.split()
+将一个字符串切分为一个由字符串组成的数组
+
+### 概要
+> string.split(delimiter, limit)    
+
+### 参数
+* delimiter - string切分处的字符串或正则表达式
+* limit - 这个可选的整数指定已返回数组的最大长度，如果指定，则最多返回数量为这个数字的子串，如果没有指定，则将切分整个字符串，无论结果数组由多长
+
+### 返回
+一个由字符串组成的数组，通过由delimiter节点的边界处切分string为子串创建返回数组中国年的子串不包含delimiter本身。
+
+### 描述
+
 
 ## 静态方法
 * [String.fromCharCode()](#stringfromcharcode)
