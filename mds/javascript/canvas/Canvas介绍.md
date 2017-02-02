@@ -5,17 +5,17 @@
 canvas标签是HTML5新增的标签，使用很简单，需要注意的是，以前版本的一些浏览器可能会不支持canvas元素，可以在canvas开始和闭合标签之间写入一些内容，当浏览器不支持canvas的时候，这些内容将展示给用户，下面是一个简单的html文档：
 
 ```html
-&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-	&lt;meta charset='utf-8'&gt;
-	&lt;title&gt;文档标题&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-	&lt;canvas id='mycanvas'&gt;您的浏览器版本过低，请升级浏览器！&lt;/canvas&gt;
-&lt;script type='text/javascript' src='外部的js文件路径'&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>文档标题</title>
+</head>
+<body>
+	<canvas id='mycanvas'>您的浏览器版本过低，请升级浏览器！</canvas>
+<script type='text/javascript' src='外部的js文件路径'></script>
+</body>
+</html>
 ```
 
 ## Canvas对象
