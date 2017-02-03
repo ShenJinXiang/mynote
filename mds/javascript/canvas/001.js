@@ -8,17 +8,22 @@
 	context.moveTo(100, 200);
 	context.lineTo(300, 400);
 	context.lineTo(100, 600);
+	context.lineWidth = 10;
+	context.strokeStyle = "red";
+	context.stroke();
 
 	context.moveTo(300, 200);
 	context.lineTo(500, 400);
 	context.lineTo(300, 600);
+	context.lineWidth = 10;
+	context.strokeStyle = "green";
+	context.stroke();
 
 	context.moveTo(500, 200);
 	context.lineTo(700, 400);
 	context.lineTo(500, 600);
-
 	context.lineWidth = 10;
-	context.strokeStyle = "#058";
+	context.strokeStyle = "blue";
 	context.stroke();
 })();
 	/*
