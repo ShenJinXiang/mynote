@@ -1,4 +1,5 @@
 # 排序算法
+看到[https://github.com/hustcc/JS-Sorting-Algorithm](https://github.com/hustcc/JS-Sorting-Algorithm)后很佩服作者，抄下来的
 
 ## 冒泡排序
 冒泡排序（Bubble Sort）也是一种简单直观的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端
@@ -25,6 +26,36 @@ function bubbleSort(arr) {
 				arr[j] = temp;
 			}
 		}
+	}
+	return arr;
+}
+```
+
+## 选择排序
+### 步骤
+1. 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置
+2. 再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。
+3. 重复第二步，直到所有元素均排序完毕。
+
+### 动画演示
+
+![](./images/selectionSort.gif)
+
+### 代码
+```javascript
+function selectionSort(arr) {
+	let len = arr.length;
+	let minIndex, temp;
+	for (let i = 0; i < len - 1; i++) {
+		minIndex = i;
+		for (let j = i + 1; j < len; j++) {
+			if (arr[j] < arr[minIndex]) {
+				minIndex = j;
+			}
+		}
+		temp = arr[i];
+		arr[i] = arr[minIndex];
+		arr[minIndex] = temp;
 	}
 	return arr;
 }
