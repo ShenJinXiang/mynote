@@ -1,4 +1,3 @@
-	/*
 (function(){
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -13,9 +12,12 @@
 	context.lineTo(500, 600);
 	context.lineTo(500, 450);
 	context.lineTo(100, 450);
+	context.lineWidth = 10;
+	context.strokeStyle = "#058";
 	context.stroke();
 })();
-	*/
+
+	/*
 (function(){
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -29,3 +31,4 @@
 	context.strokeStyle = "#058";
 	context.stroke();
 })();
+	*/
