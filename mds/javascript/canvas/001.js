@@ -48,14 +48,12 @@
 	context.lineTo(100, 450);
 	context.closePath();
 
-	/*
 	context.lineWidth = 10;
 	context.strokeStyle = "#058";
-	context.stroke();
-	*/
-
 	context.fillStyle = 'yellow';
+
 	context.fill();
+	context.stroke();
 })();
 
 /*
