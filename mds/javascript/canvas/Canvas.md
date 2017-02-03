@@ -8,3 +8,4 @@
  2.2. [简单线段](./绘制直线.md#简单线段)    
  2.3. [绘制连续线段](./绘制直线.md#绘制连续线段)    
  2.4. [context.beginPath()方法](./绘制直线.md#contextbeginpath方法)    
+ 2.5. [context.closePath()方法](./绘制直线.md#contextclosepath方法)    
