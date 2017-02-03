@@ -31,6 +31,7 @@
 })();
 */
 
+/*
 (function(){
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -55,6 +56,7 @@
 	context.fill();
 	context.stroke();
 })();
+*/
 
 /*
 (function(){
@@ -71,3 +73,29 @@
 	context.stroke();
 })();
 	*/
+
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	drawRect({context: context, x: 50, y: 50, width: 400, height: 300, borderWidth : 5, borderColor : '#058', fillColor : 'yellow'});
+
+})();
+	function drawRect({context, x = 0, y = 0, width = 10, height = 10, borderWidth = 1, borderColor = '#333', fillColor = '#eee'}) {
+		context.beginPath();
+		context.moveTo(x, y);
+		context.lineTo(x + width, y);
+		context.lineTo(x + width, y + height);
+		context.lineTo(x, y + height);
+		context.closePath();
+
+		context.lineWidth = borderWidth;
+		context.strokeStyle = borderColor;
+		context.fillStyle = fillColor;
+
+		context.fill();
+		context.stroke();
+	}
