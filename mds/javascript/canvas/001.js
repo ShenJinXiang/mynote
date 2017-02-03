@@ -1,8 +1,11 @@
 (function(){
 	let canvas = document.getElementById('mycanvas');
-	canvas.width = 400;
-	canvas.height = 400;
-	let context1 =canvas.getContext('2d');
-	let context2 =canvas.getContext('2d');
-	console.log(context1 === context2);
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	context.moveTo(100, 100);
+	context.lineTo(700, 700);
+	context.stroke();
 })();
