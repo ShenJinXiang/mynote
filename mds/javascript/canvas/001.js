@@ -102,6 +102,7 @@
 	}
 	*/
 
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -126,5 +127,66 @@
 	context.lineTo(700, 400);
 	context.lineWidth = 80;
 	context.strokeStyle = '#ddd';
+	context.stroke();
+})();
+*/
+
+(function(){
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	
+	// 设置通用样式
+	context.lineWidth = 80;
+	context.strokeStyle = '#058';
+	
+	// lineCap属性值为 butt
+	context.beginPath();
+	context.lineTo(100, 200);
+	context.lineTo(700, 200);
+	context.lineCap = 'butt';
+	context.stroke();
+
+	// lineCap属性值为 round
+	context.beginPath();
+	context.lineTo(100, 400);
+	context.lineTo(700, 400);
+	context.lineCap = 'round';
+	context.stroke();
+
+	// lineCap属性值为 square
+	context.beginPath();
+	context.lineTo(100, 600);
+	context.lineTo(700, 600);
+	context.lineCap = 'square';
+	context.stroke();
+
+	// 绘制辅助线，便于观察
+	
+	context.lineWidth = 1;
+	context.strokeStyle = '#aaa';
+	context.lineCap = 'butt';
+
+	context.beginPath();
+	context.lineTo(60, 0);
+	context.lineTo(60, context.canvas.width);
+	context.stroke();
+
+	context.beginPath();
+	context.lineTo(100, 0);
+	context.lineTo(100, context.canvas.width);
+	context.stroke();
+
+	context.beginPath();
+	context.lineTo(700, 0);
+	context.lineTo(700, context.canvas.width);
+	context.stroke();
+
+	context.beginPath();
+	context.lineTo(740, 0);
+	context.lineTo(740, context.canvas.width);
 	context.stroke();
 })();
