@@ -131,6 +131,7 @@
 })();
 */
 
+/*
 (function(){
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -188,5 +189,61 @@
 	context.beginPath();
 	context.lineTo(740, 0);
 	context.lineTo(740, context.canvas.width);
+	context.stroke();
+})();
+*/
+/*
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	context.beginPath();
+	context.moveTo(100, 350);
+	context.lineTo(500, 350);
+	context.lineTo(500, 200);
+	context.lineTo(700, 400);
+	context.lineTo(500, 600);
+	context.lineTo(500, 450);
+	context.lineTo(100, 450);
+
+	context.strokeStyle = '#058';
+	context.lineWidth = 20;
+	context.lineCap = 'round';
+
+	context.stroke();
+})();
+*/
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	context.lineWidth = 10;
+	context.strokeStyle = '#058';
+
+	context.beginPath();
+	context.lineTo(50, 700);
+	context.lineTo(150, 100);
+	context.lineTo(250, 700);
+	context.lineJoin = 'miter';
+	context.stroke();
+
+	context.beginPath();
+	context.lineTo(300, 700);
+	context.lineTo(400, 100);
+	context.lineTo(500, 700);
+	context.lineJoin = 'round';
+	context.stroke();
+
+	context.beginPath();
+	context.lineTo(550, 700);
+	context.lineTo(650, 100);
+	context.lineTo(750, 700);
+	context.lineJoin = 'bevel';
 	context.stroke();
 })();
