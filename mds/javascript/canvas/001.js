@@ -216,6 +216,7 @@
 	context.stroke();
 })();
 */
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -247,3 +248,4 @@
 	context.lineJoin = 'bevel';
 	context.stroke();
 })();
+*/

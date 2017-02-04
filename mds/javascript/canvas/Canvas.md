@@ -14,3 +14,5 @@
  3.1. [lineWidth属性](./线条的属性.md#linewidth属性)    
  3.2. [strokeStyle属性](./线条的属性.md#strokestyle属性)    
  3.3. [lineCap属性](./线条的属性.md#linecap属性)    
+4. [Canvas图形变换](./Canvas图形变换.md#canvas图形变换)    
+ 4.1. [translate()方法](./Canvas图形变换.md#translate方法)    
