@@ -142,3 +142,53 @@ CanvasRenderingContext2D对象的`save()`将复制当前绘图状态，并将这
 ![](./images/00019.png)
 
 在这里同时使用`translate()`和`rotate()`方法，偏移`(400, 400)`同时旋转30度角，可以看到`rotate()`方法是按顺时针旋转的
+
+## scale()方法
+添加一个缩放转换到画布的当前转换矩阵中，缩放在水平方向与垂直方向上上相互独立的，如果参数为负数，则为反向，这意味着可以随意的放大和缩小图形，也可以绘制图形的相对于x、y轴的对称图形和相对于坐标原点的点对称图形，这里说到的坐标轴是指的当前状态的坐标，而不是系统默认坐标
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	// 辅助线
+	context.strokeStyle = '#aaa';
+	context.moveTo(0, canvas.height / 2);
+	context.lineTo(canvas.width, canvas.height / 2);
+	context.stroke();
+	context.moveTo(canvas.width / 2, 0);
+	context.lineTo(canvas.width / 2, canvas.height);
+	context.stroke();
+
+	// 绘制图案
+	for (let i = 0; i < 4; i++) {
+		context.save();
+		context.fillStyle = 'red';
+		context.translate(400, 400);
+		if (i == 0) {
+			context.scale(10, 20);
+		} else if (i == 1) {
+			context.scale(-10, 20);
+		} else if (i == 2) {
+			context.scale(10, -20);
+		} else if (i == 3) {
+			context.scale(-10, -20);
+		}
+		context.beginPath();
+		context.lineTo(10, 10);
+		context.lineTo(20, 10);
+		context.lineTo(10, 20);
+		context.closePath();
+		context.fill();
+		context.restore();
+	}
+})();
+```
+
+效果：
+
+![](./images/00020.png)
+
+在这个例子中，先在canvas的中间绘制两天中轴线作为辅助线，然后绘制四个图案，这次个图案的路径、样式都是一样的，唯一的不同在于`scale`的参数正负号，可以看到路径中的直角三角形，经过不同的缩放以后的效果

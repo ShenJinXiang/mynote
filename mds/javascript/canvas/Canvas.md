@@ -18,3 +18,4 @@
  4.1. [translate()方法](./Canvas图形变换.md#translate方法)    
  4.2. [保存还原绘图状态](./Canvas图形变换.md#保存还原绘图状态)    
  4.3. [rotate()方法](./Canvas图形变换.md#rotate方法)    
+ 4.4. [scale()方法](./Canvas图形变换.md#scale方法)    
