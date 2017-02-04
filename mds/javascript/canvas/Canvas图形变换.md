@@ -116,3 +116,29 @@ CanvasRenderingContext2D对象的`save()`将复制当前绘图状态，并将这
 ```
 
 查看html页面，效果与上面是一样的，在实际开发的时候`save()`和`restore()`方法是成对出现的。这两个方法之间的绘图状态不会影响之前和之后的绘图
+
+## rotate()方法
+改变当前转换矩阵，接下来在画布上绘制的任何对象都将旋转指定的角度，&lt;canvas&gt;元素并没有旋转，angle角度的单位是弧度制。角度转换为弧度的方法：乘以Math.PI，再除以180。例子：
+
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	context.save();
+	context.fillStyle = '#058';
+	context.translate(400, 400);
+	context.rotate(Math.PI / 6);
+	context.fillRect(-200, -200, 400, 400);
+	context.restore();
+})();
+```
+
+效果：
+
+![](./images/00019.png)
+
+在这里同时使用`translate()`和`rotate()`方法，偏移`(400, 400)`同时旋转30度角，可以看到`rotate()`方法是按顺时针旋转的

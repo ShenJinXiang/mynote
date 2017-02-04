@@ -249,6 +249,7 @@
 	context.stroke();
 })();
 */
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -266,5 +267,21 @@
 	context.fillStyle = 'red';
 	context.translate(300, 300);
 	context.fillRect(0, 0, 400, 400);
+	context.restore();
+})();
+*/
+
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	context.save();
+	context.fillStyle = '#058';
+	context.translate(400, 400);
+	context.rotate(Math.PI / 6);
+	context.fillRect(-200, -200, 400, 400);
 	context.restore();
 })();
