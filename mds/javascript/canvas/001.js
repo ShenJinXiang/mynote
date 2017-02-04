@@ -256,7 +256,15 @@
 	let context = canvas.getContext('2d');
 
 	// 开始绘制
+	context.save();
 	context.fillStyle = 'blue';
 	context.translate(100, 100);
 	context.fillRect(0, 0, 400, 400);
+	context.restore();
+
+	context.save();
+	context.fillStyle = 'red';
+	context.translate(300, 300);
+	context.fillRect(0, 0, 400, 400);
+	context.restore();
 })();
