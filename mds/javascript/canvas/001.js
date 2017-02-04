@@ -249,3 +249,14 @@
 	context.stroke();
 })();
 */
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	context.fillStyle = 'blue';
+	context.translate(100, 100);
+	context.fillRect(0, 0, 400, 400);
+})();

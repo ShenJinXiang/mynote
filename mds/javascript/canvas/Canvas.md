@@ -16,3 +16,4 @@
  3.3. [lineCap属性](./线条的属性.md#linecap属性)    
 4. [Canvas图形变换](./Canvas图形变换.md#canvas图形变换)    
  4.1. [translate()方法](./Canvas图形变换.md#translate方法)    
+ 4.2. [保存还原绘图状态](./Canvas图形变换.md#保存还原绘图状态)    
