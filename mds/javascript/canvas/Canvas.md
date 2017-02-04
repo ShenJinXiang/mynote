@@ -10,3 +10,7 @@
  2.4. [context.beginPath()方法](./绘制直线.md#contextbeginpath方法)    
  2.5. [context.closePath()方法](./绘制直线.md#contextclosepath方法)    
  2.6. [填充图案](./绘制直线.md#填充图案)    
+3. [线条的属性](./线条的属性.md#线条的属性)    
+ 3.1. [lineWidth属性](./线条的属性.md#linewidth属性)    
+ 3.2. [strokeStyle属性](./线条的属性.md#strokestyle属性)    
+ 3.3. [lineCap属性](./线条的属性.md#linecap属性)    

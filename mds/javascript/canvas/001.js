@@ -74,6 +74,7 @@
 })();
 	*/
 
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -99,3 +100,31 @@
 		context.fill();
 		context.stroke();
 	}
+	*/
+
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	context.beginPath();
+	context.lineTo(100, 360);
+	context.lineTo(700, 360);
+	context.strokeStyle = 'red';
+	context.stroke();
+
+	context.beginPath();
+	context.lineTo(100, 440);
+	context.lineTo(700, 440);
+	context.strokeStyle = 'red';
+	context.stroke();
+
+	context.beginPath();
+	context.lineTo(100, 400);
+	context.lineTo(700, 400);
+	context.lineWidth = 80;
+	context.strokeStyle = '#ddd';
+	context.stroke();
+})();
