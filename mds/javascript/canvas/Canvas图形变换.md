@@ -193,7 +193,7 @@ CanvasRenderingContext2D对象的`save()`将复制当前绘图状态，并将这
 
 在这个例子中，先在canvas的中间绘制两天中轴线作为辅助线，然后绘制四个图案，这次个图案的路径、样式都是一样的，唯一的不同在于`scale`的参数正负号，可以看到路径中的直角三角形，经过不同的缩放以后的效果
 
-<iframe src='./001.html' width='900' height='900'>123</iframe>
+<iframe src='./001.html' width='900' height='900'><iframe src='./001.html' width='900' height='900'>123</iframe></iframe>
 <canvas id='thisCanvas'></canvas>
 <script>
 (function () {
