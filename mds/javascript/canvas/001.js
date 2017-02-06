@@ -456,43 +456,13 @@
 		}
 })();
 */
+/*
 (function(){
 		let canvas = document.getElementById('mycanvas');
 		canvas.width = 800;
 		canvas.height = 800;
 		let context = canvas.getContext("2d");
 
-		/*
-		context.lineWidth = 1;
-		context.strokeStyle = '#058';
-		context.fillStyle = 'yellow';
-		strokeStar(context, 3, 200, 200, 150, 6, -Math.PI / 2);
-		fillStar(context, 3, 200, 200, 150, 6, -Math.PI / 2);
-
-		strokeStar(context, 4, 600, 200, 150, 6, 0);
-		fillStar(context, 4, 600, 200, 150, 6, 0);
-
-		fillStar(context, 9, 200, 600, 150, 6, -Math.PI / 2);
-		strokeStar(context, 9, 200, 600, 150, 6, -Math.PI / 2);
-
-		strokeStar(context, 4, 600, 600, 150, 150, Math.PI / 8);
-		fillStar(context, 4, 600, 600, 150, 150, Math.PI / 8);
-		*/
-	strokeStar(context, 5, 200, 200, 150, 70, -Math.PI / 2);
-
-	context.lineWidth = 5;
-	context.strokeStyle = '#058';
-	strokeStar(context, 5, 600, 200, 150, 70, -Math.PI / 2);
-
-	context.fillStyle = 'yellow';
-	fillStar(context, 5, 200, 600, 150, 70, -Math.PI / 2);
-
-	fillStar(context, 5, 600, 600, 150, 70, -Math.PI / 2);
-	strokeStar(context, 5, 600, 600, 150, 70, -Math.PI / 2);
-
-		/**
-		 * 绘制正多边形边框
-		 */
 		function strokeRegPolygon(ctx, num, sx, sy, radius, rotate) {
 			ctx.save();
 			ctx.translate(sx, sy);
@@ -506,9 +476,6 @@
 			ctx.restore();
 		}
 
-		/**
-		 * 填充正多边形
-		 */
 		function fillRegPolygon(ctx, num, sx, sy, radius, rotate) {
 			ctx.save();
 			ctx.translate(sx, sy);
@@ -522,9 +489,6 @@
 			ctx.restore();
 		}
 
-		/**
-		 * 绘制边框
-		 */
 		function strokeStar(ctx, num, sx, sy, R, r, rotate) {
 			ctx.save();
 			ctx.translate(sx, sy);
@@ -539,9 +503,6 @@
 			ctx.restore();
 		}
 		
-		/**
-		 * 填充
-		 */
 		function fillStar(ctx, num, sx, sy, R, r, rotate) {
 			ctx.save();
 			ctx.translate(sx, sy);
@@ -555,4 +516,26 @@
 			ctx.fill();
 			ctx.restore();
 		}
+})();
+*/
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	context.fillStyle = "#058";
+	context.beginPath();
+	context.moveTo(200, 200);
+	context.lineTo(600, 200);
+	context.lineTo(600, 600);
+	context.lineTo(200, 600);
+	context.closePath();
+	context.moveTo(250, 250);
+	context.lineTo(250, 550);
+	context.lineTo(550, 550);
+	context.lineTo(550, 250);
+	context.closePath();
+	context.fill();
+	
 })();
