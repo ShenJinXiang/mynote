@@ -329,6 +329,7 @@
 })();
 */
 
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -352,4 +353,80 @@
 	context.scale(3, 3);
 	context.strokeRect(50, 50, 200, 200);
 	context.restore();
+})();
+*/
+
+(function() {
+		let config = {
+			width: 660,
+			height: 440,
+			starColor: 'yellow'
+		};
+		let canvas = document.getElementById('mycanvas');
+		canvas.width = config.width;
+		canvas.height = config.height;
+		let context = canvas.getContext('2d');
+
+		drawInit();
+		//drawStar(canvas.width / 2, canvas.height / 2, 100, 90);
+		drawStar(5 * canvas.width / 30, 5 * canvas.height / 20, 3 * canvas.width / 30, -90);
+		drawStar(10 * canvas.width / 30, 2 * canvas.height / 20, canvas.width / 30, -90);
+		context.beginPath();
+		context.arc(5 * canvas.width / 30, 5 * canvas.height / 20, 3 * canvas.width / 30, 0, Math.PI * 2, false)
+		context.stroke();
+
+		context.beginPath();
+		context.lineTo(5 * canvas.width / 30, 5 * canvas.height / 20);
+		context.lineTo(10 * canvas.width / 30, 2 * canvas.height / 20);
+		context.stroke();
+
+
+		function drawInit() {
+			context.fillStyle = 'red';
+			context.fillRect(0, 0, canvas.width, canvas.height);
+
+			context.beginPath();
+			context.lineTo(0, canvas.height / 2);
+			context.lineTo(canvas.width, canvas.height / 2);
+			context.stroke();
+
+			context.beginPath();
+			context.lineTo(canvas.width / 2, 0);
+			context.lineTo(canvas.width / 2, canvas.height);
+			context.stroke();
+
+			context.strokeStyle = '#444';
+
+			for(let i = 1; i < 15; i++) {
+				context.beginPath();
+				context.lineTo(i * canvas.width / 30, 0);
+				context.lineTo(i * canvas.width / 30, canvas.height / 2);
+				context.stroke();
+			}
+
+			for (let i = 1; i < 10; i++) {
+				context.beginPath();
+				context.lineTo(0, i * canvas.height / 20);
+				context.lineTo(canvas.width / 2, i * canvas.height / 20);
+				context.stroke();
+			}
+		}
+
+
+		function drawStar(x, y, r, rotate) {
+			context.save();
+			context.fillStyle = config.starColor;
+			context.translate(x, y);
+			context.scale(r, r);
+			context.rotate(rotate ? rotate * Math.PI / 180 : 0);
+			context.beginPath();
+			let dig = Math.PI / 5 * 4;
+			for(let i = 0; i < 5; i++) {
+				context.lineTo(Math.cos(i * dig), Math.sin(i * dig));
+			}
+			context.closePath();
+			//context.stroke();
+			context.fill();
+			context.restore();
+		}
 })();
