@@ -359,31 +359,23 @@
 (function() {
 		let config = {
 			width: 660,
-			height: 440,
 			starColor: 'yellow'
 		};
 		let canvas = document.getElementById('mycanvas');
 		canvas.width = config.width;
-		canvas.height = config.height;
+		canvas.height = config.width * 2 / 3;
 		let context = canvas.getContext('2d');
 
-		drawInit();
-		//drawStar(canvas.width / 2, canvas.height / 2, 100, 90);
-		drawStar(5 * canvas.width / 30, 5 * canvas.height / 20, 3 * canvas.width / 30, -90);
-		drawStar(10 * canvas.width / 30, 2 * canvas.height / 20, canvas.width / 30, -90);
-		context.beginPath();
-		context.arc(5 * canvas.width / 30, 5 * canvas.height / 20, 3 * canvas.width / 30, 0, Math.PI * 2, false)
-		context.stroke();
+		let gWidth = canvas.width / 30;
 
-		context.beginPath();
-		context.lineTo(5 * canvas.width / 30, 5 * canvas.height / 20);
-		context.lineTo(10 * canvas.width / 30, 2 * canvas.height / 20);
-		context.stroke();
+		let [maxX, maxY] = [5, 5];
+		let minX = [10, 12, 12, 10];
+		let minY = [2, 4, 7, 9];
 
+		draw();
+		//drawInit();
 
 		function drawInit() {
-			context.fillStyle = 'red';
-			context.fillRect(0, 0, canvas.width, canvas.height);
 
 			context.beginPath();
 			context.lineTo(0, canvas.height / 2);
@@ -395,24 +387,57 @@
 			context.lineTo(canvas.width / 2, canvas.height);
 			context.stroke();
 
-			context.strokeStyle = '#444';
+			context.strokeStyle = '#666';
 
+			// 辅助线 竖线
 			for(let i = 1; i < 15; i++) {
 				context.beginPath();
-				context.lineTo(i * canvas.width / 30, 0);
-				context.lineTo(i * canvas.width / 30, canvas.height / 2);
+				context.lineTo(i * gWidth, 0);
+				context.lineTo(i * gWidth, canvas.height / 2);
 				context.stroke();
 			}
 
+			// 辅助线 横线
 			for (let i = 1; i < 10; i++) {
 				context.beginPath();
-				context.lineTo(0, i * canvas.height / 20);
-				context.lineTo(canvas.width / 2, i * canvas.height / 20);
+				context.lineTo(0, i * gWidth);
+				context.lineTo(canvas.width / 2, i * gWidth);
+				context.stroke();
+			}
+
+			// 大圆
+			context.beginPath();
+			context.arc(maxX * gWidth, maxY * gWidth, 3 * gWidth, 0, 2 * Math.PI, false);
+			context.stroke();
+
+			// 小圆以及大圆圆心与小圆圆心的连接线
+			for (let i = 0; i < 4; i++) {
+				context.beginPath();
+				context.arc(minX[i] * gWidth, minY[i] * gWidth, gWidth, 0, 2 * Math.PI, false);
+				context.stroke();
+
+				context.beginPath();
+				context.lineTo(maxX * gWidth, maxY * gWidth);
+				context.lineTo(minX[i] * gWidth, minY[i] * gWidth);
 				context.stroke();
 			}
 		}
 
+		function draw() {
+			// 红色背景
+			context.fillStyle = 'red';
+			context.fillRect(0, 0, canvas.width, canvas.height);
 
+			// 大五角星
+			drawStar(maxX * gWidth, maxY * gWidth, 3 * gWidth, -90);
+
+			// 小五角星
+			for (let i = 0; i < 4; i++) {
+				drawStar(minX[i] * gWidth, minY[i] * gWidth, gWidth, 180 + Math.atan((minY[i] - maxY ) / (minX[i] - maxX)) * 180 / Math.PI);
+			}
+		}
+
+		// 五角星
 		function drawStar(x, y, r, rotate) {
 			context.save();
 			context.fillStyle = config.starColor;
@@ -425,7 +450,6 @@
 				context.lineTo(Math.cos(i * dig), Math.sin(i * dig));
 			}
 			context.closePath();
-			//context.stroke();
 			context.fill();
 			context.restore();
 		}
