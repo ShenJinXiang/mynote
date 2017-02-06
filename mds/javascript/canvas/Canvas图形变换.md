@@ -118,7 +118,7 @@ CanvasRenderingContext2D对象的`save()`将复制当前绘图状态，并将这
 查看html页面，效果与上面是一样的，在实际开发的时候`save()`和`restore()`方法是成对出现的。这两个方法之间的绘图状态不会影响之前和之后的绘图
 
 ## rotate()方法
-改变当前转换矩阵，接下来在画布上绘制的任何对象都将旋转指定的角度，&lt;canvas&gt;元素并没有旋转，angle角度的单位是弧度制。角度转换为弧度的方法：乘以Math.PI，再除以180。例子：
+改变当前转换矩阵，接下来在画布上绘制的任何对象都将旋转指定的角度，&lt;canvas&gt;元素并没有旋转，角度的单位是弧度制。角度转换为弧度的方法：乘以Math.PI，再除以180。例子：
 
 ```javascript
 (function() {
@@ -144,7 +144,41 @@ CanvasRenderingContext2D对象的`save()`将复制当前绘图状态，并将这
 在这里同时使用`translate()`和`rotate()`方法，偏移`(400, 400)`同时旋转30度角，可以看到`rotate()`方法是按顺时针旋转的
 
 ## scale()方法
-添加一个缩放转换到画布的当前转换矩阵中，缩放在水平方向与垂直方向上上相互独立的，如果参数为负数，则为反向，这意味着可以随意的放大和缩小图形，也可以绘制图形的相对于x、y轴的对称图形和相对于坐标原点的点对称图形，这里说到的坐标轴是指的当前状态的坐标，而不是系统默认坐标
+接受两个Number类似的参数，分别表示在x和y轴方向上的缩放比例，这个方法添加一个缩放转换到画布的当前转换矩阵中，缩放在水平方向与垂直方向上是相互独立的，如果参数为负数，则为反向，这意味着可以随意的放大和缩小图形，也可以绘制图形的相对于x、y轴的对称图形和相对于坐标原点的点对称图形，这里说到的坐标轴是指的当前状态的坐标，而不是系统默认坐标
+例子：
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	// 开始绘制
+	context.lineWidth = 5;
+
+	context.save();
+	context.scale(1, 1);
+	context.strokeRect(50, 50, 200, 200);
+	context.restore();
+
+	context.save();
+	context.scale(2, 2);
+	context.strokeRect(50, 50, 200, 200);
+	context.restore();
+
+	context.save();
+	context.scale(3, 3);
+	context.strokeRect(50, 50, 200, 200);
+	context.restore();
+})();
+```
+
+效果：
+
+![](./images/00021.png)
+
+绘制了三个矩形边框，初始的宽高都是200，线条宽度是5，分别缩放了1、2、3倍，从结果可以看到，左上角的位置也经过了缩放，设置的起始点在`(50, 50)`，缩放以后的起始点分别为`(50, 50)`、`(100, 100)`和`(150, 150)`，另外线条宽度也进行过缩放，宽度分别为5、10、15像素，再看一个例子：
+
 ```javascript
 (function() {
 	let canvas = document.getElementById('mycanvas');
