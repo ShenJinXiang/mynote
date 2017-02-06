@@ -356,6 +356,7 @@
 })();
 */
 
+/*
 (function() {
 		let config = {
 			width: 660,
@@ -452,5 +453,81 @@
 			context.closePath();
 			context.fill();
 			context.restore();
+		}
+})();
+*/
+(function(){
+		let canvas = document.getElementById('mycanvas');
+		canvas.width = 800;
+		canvas.height = 800;
+		let context = canvas.getContext("2d");
+
+		/*
+		strokeRegPolygon(context, 3, 50, 50, 50, 0);
+		strokeRegPolygon(context, 3, 150, 50, 50, Math.PI * 0.5);
+		strokeRegPolygon(context, 3, 250, 50, 50, Math.PI);
+		strokeRegPolygon(context, 3, 350, 50, 50, Math.PI * 1.5);
+
+		strokeRegPolygon(context, 4, 450, 50, 50, 0);
+		strokeRegPolygon(context, 4, 550, 50, 50, Math.PI * 0.25);
+		strokeRegPolygon(context, 4, 650, 50, 50, Math.PI);
+		strokeRegPolygon(context, 4, 750, 50, 50, Math.PI * 1.25);
+
+
+		context.strokeStyle = "#058";
+		context.lineWidth = 5;
+		context.fillStyle = "#058";
+		strokeRegPolygon(context, 5, 50, 150, 40, 0);
+		strokeRegPolygon(context, 5, 150, 150, 40, Math.PI * 0.5);
+		strokeRegPolygon(context, 5, 250, 150, 40, Math.PI);
+		strokeRegPolygon(context, 5, 350, 150, 40, Math.PI * 1.5);
+		fillRegPolygon(context, 5, 450, 150, 40, 0);
+		fillRegPolygon(context, 5, 550, 150, 40, Math.PI * 0.5);
+		fillRegPolygon(context, 5, 650, 150, 40, Math.PI);
+		fillRegPolygon(context, 5, 750, 150, 40, Math.PI * 1.5);
+
+		context.strokeStyle = "#058";
+		context.lineWidth = 5;
+		context.fillStyle = "yellow";
+		fillRegPolygon(context, 6, 450, 250, 40, 0);
+		strokeRegPolygon(context, 6, 450, 250, 40, 0);
+		*/
+
+		context.strokeStyle = "#058";
+		context.lineWidth = 5;
+		context.fillStyle = "yellow";
+		fillRegPolygon(context, 7, 400, 400, 200, 0);
+		strokeRegPolygon(context, 7, 400, 400, 200, 0);
+
+		/**
+		 * 绘制正多边形边框
+		 */
+		function strokeRegPolygon(ctx, num, sx, sy, radius, rotate) {
+			ctx.save();
+			ctx.translate(sx, sy);
+			ctx.rotate(rotate);
+			ctx.beginPath();
+			for (let i = 0; i < num; i++) {
+				ctx.lineTo(Math.cos(i * 2 * Math.PI / num) * radius, Math.sin(i * 2 * Math.PI / num) * radius);
+			}
+			ctx.closePath();
+			ctx.stroke();
+			ctx.restore();
+		}
+
+		/**
+		 * 填充正多边形
+		 */
+		function fillRegPolygon(ctx, num, sx, sy, radius, rotate) {
+			ctx.save();
+			ctx.translate(sx, sy);
+			ctx.rotate(rotate);
+			ctx.beginPath();
+			for (let i = 0; i < num; i++) {
+				ctx.lineTo(Math.cos(i * 2 * Math.PI / num) * radius, Math.sin(i * 2 * Math.PI / num) * radius);
+			}
+			ctx.closePath();
+			ctx.fill();
+			ctx.restore();
 		}
 })();
