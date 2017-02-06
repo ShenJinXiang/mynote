@@ -463,41 +463,32 @@
 		let context = canvas.getContext("2d");
 
 		/*
-		strokeRegPolygon(context, 3, 50, 50, 50, 0);
-		strokeRegPolygon(context, 3, 150, 50, 50, Math.PI * 0.5);
-		strokeRegPolygon(context, 3, 250, 50, 50, Math.PI);
-		strokeRegPolygon(context, 3, 350, 50, 50, Math.PI * 1.5);
+		context.lineWidth = 1;
+		context.strokeStyle = '#058';
+		context.fillStyle = 'yellow';
+		strokeStar(context, 3, 200, 200, 150, 6, -Math.PI / 2);
+		fillStar(context, 3, 200, 200, 150, 6, -Math.PI / 2);
 
-		strokeRegPolygon(context, 4, 450, 50, 50, 0);
-		strokeRegPolygon(context, 4, 550, 50, 50, Math.PI * 0.25);
-		strokeRegPolygon(context, 4, 650, 50, 50, Math.PI);
-		strokeRegPolygon(context, 4, 750, 50, 50, Math.PI * 1.25);
+		strokeStar(context, 4, 600, 200, 150, 6, 0);
+		fillStar(context, 4, 600, 200, 150, 6, 0);
 
+		fillStar(context, 9, 200, 600, 150, 6, -Math.PI / 2);
+		strokeStar(context, 9, 200, 600, 150, 6, -Math.PI / 2);
 
-		context.strokeStyle = "#058";
-		context.lineWidth = 5;
-		context.fillStyle = "#058";
-		strokeRegPolygon(context, 5, 50, 150, 40, 0);
-		strokeRegPolygon(context, 5, 150, 150, 40, Math.PI * 0.5);
-		strokeRegPolygon(context, 5, 250, 150, 40, Math.PI);
-		strokeRegPolygon(context, 5, 350, 150, 40, Math.PI * 1.5);
-		fillRegPolygon(context, 5, 450, 150, 40, 0);
-		fillRegPolygon(context, 5, 550, 150, 40, Math.PI * 0.5);
-		fillRegPolygon(context, 5, 650, 150, 40, Math.PI);
-		fillRegPolygon(context, 5, 750, 150, 40, Math.PI * 1.5);
-
-		context.strokeStyle = "#058";
-		context.lineWidth = 5;
-		context.fillStyle = "yellow";
-		fillRegPolygon(context, 6, 450, 250, 40, 0);
-		strokeRegPolygon(context, 6, 450, 250, 40, 0);
+		strokeStar(context, 4, 600, 600, 150, 150, Math.PI / 8);
+		fillStar(context, 4, 600, 600, 150, 150, Math.PI / 8);
 		*/
+	strokeStar(context, 5, 200, 200, 150, 70, -Math.PI / 2);
 
-		context.strokeStyle = "#058";
-		context.lineWidth = 5;
-		context.fillStyle = "yellow";
-		fillRegPolygon(context, 7, 400, 400, 200, 0);
-		strokeRegPolygon(context, 7, 400, 400, 200, 0);
+	context.lineWidth = 5;
+	context.strokeStyle = '#058';
+	strokeStar(context, 5, 600, 200, 150, 70, -Math.PI / 2);
+
+	context.fillStyle = 'yellow';
+	fillStar(context, 5, 200, 600, 150, 70, -Math.PI / 2);
+
+	fillStar(context, 5, 600, 600, 150, 70, -Math.PI / 2);
+	strokeStar(context, 5, 600, 600, 150, 70, -Math.PI / 2);
 
 		/**
 		 * 绘制正多边形边框
@@ -525,6 +516,40 @@
 			ctx.beginPath();
 			for (let i = 0; i < num; i++) {
 				ctx.lineTo(Math.cos(i * 2 * Math.PI / num) * radius, Math.sin(i * 2 * Math.PI / num) * radius);
+			}
+			ctx.closePath();
+			ctx.fill();
+			ctx.restore();
+		}
+
+		/**
+		 * 绘制边框
+		 */
+		function strokeStar(ctx, num, sx, sy, R, r, rotate) {
+			ctx.save();
+			ctx.translate(sx, sy);
+			ctx.rotate(rotate);
+			ctx.beginPath();
+			for (let i = 0; i < num; i++) {
+				ctx.lineTo(Math.cos(i * 2 * Math.PI / num) * R, Math.sin(i * 2 * Math.PI / num) * R);
+				ctx.lineTo(Math.cos(i * 2 * Math.PI / num + Math.PI / num) * r, Math.sin(i * 2 * Math.PI / num + Math.PI / num) * r);
+			}
+			ctx.closePath();
+			ctx.stroke();
+			ctx.restore();
+		}
+		
+		/**
+		 * 填充
+		 */
+		function fillStar(ctx, num, sx, sy, R, r, rotate) {
+			ctx.save();
+			ctx.translate(sx, sy);
+			ctx.rotate(rotate);
+			ctx.beginPath();
+			for (let i = 0; i < num; i++) {
+				ctx.lineTo(Math.cos(i * 2 * Math.PI / num) * R, Math.sin(i * 2 * Math.PI / num) * R);
+				ctx.lineTo(Math.cos(i * 2 * Math.PI / num + Math.PI / num) * r, Math.sin(i * 2 * Math.PI / num + Math.PI / num) * r);
 			}
 			ctx.closePath();
 			ctx.fill();
