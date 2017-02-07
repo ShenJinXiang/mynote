@@ -541,6 +541,7 @@
 	
 })();
 */
+/*
 (function(){
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 660;
@@ -583,5 +584,112 @@
 		context.closePath();
 		context.fill();
 		context.restore();
+	}
+})();
+*/
+(function(){
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	let data = [
+		{x: 200, y: 400},
+		{x: 300, y: 200},
+		{x: 500, y: 600},
+		{x: 600, y: 400}
+	];
+
+	let current = {
+		isMove: false,
+		pIndex: -1
+	};
+
+	canvas.onmousemove = mouseMove;
+	canvas.onmousedown = mouseDown;
+	document.body.onmouseup = mouseUp;
+
+	drawByData();
+
+	function drawByData() {
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		drawBaseLine();
+		drawGrid();
+		drawLine();
+
+		function drawBaseLine() {
+			context.beginPath();
+			context.strokeStyle = '#ddd';
+			context.lineWidth = 1;
+			for (let i = 0; i < 4; i++) {
+				context.lineTo(data[i].x, data[i].y);
+			}
+			context.stroke();
+		}
+
+		function drawGrid() {
+			for (let i = 0; i < 4; i++) {
+				strokeRectByXY(data[i].x, data[i].y);
+			}
+		}
+
+		function drawLine() {
+			context.lineWidth = 3;
+			context.strokeStyle = '#058';
+			context.beginPath();
+			context.moveTo(data[0].x, data[0].y);
+			context.bezierCurveTo(data[1].x, data[1].y, data[2].x, data[2].y, data[3].x, data[3].y);
+			context.stroke();
+		}
+
+		function strokeRectByXY(x, y) {
+			context.save();
+			context.lineWidth = 1;
+			context.strokeStyle = '#555';
+			context.translate(x, y);
+			context.beginPath();
+			context.lineTo(-5, -5);
+			context.lineTo(5, -5);
+			context.lineTo(5, 5);
+			context.lineTo(-5, 5);
+			context.closePath();
+			context.stroke();
+			context.restore();
+		}
+	}
+
+	function mouseMove(e) {
+		let xy = getXY(e);
+		if (current.isMove) {
+			//console.log(current.pIndex);
+			data[current.pIndex].x = xy.x;
+			data[current.pIndex].y = xy.y;
+			drawByData();
+		}
+	}
+
+	function mouseDown(e) {
+		let xy = getXY(e);
+		for (let i = 0; i < 4; i++) {
+			if ((data[i].x - 5) < xy.x && (data[i].x + 5) > xy.x && (data[i].y - 5) < xy.y && (data[i].y + 5) > xy.y ) {
+				current.isMove = true;
+				current.pIndex = i;
+				break;
+			}
+		}
+	}
+
+	function mouseUp() {
+		current.isMove = false;
+		current.pIndex = -1;
+	}
+
+
+	function getXY(e) {
+		let box = canvas.getBoundingClientRect();
+		return {
+			x: e.clientX - box['left'],
+			y: e.clientY - box['top']
+		};
 	}
 })();
