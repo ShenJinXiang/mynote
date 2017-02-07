@@ -587,6 +587,7 @@
 	}
 })();
 */
+/*
 (function(){
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -621,9 +622,11 @@
 			context.beginPath();
 			context.strokeStyle = '#ddd';
 			context.lineWidth = 1;
-			for (let i = 0; i < 4; i++) {
-				context.lineTo(data[i].x, data[i].y);
-			}
+			context.moveTo(data[0].x, data[0].y);
+			context.lineTo(data[1].x, data[1].y);
+			context.stroke();
+			context.moveTo(data[2].x, data[2].y);
+			context.lineTo(data[3].x, data[3].y);
 			context.stroke();
 		}
 
@@ -693,3 +696,4 @@
 		};
 	}
 })();
+*/
