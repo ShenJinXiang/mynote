@@ -373,7 +373,7 @@
 		let minX = [10, 12, 12, 10];
 		let minY = [2, 4, 7, 9];
 
-		draw();
+		//draw();
 		//drawInit();
 
 		function drawInit() {
@@ -518,6 +518,7 @@
 		}
 })();
 */
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -538,4 +539,49 @@
 	context.closePath();
 	context.fill();
 	
+})();
+*/
+(function(){
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 660;
+	canvas.height = canvas.width * 2 / 3;
+	let context = canvas.getContext('2d');
+	
+	let gWidth = canvas.width / 30;
+
+	let [maxX, maxY] = [5, 5];
+	let minX = [10, 12, 12, 10];
+	let minY = [2, 4, 7, 9];
+
+	draw();
+	function draw() {
+		// 红色背景
+		context.fillStyle = 'red';
+		context.fillRect(0, 0, canvas.width, canvas.height);
+
+		// 大五角星
+		drawStar(maxX * gWidth, maxY * gWidth, 3 * gWidth, -Math.PI / 2);
+
+		// 小五角星
+		for (let i = 0; i < 4; i++) {
+			drawStar(minX[i] * gWidth, minY[i] * gWidth, gWidth, Math.PI + Math.atan((minY[i] - maxY ) / (minX[i] - maxX)));
+		}
+	}
+
+	// 五角星
+	function drawStar(x, y, r, rotate) {
+		context.save();
+		context.fillStyle = 'yellow';
+		context.translate(x, y);
+		context.scale(r, r);
+		context.rotate(rotate);
+		context.beginPath();
+		let dig = 2 * 2 * Math.PI / 5;
+		for(let i = 0; i < 5; i++) {
+			context.lineTo(Math.cos(i * dig), Math.sin(i * dig));
+		}
+		context.closePath();
+		context.fill();
+		context.restore();
+	}
 })();
