@@ -697,3 +697,52 @@
 	}
 })();
 */
+
+(function() {
+		let canvas = document.getElementById('mycanvas');
+		canvas.width = 800;
+		canvas.height = 800;
+		let context = canvas.getContext('2d');
+		
+		context.beginPath();
+		context.lineTo(100, 400);
+		context.lineTo(700, 400);
+		context.stroke();
+
+		context.beginPath();
+		context.lineTo(400, 100);
+		context.lineTo(400, 700);
+		context.stroke();
+
+		context.beginPath();
+		context.lineTo(700 - 10, 400 - 5);
+		context.lineTo(700 + 10, 400);
+		context.lineTo(700 - 10, 400 + 5);
+		context.closePath();
+		context.fill();
+
+		context.beginPath();
+		context.lineTo(400 - 5, 700 - 10);
+		context.lineTo(400, 700 + 10);
+		context.lineTo(400 + 5, 700 - 10);
+		context.closePath();
+		context.fill();
+
+		context.fillStyle = '#047'
+		context.textAlign = 'center';
+		context.textBaseline = 'middle';
+		context.font = '20px Arial';
+
+		context.fillText('圆心(x, y)', 450, 380);
+		context.fillText('0', 700, 420);
+		context.fillText('2 * Math.PI', 700, 380);
+		context.fillText('0.5 * Math.PI', 400, 720);
+		context.fillText('1 * Math.PI', 100, 380);
+		context.fillText('1.5 * Math.PI', 400, 80);
+
+		context.beginPath();
+		context.arc(400, 400, 200, 0, Math.PI * 2, false);
+		context.lineWidth = 5;
+		context.strokeStyle = '#058';
+		context.stroke();
+})();
