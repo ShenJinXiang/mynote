@@ -118,3 +118,66 @@ arc()方法用来绘制一段圆弧，调用方法：
 ![](./images/00030.png)
 
 这个例子和上一个例子代码唯一的区别在于绘制圆弧的时候最后一个参数由`false`改成`true`，意味着将采用逆时针方式绘制图形，可以看到没有调用rotate的情况下，0度在3点钟位置，而`0.5 * Math.PI`的角度在6点钟位置
+
+Canvas的CanvasRenderingContext2D对象提供了`strokeRect()`，和`fillRect()`方法用于绘制矩形边框和填充矩形区域，那么我们也可以封装一个`strokeRoundRect()`和`fillRoundRect()`方法用于绘制带圆角的矩形边框的填充带圆角的矩形区域的功能
+```javascript
+(function() {
+	CanvasRenderingContext2D.prototype.strokeRoundRect = function (x, y, width, height, r) {
+		this.save();
+		this.translate(x, y);
+		roundRect(this, width, height, r);
+		this.stroke();
+		this.restore();
+	};
+
+	CanvasRenderingContext2D.prototype.fillRoundRect = function (x, y, width, height, r) {
+		this.save();
+		this.translate(x, y);
+		roundRect(this, width, height, r);
+		this.fill();
+		this.restore();
+	};
+
+	function roundRect(ctx, width, height, r) {
+		ctx.beginPath();
+		ctx.arc(width - r, height - r, r, 0, 0.5 * Math.PI, false);
+		ctx.lineTo(r, height);
+		ctx.arc(r, height - r, r, 0.5 * Math.PI, Math.PI, false);
+		ctx.lineTo(0, r);
+		ctx.arc(r, r, r, Math.PI, 1.5 * Math.PI, false);
+		ctx.lineTo(width -r, 0);
+		ctx.arc(width -r, r, r, 1.5 * Math.PI, 0, false);
+		ctx.closePath();
+	}
+})();
+```
+下面是调用的代码：
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	context.strokeRoundRect(100, 100, 200, 200, 50);
+
+	context.lineWidth = 5;
+	context.strokeStyle = '#058';
+	context.strokeRoundRect(500, 100, 200, 200, 50);
+		
+	context.fillStyle='#058';
+	context.fillRoundRect(100, 500, 200, 200, 50);
+	
+	context.fillStyle = 'yellow';
+	context.fillRoundRect(500, 500, 200, 200, 50);
+	context.strokeRoundRect(500, 500, 200, 200, 50);
+})();
+```
+
+效果：
+
+![](./images/00031.png)
+
+通过扩展CanvasRenderingContext2D对象原型的方法，实现了`strokeRoundRect()`和`fillRoundRect()`方法，实现了绘制带圆角的矩形图案
+
+## arcTo() 方法

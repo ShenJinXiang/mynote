@@ -26,3 +26,4 @@
  5.4. [绘制国旗](./绘制中国国旗.md#绘制国旗)    
 6. [Canvas绘制曲线](./Canvas绘制曲线.md#Canvas绘制曲线)    
  6.1. [arc()方法](./Canvas绘制曲线.md#arc方法)    
+ 6.2. [arcTo()方法](./Canvas绘制曲线.md#arcto方法)    
