@@ -698,6 +698,7 @@
 })();
 */
 
+/*
 (function() {
 		let canvas = document.getElementById('mycanvas');
 		canvas.width = 800;
@@ -745,4 +746,46 @@
 		context.lineWidth = 5;
 		context.strokeStyle = '#058';
 		context.stroke();
+})();
+*/
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 400;
+	let context = canvas.getContext('2d');
+
+	context.lineWidth = 5;
+	context.fillStyle = '#058';
+
+	context.beginPath();
+	context.arc(100, 100, 75, 0, 0.5 * Math.PI, true);
+	context.stroke();
+
+	context.beginPath();
+	context.arc(300, 100, 75, 0, 1 * Math.PI, true);
+	context.stroke();
+
+	context.beginPath();
+	context.arc(500, 100, 75, 0, 1.5 * Math.PI, true);
+	context.stroke();
+
+	context.beginPath();
+	context.arc(700, 100, 75, 0, 2 * Math.PI, true);
+	context.stroke();
+
+	context.beginPath();
+	context.arc(100, 300, 75, 0, 0.5 * Math.PI, true);
+	context.fill();
+
+	context.beginPath();
+	context.arc(300, 300, 75, 0, 1 * Math.PI, true);
+	context.fill();
+
+	context.beginPath();
+	context.arc(500, 300, 75, 0, 1.5 * Math.PI, true);
+	context.fill();
+
+	context.beginPath();
+	context.arc(700, 300, 75, 0, 2 * Math.PI, true);
+	context.fill();
 })();
