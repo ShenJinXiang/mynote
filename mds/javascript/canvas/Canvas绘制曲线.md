@@ -181,3 +181,14 @@ Canvas的CanvasRenderingContext2D对象提供了`strokeRect()`，和`fillRect()`
 通过扩展CanvasRenderingContext2D对象原型的方法，实现了`strokeRoundRect()`和`fillRoundRect()`方法，实现了绘制带圆角的矩形图案
 
 ## arcTo() 方法
+canvas中绘制圆弧，还可以使用`arcTo()`方法在画布上创建介于两个切线之间的圆弧，调用方式：
+
+> context.arcTo(x1, y1, x2, y2, radius)
+
+这里需要引入一个控制点的概念，x1、y1就是控制点的x、y坐标值，将当前的点坐标（即`moveTo()`或`lineTo()`到达的位置，或者其它结束点的位置）和控制点，以及控制点和`(x2, y2)`连成的折线段作为辅助线，按半径为radius的圆弧和这两个线段相切。可以得到以下结论：
+
+1. 圆弧必然不经过`(x1, y1)`点
+2. 绘制的路径的起始点一点是上次的结束点，但圆弧的起始点不一定在这个位置
+3. 圆弧的终点也不一定在`(x2, y2)`位置
+
+为了更明确的表述这个方法，我做了一个简单的页面，用于展示CanvasRenderingContext2D的`arcTo()`方法，地址：[http://www.shenjinxiang.com/pages/mydemo/canvas/arcTo/index.html](http://www.shenjinxiang.com/pages/mydemo/canvas/arcTo/index.html) 在这个页面中可以通过移动三个圆圈分别控制起始点、控制点和结束点的坐标，通过调整右侧上方的滑块调整圆弧半径的大小，可以很直观的理解`arcTo()`方法
