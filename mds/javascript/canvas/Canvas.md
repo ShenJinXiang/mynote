@@ -27,3 +27,5 @@
 6. [Canvas绘制曲线](./Canvas绘制曲线.md#Canvas绘制曲线)    
  6.1. [arc()方法](./Canvas绘制曲线.md#arc方法)    
  6.2. [arcTo()方法](./Canvas绘制曲线.md#arcto方法)    
+ 6.3. [quadraticCurveTo()方法](./Canvas绘制曲线.md#quadraticcurveto方法)    
+ 6.4. [bezierCurveTo()方法](./Canvas绘制曲线.md#beziercurveto方法)    
