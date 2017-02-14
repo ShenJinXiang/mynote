@@ -792,6 +792,7 @@
 })();
 */
 
+/*
 (function() {
 	CanvasRenderingContext2D.prototype.strokeRoundRect = function (x, y, width, height, r) {
 		this.save();
@@ -838,4 +839,116 @@
 	context.fillStyle = 'yellow';
 	context.fillRoundRect(500, 500, 200, 200, 50);
 	context.strokeRoundRect(500, 500, 200, 200, 50);
+})();
+*/
+
+/*
+(function () {
+		let canvas = document.getElementById('mycanvas');
+		canvas.width = 800;
+		canvas.height = 800;
+		let context = canvas.getContext('2d');
+
+		context.fillStyle = '#058';
+		context.fillRect(100, 100, 600, 600);
+
+		let imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+		for (let x = 0; x < canvas.width; x++) {
+			for (let y = 0; y < canvas.height; y++) {
+				if (x == y) {
+					imgData.data[canvas.width * y * 4 + x * 4] = 0;
+					imgData.data[canvas.width * y * 4 + x * 4 + 1] = 85;
+					imgData.data[canvas.width * y * 4 + x * 4 + 2] = 136;
+					imgData.data[canvas.width * y * 4 + x * 4 + 3] = 255;
+				} else {
+					imgData.data[canvas.width * y * 4 + x * 4] = 255;
+					imgData.data[canvas.width * y * 4 + x * 4 + 1] = 255;
+					imgData.data[canvas.width * y * 4 + x * 4 + 2] = 255;
+					imgData.data[canvas.width * y * 4 + x * 4 + 3] = 255;
+				}
+			}
+		}
+		setTimeout(function() {
+			context.putImageData(imgData, 0, 0, 0, 0, canvas.width, canvas.height);
+		}, 2000);
+})();
+*/
+
+(function () {
+	var canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	var context = canvas.getContext('2d');
+
+	var config = {
+		padding : 5,
+		grid: 10
+	};
+
+	drawBaseLine();
+
+
+	function drawBaseLine() {
+		var padding = config.padding;
+		var grid = config.grid;
+
+		context.lineWidth = 3;
+		context.strokeStyle = '#000';
+
+		context.beginPath();
+		context.lineTo(padding, canvas.height / 2);
+		context.lineTo(canvas.width - padding - 10, canvas.height / 2);
+		context.stroke();
+
+		context.beginPath();
+		context.lineTo(canvas.width / 2, padding + 10);
+		context.lineTo(canvas.width / 2, canvas.height - padding);
+		context.stroke();
+
+		context.fillStyle = '#000';
+		context.beginPath();
+		context.lineTo(canvas.width - padding - 20, canvas.height / 2 - 5);
+		context.lineTo(canvas.width - padding, canvas.height / 2);
+		context.lineTo(canvas.width - padding - 20, canvas.height / 2 + 5);
+		context.closePath();
+		context.fill();
+
+		context.beginPath();
+		context.lineTo(canvas.width / 2 - 5, padding + 20);
+		context.lineTo(canvas.width / 2, padding);
+		context.lineTo(canvas.width / 2 + 5, padding + 20);
+		context.closePath();
+		context.fill();
+
+		context.lineWidth = 1;
+		context.strokeStyle = '#ddd';
+		var x = grid;
+		while (x + canvas.width / 2 < canvas.width - padding - 20) {
+			context.beginPath();
+			context.lineTo(canvas.width / 2 + x, padding + 20);
+			context.lineTo(canvas.width / 2 + x, canvas.height - padding - 20);
+			context.stroke();
+			x += grid;
+		}
+
+		x = grid;
+		while (canvas.width / 2 - x > padding + 20) {
+			context.beginPath();
+			context.lineTo(canvas.width / 2 - x, padding + 20);
+			context.lineTo(canvas.width / 2 - x, canvas.height - padding - 20);
+			context.stroke();
+			x += grid;
+		}
+
+		x = grid;
+		while (x + canvas.height / 2 < canvas.height - padding - 20) {
+			context.beginPath();
+			context.lineTo(padding + 20, canvas.height / 2 + x);
+			context.lineTo(canvas.width - padding - 20, canvas.height / 2 + x);
+			context.stroke();
+			x += grid;
+		}
+		
+	}
 })();
