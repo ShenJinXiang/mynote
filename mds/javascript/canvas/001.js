@@ -886,12 +886,163 @@
 		grid: 10
 	};
 
-	drawBaseLine();
+	var str = "x * x + y * y = 40000";
+	var arr = [];
 
+	drawBaseLine();
+	//drawLine();
+	createData();
+	console.log(arr);
+
+	function createData() {
+		for (var x = 0; x < canvas.width; x++) {
+			var arr1 = [];
+			for (var y = 0; y < canvas.height; y++) {
+				var sx = x - canvas.width / 2;
+				var sy = canvas.height / 2 - y;
+				if (result(str, sx, sy)) {
+					arr1.push(1);
+				} else {
+					arr1.push(0);
+				}
+			}
+			arr.push(arr1);
+		}
+
+		/*
+		var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+		for (var x = 0; x < canvas.width; x++) {
+			for (var y = 0; y < canvas.height; y++) {
+				if (arr[x][y] == 1) {
+					imgData.data[canvas.width * y * 4 + x * 4] = 0;
+					imgData.data[canvas.width * y * 4 + x * 4 + 1] = 85;
+					imgData.data[canvas.width * y * 4 + x * 4 + 2] = 136;
+					imgData.data[canvas.width * y * 4 + x * 4 + 3] = 255;
+				}
+			}
+		}
+		context.putImageData(imgData, 0, 0, 0, 0, canvas.width, canvas.height);
+		*/
+		for (var x = 0; x < canvas.width; x++) {
+			var ss = '';
+			for (var y = 0; y < canvas.height; y++) {
+				if (arr[x][y] == 1) {
+					ss += '*';
+				} else {
+					ss += ' ';
+				}
+			}
+			console.log(ss);
+		}
+		
+	}
+
+	function result(str, x, y) {
+		str = str.replace(/[x]/g, x);
+		str = str.replace(/[y]/g, y);
+		str = str.replace('=', '==');
+		return !!eval(str);
+	}
+
+	function drawLine() {
+		var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+		for (var x = 0; x < canvas.width; x++) {
+			for (var y = 0; y < canvas.height; y++) {
+				var sx = x - canvas.width / 2;
+				var sy = canvas.height / 2 - y;
+				if(result(str, sx, sy)) {
+					imgData.data[canvas.width * y * 4 + x * 4] = 0;
+					imgData.data[canvas.width * y * 4 + x * 4 + 1] = 85;
+					imgData.data[canvas.width * y * 4 + x * 4 + 2] = 136;
+					imgData.data[canvas.width * y * 4 + x * 4 + 3] = 255;
+
+					imgData.data[canvas.width * (y - 1) * 4 + (x - 1) * 4] = 0;
+					imgData.data[canvas.width * (y - 1) * 4 + (x - 1) * 4 + 1] = 85;
+					imgData.data[canvas.width * (y - 1) * 4 + (x - 1) * 4 + 2] = 136;
+					imgData.data[canvas.width * (y - 1) * 4 + (x - 1) * 4 + 3] = 255;
+
+					imgData.data[canvas.width * (y + 1) * 4 + (x + 1) * 4] = 0;
+					imgData.data[canvas.width * (y + 1) * 4 + (x + 1) * 4 + 1] = 85;
+					imgData.data[canvas.width * (y + 1) * 4 + (x + 1) * 4 + 2] = 136;
+					imgData.data[canvas.width * (y + 1) * 4 + (x + 1) * 4 + 3] = 255;
+
+					imgData.data[canvas.width * (y + 1) * 4 + (x - 1) * 4] = 0;
+					imgData.data[canvas.width * (y + 1) * 4 + (x - 1) * 4 + 1] = 85;
+					imgData.data[canvas.width * (y + 1) * 4 + (x - 1) * 4 + 2] = 136;
+					imgData.data[canvas.width * (y + 1) * 4 + (x - 1) * 4 + 3] = 255;
+
+					imgData.data[canvas.width * (y - 1) * 4 + (x + 1) * 4] = 0;
+					imgData.data[canvas.width * (y - 1) * 4 + (x + 1) * 4 + 1] = 85;
+					imgData.data[canvas.width * (y - 1) * 4 + (x + 1) * 4 + 2] = 136;
+					imgData.data[canvas.width * (y - 1) * 4 + (x + 1) * 4 + 3] = 255;
+
+					imgData.data[canvas.width * (y) * 4 + (x + 1) * 4] = 0;
+					imgData.data[canvas.width * (y) * 4 + (x + 1) * 4 + 1] = 85;
+					imgData.data[canvas.width * (y) * 4 + (x + 1) * 4 + 2] = 136;
+					imgData.data[canvas.width * (y) * 4 + (x + 1) * 4 + 3] = 255;
+
+					imgData.data[canvas.width * (y - 1) * 4 + (x) * 4] = 0;
+					imgData.data[canvas.width * (y - 1) * 4 + (x) * 4 + 1] = 85;
+					imgData.data[canvas.width * (y - 1) * 4 + (x) * 4 + 2] = 136;
+					imgData.data[canvas.width * (y - 1) * 4 + (x) * 4 + 3] = 255;
+
+					imgData.data[canvas.width * (y) * 4 + (x - 1) * 4] = 0;
+					imgData.data[canvas.width * (y) * 4 + (x - 1) * 4 + 1] = 85;
+					imgData.data[canvas.width * (y) * 4 + (x - 1) * 4 + 2] = 136;
+					imgData.data[canvas.width * (y) * 4 + (x - 1) * 4 + 3] = 255;
+
+					imgData.data[canvas.width * (y + 1) * 4 + (x) * 4] = 0;
+					imgData.data[canvas.width * (y + 1) * 4 + (x) * 4 + 1] = 85;
+					imgData.data[canvas.width * (y + 1) * 4 + (x) * 4 + 2] = 136;
+					imgData.data[canvas.width * (y + 1) * 4 + (x) * 4 + 3] = 255;
+				}
+			}
+		}
+
+		context.putImageData(imgData, 0, 0, 0, 0, canvas.width, canvas.height);
+	}
 
 	function drawBaseLine() {
 		var padding = config.padding;
 		var grid = config.grid;
+
+		context.lineWidth = 1;
+		context.strokeStyle = '#eee';
+		var x = grid;
+		while (x + canvas.width / 2 < canvas.width - padding - 20) {
+			context.beginPath();
+			context.lineTo(canvas.width / 2 + x, padding + 20);
+			context.lineTo(canvas.width / 2 + x, canvas.height - padding - 20);
+			context.stroke();
+			x += grid;
+		}
+
+		x = grid;
+		while (canvas.width / 2 - x > padding + 20) {
+			context.beginPath();
+			context.lineTo(canvas.width / 2 - x, padding + 20);
+			context.lineTo(canvas.width / 2 - x, canvas.height - padding - 20);
+			context.stroke();
+			x += grid;
+		}
+
+		x = grid;
+		while (x + canvas.height / 2 < canvas.height - padding - 20) {
+			context.beginPath();
+			context.lineTo(padding + 20, canvas.height / 2 + x);
+			context.lineTo(canvas.width - padding - 20, canvas.height / 2 + x);
+			context.stroke();
+			x += grid;
+		}
+		
+		x = grid;
+		while (canvas.height / 2 - x > padding + 20) {
+			context.beginPath();
+			context.lineTo(padding + 20, canvas.height / 2 - x);
+			context.lineTo(canvas.width - padding - 20, canvas.height / 2 - x);
+			context.stroke();
+			x += grid;
+		}
 
 		context.lineWidth = 3;
 		context.strokeStyle = '#000';
@@ -920,35 +1071,5 @@
 		context.lineTo(canvas.width / 2 + 5, padding + 20);
 		context.closePath();
 		context.fill();
-
-		context.lineWidth = 1;
-		context.strokeStyle = '#ddd';
-		var x = grid;
-		while (x + canvas.width / 2 < canvas.width - padding - 20) {
-			context.beginPath();
-			context.lineTo(canvas.width / 2 + x, padding + 20);
-			context.lineTo(canvas.width / 2 + x, canvas.height - padding - 20);
-			context.stroke();
-			x += grid;
-		}
-
-		x = grid;
-		while (canvas.width / 2 - x > padding + 20) {
-			context.beginPath();
-			context.lineTo(canvas.width / 2 - x, padding + 20);
-			context.lineTo(canvas.width / 2 - x, canvas.height - padding - 20);
-			context.stroke();
-			x += grid;
-		}
-
-		x = grid;
-		while (x + canvas.height / 2 < canvas.height - padding - 20) {
-			context.beginPath();
-			context.lineTo(padding + 20, canvas.height / 2 + x);
-			context.lineTo(canvas.width - padding - 20, canvas.height / 2 + x);
-			context.stroke();
-			x += grid;
-		}
-		
 	}
 })();
