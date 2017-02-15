@@ -875,6 +875,7 @@
 })();
 */
 
+/*
 (function () {
 	var canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -909,20 +910,6 @@
 			arr.push(arr1);
 		}
 
-		/*
-		var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
-		for (var x = 0; x < canvas.width; x++) {
-			for (var y = 0; y < canvas.height; y++) {
-				if (arr[x][y] == 1) {
-					imgData.data[canvas.width * y * 4 + x * 4] = 0;
-					imgData.data[canvas.width * y * 4 + x * 4 + 1] = 85;
-					imgData.data[canvas.width * y * 4 + x * 4 + 2] = 136;
-					imgData.data[canvas.width * y * 4 + x * 4 + 3] = 255;
-				}
-			}
-		}
-		context.putImageData(imgData, 0, 0, 0, 0, canvas.width, canvas.height);
-		*/
 		for (var x = 0; x < canvas.width; x++) {
 			var ss = '';
 			for (var y = 0; y < canvas.height; y++) {
@@ -1072,4 +1059,26 @@
 		context.closePath();
 		context.fill();
 	}
+})();
+*/
+
+/*
+(function () {
+	let canvas = document.getElementById('mycanvas');
+  canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	context.beginPath();
+	context.arc(canvas.width / 2, canvas.height / 2, 200, 0, Math.PI, false);
+	context.arc(canvas.width / 2 - 100, canvas.height / 2, 100, Math.PI, 0, false);
+	context.arc(canvas.width / 2 + 100, canvas.height / 2, 100, Math.PI, 0, true);
+	context.arc(canvas.width / 2, canvas.height / 2, 200, 0, Math.PI, true);
+	context.fill();
+	context.stroke();
+})();
+*/
+
+(function () {
+
 })();
