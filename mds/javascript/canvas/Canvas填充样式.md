@@ -13,4 +13,6 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 
 要指定颜色，需要使用返回对象的`addColorStop()`方法，`addColorStop()`方法用于定义一个渐变中的固定颜色，参数`color`的值为任意css可以接收的表示颜色的字符串。参数`stop`是0.0 ~ 1.0之间的一个浮点数，对于渐变的起点到终点的位置，值为0表示起点，值为1表示终点
 
-当设置好颜色以后将这个CanvasGradient对象赋值给`fillStyle`或`strokeStyle`属性，当调用对应的`fill()`和`stroke()`方法时，即实现渐变效果
+当设置好颜色以后将这个CanvasGradient对象赋值给`fillStyle`或`strokeStyle`属性，当调用对应的`fill()`方法和 `stroke()`方法时，即实现渐变效果，代码：
+```javascript
+```
