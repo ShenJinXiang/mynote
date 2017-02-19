@@ -15,4 +15,73 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 
 当设置好颜色以后将这个CanvasGradient对象赋值给`fillStyle`或`strokeStyle`属性，当调用对应的`fill()`方法和 `stroke()`方法时，即实现渐变效果，代码：
 ```javascript
+(function () {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	let linearGrad = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+	linearGrad.addColorStop(0, '#fff');
+	linearGrad.addColorStop(1, '#000');
+	context.fillStyle = linearGrad;
+	context.fillRect(0, 0, canvas.width, canvas.height);
+})();
 ```
+
+效果：
+
+![](./images/00035.png)
+
+这个例子中通过`createLinearGradient()`创建一个线性渐变对象，从`(0, 0)`点白色渐变到`(800, 800)`黑色，最后填充一个矩形区域（整个canvas区域）
+
+设置线性渐变颜色的`addColorStop()`方法可以添加很多个，代码：
+
+```javascript
+(function () {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	let linearGrad = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+	linearGrad.addColorStop(0, 'white');
+	linearGrad.addColorStop(0.25, 'yellow');
+	linearGrad.addColorStop(0.5, 'green');
+	linearGrad.addColorStop(0.75, 'blue');
+	linearGrad.addColorStop(1, 'black');
+	context.fillStyle = linearGrad;
+	context.fillRect(0, 0, canvas.width, canvas.height);
+})();
+```
+
+效果：
+
+![](./images/00036.png)
+
+再看一个例子：
+
+```javascript
+(function () {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 400;
+	let context = canvas.getContext('2d');
+
+	let linearGrad = context.createLinearGradient(0, 0, canvas.width, 0);
+	linearGrad.addColorStop(0, 'red');
+	linearGrad.addColorStop(0.5, 'red');
+	linearGrad.addColorStop(0.5 + Number.MIN_VALUE, 'blue');
+	linearGrad.addColorStop(1, 'blue');
+	context.fillStyle = linearGrad;
+	context.fillRect(100, 150, 600, 100);
+})();
+```
+
+效果：
+
+![](./images/00037.png)
+
+创建线性渐变`createLinearGradient()`方法参数的两个坐标点，与填充时的坐标点是没有任何关系的，实际开发的时候可以灵活应用
+
+## 径向渐变

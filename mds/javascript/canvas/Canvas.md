@@ -31,3 +31,4 @@
  6.4. [bezierCurveTo()方法](./Canvas绘制曲线.md#beziercurveto方法)    
 7. [Canvas填充样式](./Canvas填充样式.md#canvas填充样式)    
  7.1. [线性渐变](./Canvas填充样式.md#线性渐变)    
+ 7.2. [径向渐变](./Canvas填充样式.md#径向渐变)    
