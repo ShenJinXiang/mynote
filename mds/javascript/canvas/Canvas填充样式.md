@@ -85,3 +85,10 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 创建线性渐变`createLinearGradient()`方法参数的两个坐标点，与填充时的坐标点是没有任何关系的，实际开发的时候可以灵活应用
 
 ## 径向渐变
+有了线性渐变的基础，理解和使用径向渐变就很简单了，线性渐变是通过设置两个坐标点，在这两个坐标点之间设置不同颜色，依次渐变。径向渐变则用于绘制放射状的渐变图像，方法：
+
+> CanvasRenderingContext2D.createRadialGradient(x0,y0,r0,x1,y1,r1)
+
+**参数说明**
+
+x0 - 渐变开始圆的x坐标值
