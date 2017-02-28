@@ -15,6 +15,7 @@
 	context.fillRect(0, 0, canvas.width, canvas.height);
 })();
 */
+/*
 (function () {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -28,4 +29,17 @@
 	linearGrad.addColorStop(1, 'blue');
 	context.fillStyle = linearGrad;
 	context.fillRect(100, 150, 600, 100);
+})();
+*/
+(function () {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	let canvasGradient = context.createRadialGradient(400, 400, 50, 400, 400, 300);
+	canvasGradient.addColorStop(0, 'red');
+	canvasGradient.addColorStop(1, 'white');
+	context.fillStyle = canvasGradient;
+	context.fillRect(200, 200, 400, 400);
 })();

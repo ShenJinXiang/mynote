@@ -91,4 +91,32 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 
 **参数说明**
 
-x0 - 渐变开始圆的x坐标值
+* x0 - 渐变开始圆的的圆心x坐标值
+* y0 - 渐变开始圆的圆心的y坐标值
+* r0 - 渐变开始圆的半径值
+* x1 - 渐变结束圆的的圆心x坐标值
+* y1 - 渐变结束圆的圆心的y坐标值
+* r1 - 渐变结束圆的半径值
+
+通过`createRadialGradient()`方法创建CanvasGradient对象，然后调用`addColorStop()`方法来设置不同的颜色节点，代码：
+
+```javascript
+(function () {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	let canvasGradient = context.createRadialGradient(400, 400, 50, 400, 400, 300);
+	canvasGradient.addColorStop(0, 'red');
+	canvasGradient.addColorStop(1, 'white');
+	context.fillStyle = canvasGradient;
+	context.fillRect(200, 200, 400, 400);
+})();
+```
+
+效果：
+
+![](./images/00038.png)
+
+## 使用画布、图片或者video
