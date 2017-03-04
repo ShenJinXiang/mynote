@@ -207,3 +207,6 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 ![](./images/00042.png)
 
 这个例子中，使用`getStarCanvas()`方法创建一个canva对象，宽度和高度都为100像素，在这个小canvas中绘制了一个黄底红色的五角星，最后将这个小canvas返回，大canvas中将其作为`createPattern()`方法的参数调用，最后填充出了上图的效果
+
+### 使用video填充
+关于video的填充方法，其实很上面的两个例子是一样的，唯一的区别是需要用到video元素，指定video的src属性值为浏览器支持的视频文件地址，为了让画面动起来，可以使用`setInterval()`或`setTimeout()`方法重复调用即可，这里不做演示了 ^_^
