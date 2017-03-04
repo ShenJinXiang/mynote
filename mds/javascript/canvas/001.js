@@ -31,6 +31,7 @@
 	context.fillRect(100, 150, 600, 100);
 })();
 */
+/*
 (function () {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -42,4 +43,19 @@
 	canvasGradient.addColorStop(1, 'white');
 	context.fillStyle = canvasGradient;
 	context.fillRect(200, 200, 400, 400);
+})();
+*/
+
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	let context = canvas.getContext('2d');
+
+	let img = new Image();
+	img.src = './images/00039.png';
+	img.onload = function () {
+		context.fillStyle = context.createPattern(img, 'repeat');
+		context.fillRect(0, 0, canvas.width, canvas.height);
+	};
 })();

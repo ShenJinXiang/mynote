@@ -136,3 +136,34 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 * 'repeat-x' - 只在x轴方向平铺图像
 * 'repeat-y' - 只在y轴方向平铺图像
 * 'no-repeat' - 不平铺图像，图像只绘制一次
+
+### 使用图片填充
+首先当然需要一张图片，这里我使用了下面的图片：
+
+！[](./images/00039.png)
+
+这张图片的宽高为300像素，且如果平铺的话，左右上下都可以连续起来，下面是canvas中使用该图片的代码：
+
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	let context = canvas.getContext('2d');
+
+	let img = new Image();
+	img.src = './images/00039.png';
+	img.onload = function () {
+		context.fillStyle = context.createPattern(img, 'repeat');
+		context.fillRect(0, 0, canvas.width, canvas.height);
+	};
+})();
+```
+
+效果：
+
+![](./images/00040.png)
+
+这里我设置canvas的宽高值为浏览器可视窗口的宽高，设置img的src属性为外部图片的路径，使用`createPattern()`创建CanvasPattern对象，将返回值赋值给`fillStyll`属性，最后填充整个canvas画布，需要注意的是，要试着body的css属性margin和padding值为0px
+
+### 使用canvas填充
