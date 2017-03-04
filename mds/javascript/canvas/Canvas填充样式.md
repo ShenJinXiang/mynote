@@ -180,13 +180,13 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 	
 	function getStarCanvas() {
 		let starCanvas = document.createElement('canvas');
-		starCanvas.width = 100;
-		starCanvas.height = 100;
+		starCanvas.width = 50;
+		starCanvas.height = 50;
 		let ctx = starCanvas.getContext('2d');
 
 		ctx.fillStyle = 'yellow';
 		ctx.fillRect(0, 0, starCanvas.width, starCanvas.height);
-		let r = 45;
+		let r = 20;
 		ctx.beginPath();
 		ctx.fillStyle = 'red';
 		ctx.translate(starCanvas.width / 2, starCanvas.height / 2);
@@ -204,6 +204,6 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 
 效果：
 
-![](./images/00041.png)
+![](./images/00042.png)
 
 这个例子中，使用`getStarCanvas()`方法创建一个canva对象，宽度和高度都为100像素，在这个小canvas中绘制了一个黄底红色的五角星，最后将这个小canvas返回，大canvas中将其作为`createPattern()`方法的参数调用，最后填充出了上图的效果

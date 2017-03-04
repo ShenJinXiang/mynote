@@ -71,13 +71,13 @@
 	
 	function getStarCanvas() {
 		let starCanvas = document.createElement('canvas');
-		starCanvas.width = 100;
-		starCanvas.height = 100;
+		starCanvas.width = 50;
+		starCanvas.height = 50;
 		let ctx = starCanvas.getContext('2d');
 
 		ctx.fillStyle = 'yellow';
 		ctx.fillRect(0, 0, starCanvas.width, starCanvas.height);
-		let r = 45;
+		let r = 20;
 		ctx.beginPath();
 		ctx.fillStyle = 'red';
 		ctx.translate(starCanvas.width / 2, starCanvas.height / 2);
