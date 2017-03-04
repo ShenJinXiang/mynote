@@ -140,7 +140,7 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 ### 使用图片填充
 首先当然需要一张图片，这里我使用了下面的图片：
 
-！[](./images/00039.png)
+![](./images/00039.png)
 
 这张图片的宽高为300像素，且如果平铺的话，左右上下都可以连续起来，下面是canvas中使用该图片的代码：
 
@@ -167,3 +167,43 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 这里我设置canvas的宽高值为浏览器可视窗口的宽高，设置img的src属性为外部图片的路径，使用`createPattern()`创建CanvasPattern对象，将返回值赋值给`fillStyll`属性，最后填充整个canvas画布，需要注意的是，要试着body的css属性margin和padding值为0px
 
 ### 使用canvas填充
+使用canvas填充很简单了，再创建一个canvas绘制一些图案，然后调用即可，代码：
+
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+	context.fillStyle = context.createPattern(getStarCanvas(), 'repeat');
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	function getStarCanvas() {
+		let starCanvas = document.createElement('canvas');
+		starCanvas.width = 100;
+		starCanvas.height = 100;
+		let ctx = starCanvas.getContext('2d');
+
+		ctx.fillStyle = 'yellow';
+		ctx.fillRect(0, 0, starCanvas.width, starCanvas.height);
+		let r = 45;
+		ctx.beginPath();
+		ctx.fillStyle = 'red';
+		ctx.translate(starCanvas.width / 2, starCanvas.height / 2);
+		ctx.rotate(-Math.PI / 2);
+		for(let i = 0; i < 5; i++) {
+			ctx.lineTo(Math.cos(4 * Math.PI / 5 * i) * r, Math.sin(4 * Math.PI / 5 * i) * r);
+		}
+		ctx.closePath();
+		ctx.restore();
+		ctx.fill();
+		return starCanvas;
+	}
+})();
+```
+
+效果：
+
+![](./images/00041.png)
+
+这个例子中，使用`getStarCanvas()`方法创建一个canva对象，宽度和高度都为100像素，在这个小canvas中绘制了一个黄底红色的五角星，最后将这个小canvas返回，大canvas中将其作为`createPattern()`方法的参数调用，最后填充出了上图的效果
