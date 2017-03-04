@@ -119,4 +119,20 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 
 ![](./images/00038.png)
 
+当理解了线性渐变的绘制方法以后，理解径向渐变就很容易了
+
 ## 使用画布、图片或者video
+线性渐变和径向渐变依然是通过设置一些颜色值，来设置填充的样式。实际上canvas中的填充样式不仅可以通过颜色设置，也可以是另外一个canvas、图片甚至是一个video
+
+基本流程是这样的：通过调用`createPattern()`方法，返回CanvasPattern对象，将样式(fillStyle或strokeStyle)的值设置成该对象，然后执行填充
+
+> CanvasRenderingContext2D.createPattern(Element image, string repetition)
+
+其中参数image可以是一个image、canvas或video对象，参数repetition定义图片如何平铺
+
+**repetition的值:**
+
+* 'repeat' - 默认值，在x轴方向和y轴方向都平铺图像
+* 'repeat-x' - 只在x轴方向平铺图像
+* 'repeat-y' - 只在y轴方向平铺图像
+* 'no-repeat' - 不平铺图像，图像只绘制一次
