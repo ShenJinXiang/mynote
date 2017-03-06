@@ -136,3 +136,77 @@ CanvasRenderingContext2D的`createLinearGradient()`生成并返回一个新的Ca
 * 'repeat-x' - 只在x轴方向平铺图像
 * 'repeat-y' - 只在y轴方向平铺图像
 * 'no-repeat' - 不平铺图像，图像只绘制一次
+
+### 使用图片填充
+首先当然需要一张图片，这里我使用了下面的图片：
+
+![](./images/00039.png)
+
+这张图片的宽高为300像素，且如果平铺的话，左右上下都可以连续起来，下面是canvas中使用该图片的代码：
+
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	let context = canvas.getContext('2d');
+
+	let img = new Image();
+	img.src = './images/00039.png';
+	img.onload = function () {
+		context.fillStyle = context.createPattern(img, 'repeat');
+		context.fillRect(0, 0, canvas.width, canvas.height);
+	};
+})();
+```
+
+效果：
+
+![](./images/00040.png)
+
+这里我设置canvas的宽高值为浏览器可视窗口的宽高，设置img的src属性为外部图片的路径，使用`createPattern()`创建CanvasPattern对象，将返回值赋值给`fillStyll`属性，最后填充整个canvas画布，需要注意的是，要试着body的css属性margin和padding值为0px
+
+### 使用canvas填充
+使用canvas填充很简单了，再创建一个canvas绘制一些图案，然后调用即可，代码：
+
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+	context.fillStyle = context.createPattern(getStarCanvas(), 'repeat');
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	function getStarCanvas() {
+		let starCanvas = document.createElement('canvas');
+		starCanvas.width = 50;
+		starCanvas.height = 50;
+		let ctx = starCanvas.getContext('2d');
+
+		ctx.fillStyle = 'yellow';
+		ctx.fillRect(0, 0, starCanvas.width, starCanvas.height);
+		let r = 20;
+		ctx.beginPath();
+		ctx.fillStyle = 'red';
+		ctx.translate(starCanvas.width / 2, starCanvas.height / 2);
+		ctx.rotate(-Math.PI / 2);
+		for(let i = 0; i < 5; i++) {
+			ctx.lineTo(Math.cos(4 * Math.PI / 5 * i) * r, Math.sin(4 * Math.PI / 5 * i) * r);
+		}
+		ctx.closePath();
+		ctx.restore();
+		ctx.fill();
+		return starCanvas;
+	}
+})();
+```
+
+效果：
+
+![](./images/00042.png)
+
+这个例子中，使用`getStarCanvas()`方法创建一个canva对象，宽度和高度都为100像素，在这个小canvas中绘制了一个黄底红色的五角星，最后将这个小canvas返回，大canvas中将其作为`createPattern()`方法的参数调用，最后填充出了上图的效果
+
+### 使用video填充
+关于video的填充方法，其实很上面的两个例子是一样的，唯一的区别是需要用到video元素，指定video的src属性值为浏览器支持的视频文件地址，为了让画面动起来，可以使用`setInterval()`或`setTimeout()`方法重复调用即可，这里不做演示了 ^_^
