@@ -61,6 +61,7 @@
 	};
 })();
 */
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -90,4 +91,27 @@
 		ctx.fill();
 		return starCanvas;
 	}
+})();
+*/
+(function() {
+		let canvas = document.getElementById('mycanvas');
+		canvas.width = 800;
+		canvas.height = 400;
+		let context = canvas.getContext('2d');
+
+		context.font = '40px 宋体';
+		context.fillText('申锦祥', 0, 40);
+
+		context.beginPath();
+		context.lineTo(400, 0);
+		context.lineTo(400, 400);
+		context.closePath();
+		context.stroke();
+
+		context.beginPath();
+		context.lineTo(0, 200);
+		context.lineTo(800, 200);
+		context.closePath();
+		context.stroke();
+
 })();
