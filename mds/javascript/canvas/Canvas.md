@@ -33,3 +33,4 @@
  7.1. [线性渐变](./Canvas填充样式.md#线性渐变)    
  7.2. [径向渐变](./Canvas填充样式.md#径向渐变)    
  7.3. [使用画布、图片或者video](./Canvas填充样式.md#使用画布图片或者video)    
+8. [Canvas文字渲染](./Canvas文字渲染.md#canvas文字渲染)    
