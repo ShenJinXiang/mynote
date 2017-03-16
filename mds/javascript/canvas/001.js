@@ -93,6 +93,7 @@
 	}
 })();
 */
+/*
 (function() {
 		let canvas = document.getElementById('mycanvas');
 		canvas.width = 800;
@@ -104,4 +105,49 @@
 		
 		context.font = '50px Arial';
 		context.fillText('www.shenjinxiang.com', 100, 150);
+})();
+*/
+/*
+(function () {
+	let str = 'www.shenjinxiang.com';
+
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 200;
+	let context = canvas.getContext('2d');
+
+	// 纯色
+	context.fillStyle = '#058';
+	context.font = 'bold 50px Arial';
+	context.fillText(str, 100, 70);
+
+	// 渐变色
+	let gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop(0, 'magenta');
+	gradient.addColorStop(0.5, 'blue');
+	gradient.addColorStop(1, 'red');
+	context.fillStyle = gradient;
+	context.fillText(str, 100, 170);
+})();
+*/
+(function () {
+	let str = 'www.shenjinxiang.com';
+
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 200;
+	let context = canvas.getContext('2d');
+
+	// 纯色
+	context.strokeStyle = '#058';
+	context.font = 'bold 50px Arial';
+	context.strokeText(str, 100, 70);
+
+	// 渐变色
+	let gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop(0, 'magenta');
+	gradient.addColorStop(0.5, 'blue');
+	gradient.addColorStop(1, 'red');
+	context.strokeStyle = gradient;
+	context.strokeText(str, 100, 170);
 })();

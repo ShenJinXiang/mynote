@@ -34,4 +34,6 @@
  7.2. [径向渐变](./Canvas填充样式.md#径向渐变)    
  7.3. [使用画布、图片或者video](./Canvas填充样式.md#使用画布图片或者video)    
 8. [Canvas文字渲染](./Canvas文字渲染.md#canvas文字渲染)    
- 8.1. [fillText()方法](./Canvas文字渲染.md#fillText方法)    
+ 8.1. [fillText()方法](./Canvas文字渲染.md#filltext方法)    
+ 8.2. [strokeText()方法](./Canvas文字渲染.md#stroketext方法)    
+ 8.3. [设置文本位置](./Canvas文字渲染.md#设置文本位置)    

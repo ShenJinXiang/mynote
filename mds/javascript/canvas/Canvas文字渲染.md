@@ -27,4 +27,72 @@ fillText()方法的参数也很好理解，第一个参数为需要渲染的文�
 
 ![](./images/00043.png)
 
+这样简单的文字渲染效果就出来了，上面提到过可以使用fillStyle来设置填充的样式，代码：
+
+```javascript
+(function () {
+	let str = 'www.shenjinxiang.com';
+
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 200;
+	let context = canvas.getContext('2d');
+
+	// 纯色
+	context.fillStyle = '#058';
+	context.font = 'bold 50px Arial';
+	context.fillText(str, 100, 70);
+
+	// 渐变色
+	let gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop(0, 'magenta');
+	gradient.addColorStop(0.5, 'blue');
+	gradient.addColorStop(1, 'red');
+	context.fillStyle = gradient;
+	context.fillText(str, 100, 170);
+})();
+```
+
+效果：
+
+![](./images/00044.png)
+
+采用了纯色和渐变色绘制的一段文字，当然也可以使用外部图片或者其他canvas作为背景填充
+
+## strokeText()方法
+CanvasRenderingContext2D的strokeText()方法的与fillText()差不多，唯一的区别在于fillText()方法是填充一段文本，而strokeText()方法是绘制文本的描边，同样的可以设置strokeStyle属性来着是样式，直接来代码：
+
+```javascript
+(function () {
+	let str = 'www.shenjinxiang.com';
+
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 200;
+	let context = canvas.getContext('2d');
+
+	// 纯色
+	context.strokeStyle = '#058';
+	context.font = 'bold 50px Arial';
+	context.strokeText(str, 100, 70);
+
+	// 渐变色
+	let gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop(0, 'magenta');
+	gradient.addColorStop(0.5, 'blue');
+	gradient.addColorStop(1, 'red');
+	context.strokeStyle = gradient;
+	context.strokeText(str, 100, 170);
+})();
+```
+
+效果：
+
+![](./images/00045.png)
+
+基本和上一个例子中的代码一样的，只是将fillText改成strokeText、将fillStyle改成strokeStyle，可以看到strokeText的效果
+
+## 设置文本位置
+
+
 
