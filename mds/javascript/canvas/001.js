@@ -130,6 +130,7 @@
 	context.fillText(str, 100, 170);
 })();
 */
+/*
 (function () {
 	let str = 'www.shenjinxiang.com';
 
@@ -150,4 +151,34 @@
 	gradient.addColorStop(1, 'red');
 	context.strokeStyle = gradient;
 	context.strokeText(str, 100, 170);
+})();
+*/
+(function() {
+	let str = 'shenjinxiang';
+
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 700;
+	let context = canvas.getContext('2d');
+
+	context.strokeStyle = '#aaa';
+	context.moveTo(canvas.width / 2, 0);
+	context.lineTo(canvas.width / 2, canvas.height);
+	context.stroke();
+
+	var aligns = ['start', 'end', 'center', 'left', 'right'];
+
+	for (var i = 0; i < aligns.length; i++) {
+		context.fillStyle = '#084';
+		context.font = 'bold 50px Arial';
+		context.textAlign = aligns[i];
+		context.fillText(str, canvas.width / 2, (i + 1) * 120);
+
+		context.beginPath();
+		context.lineTo(0, (i + 1) * 120);
+		context.lineTo(canvas.width, (i + 1) * 120);
+		context.closePath();
+		context.stroke();
+	}
+
 })();

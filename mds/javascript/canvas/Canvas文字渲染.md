@@ -93,6 +93,51 @@ CanvasRenderingContext2D的strokeText()方法的与fillText()差不多，唯一�
 基本和上一个例子中的代码一样的，只是将fillText改成strokeText、将fillStyle改成strokeStyle，可以看到strokeText的效果
 
 ## 设置文本位置
+关于文字的渲染还有一些细节，比如文字的位置，在fillText()方法和strokeText()方法的第二个、第三个参数指定了文字渲染的位置。另外CanvasRenderingContext2D提供了另外两个属性：textAlign属性和textBaseline属性
 
+### textAlign 属性
+textAlign属性指定了文字在水平方向的对齐方式，与fillText()或strokeText()方法的第二个参数x相关，textAlign属性值：
 
+|值|描述|
+|:--|:--|
+|start|默认。文本在指定的位置开始|
+|end|文本在指定的位置结束|
+|center|文本的中心被放置在指定的位置|
+|left|文本左对齐|
+|right|文本右对齐|
 
+```javascript
+(function() {
+	let str = 'shenjinxiang';
+
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 700;
+	let context = canvas.getContext('2d');
+
+	context.strokeStyle = '#aaa';
+	context.moveTo(canvas.width / 2, 0);
+	context.lineTo(canvas.width / 2, canvas.height);
+	context.stroke();
+
+	var aligns = ['start', 'end', 'center', 'left', 'right'];
+
+	for (var i = 0; i < aligns.length; i++) {
+		context.fillStyle = '#084';
+		context.font = 'bold 50px Arial';
+		context.textAlign = aligns[i];
+		context.fillText(str, canvas.width / 2, (i + 1) * 120);
+
+		context.beginPath();
+		context.lineTo(0, (i + 1) * 120);
+		context.lineTo(canvas.width, (i + 1) * 120);
+		context.closePath();
+		context.stroke();
+	}
+
+})();
+```
+
+效果：
+
+![](./images/00046.png)
