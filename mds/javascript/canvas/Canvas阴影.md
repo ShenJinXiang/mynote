@@ -1,0 +1,11 @@
+# Canvas阴影
+canvas中同样可以绘制阴影，绘制阴影的时候，并不需要像绘制线条和填充一样调用专门的方法去绘制，而是设置阴影相关的一些属性，当调用fill或者stroke方法绘制图形的时候，阴影就绘制出来了，阴影相关的属性有：
+
+* CanvasRenderingContext2D.shadowColor
+* CanvasRenderingContext2D.shadowOffsetX
+* CanvasRenderingContext2D.shadowOffsetY
+* CanvasRenderingContext2D.shadowBlur
+
+1. CanvasRenderingContext2D对象的shadowColor属性指定了阴影的颜色，属性值可以是任意的css中可接受的颜色值，甚至可以是有一定透明度的颜色，默认值为'#000000'
+2. CanvasRenderingContext2D对象的shadowOffsetX和shadowOffsetY属性指定了阴影在x和y轴方向的偏移量，默认为0，即没有偏移量，当shadowOffsetX的值设置为正数，阴影会向右（x轴正方向）便宜设置的像素。如果为负数，则像相反的方向便宜，对于shadowOffsetY属性也是类似的，值为正数表示向下偏移，负数表示向上偏移
+3. CanvasRenderingContext2D对象的shadowBlur属性用于设置阴影的模糊等级，默认为0，即不模糊
