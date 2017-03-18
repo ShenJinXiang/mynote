@@ -161,7 +161,8 @@
 	canvas.height = 700;
 	let context = canvas.getContext('2d');
 
-	context.strokeStyle = '#aaa';
+	context.lineWidth = 1;
+	context.strokeStyle = '#eee';
 	context.moveTo(canvas.width / 2, 0);
 	context.lineTo(canvas.width / 2, canvas.height);
 	context.stroke();
