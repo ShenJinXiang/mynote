@@ -157,3 +157,45 @@ textBaseline属性指定了文字在竖直方向的对齐方式，与fillText()�
 |ideographic|文本基线是表意基线|
 |bottom|文本基线是 em 方框的底端|
 
+```javascript
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 1200;
+	canvas.height = 200;
+	let context = canvas.getContext('2d');
+
+	context.lineWidth = 1;
+	context.strokeStyle = '#eee';
+	context.moveTo(0, canvas.height / 2);
+	context.lineTo(canvas.width, canvas.height / 2);
+	context.stroke();
+
+	var bls = ['alphabetic', 'top', 'hanging', 'middle', 'ideographic', 'bottom'];
+
+	context.fillStyle = '#084';
+	context.font = 'bold 40px Arial';
+
+	context.textBaseline = 'alphabetic';
+	context.fillText('alphabetic', 20, canvas.height / 2);
+
+	context.textBaseline = 'top';
+	context.fillText('top', 230, canvas.height / 2);
+
+	context.textBaseline = 'hanging';
+	context.fillText('hanging', 320, canvas.height / 2);
+
+	context.textBaseline = 'middle';
+	context.fillText('middle', 520, canvas.height / 2);
+
+	context.textBaseline = 'ideographic';
+	context.fillText('ideographic', 720, canvas.height / 2);
+
+	context.textBaseline = 'bottom';
+	context.fillText('bottom', 1000, canvas.height / 2);
+
+})();
+```
+
+效果：
+
+![](./images/00047.png)

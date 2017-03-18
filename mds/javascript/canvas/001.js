@@ -206,18 +206,18 @@
 	context.fillText('alphabetic', 20, canvas.height / 2);
 
 	context.textBaseline = 'top';
-	context.fillText('top', 280, canvas.height / 2);
+	context.fillText('top', 230, canvas.height / 2);
 
 	context.textBaseline = 'hanging';
-	context.fillText('hanging', 400, canvas.height / 2);
+	context.fillText('hanging', 320, canvas.height / 2);
 
 	context.textBaseline = 'middle';
-	context.fillText('middle', 580, canvas.height / 2);
+	context.fillText('middle', 520, canvas.height / 2);
 
 	context.textBaseline = 'ideographic';
-	context.fillText('ideographic', 780, canvas.height / 2);
+	context.fillText('ideographic', 720, canvas.height / 2);
 
 	context.textBaseline = 'bottom';
-	context.fillText('bottom', 980, canvas.height / 2);
+	context.fillText('bottom', 1000, canvas.height / 2);
 
 })();
