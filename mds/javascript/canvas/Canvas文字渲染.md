@@ -115,16 +115,17 @@ textAlign属性指定了文字在水平方向的对齐方式，与fillText()或s
 	canvas.height = 700;
 	let context = canvas.getContext('2d');
 
-	context.strokeStyle = '#aaa';
+	context.lineWidth = 1;
+	context.strokeStyle = '#eee';
 	context.moveTo(canvas.width / 2, 0);
 	context.lineTo(canvas.width / 2, canvas.height);
 	context.stroke();
 
 	var aligns = ['start', 'end', 'center', 'left', 'right'];
 
+	context.fillStyle = '#084';
+	context.font = 'bold 50px Arial';
 	for (var i = 0; i < aligns.length; i++) {
-		context.fillStyle = '#084';
-		context.font = 'bold 50px Arial';
 		context.textAlign = aligns[i];
 		context.fillText(str, canvas.width / 2, (i + 1) * 120);
 
@@ -141,3 +142,18 @@ textAlign属性指定了文字在水平方向的对齐方式，与fillText()或s
 效果：
 
 ![](./images/00046.png)
+
+使用aligns变量记录了textAlign的各种值，从上到下一次绘制文字，fillText()方法的x参数值一只为canvas的宽度的一半也就是在画布的垂直中心线上，另外绘制了一些辅助线，便于更直观的观察结果
+
+### textBaseline 属性
+textBaseline属性指定了文字在竖直方向的对齐方式，与fillText()或strokeText()方法的第三个参数y相关，textBaseline属性值：
+
+|值|描述|
+|:--|:--|
+|alphabetic|默认。文本基线是普通的字母基线|
+|top|文本基线是 em 方框的顶端|
+|hanging|文本基线是悬挂基线|
+|middle|文本基线是 em 方框的正中|
+|ideographic|文本基线是表意基线|
+|bottom|文本基线是 em 方框的底端|
+
