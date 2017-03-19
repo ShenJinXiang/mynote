@@ -185,6 +185,7 @@
 
 })();
 */
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 1200;
@@ -219,5 +220,64 @@
 
 	context.textBaseline = 'bottom';
 	context.fillText('bottom', 1000, canvas.height / 2);
+})();
+*/
 
+/*
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	context.shadowColor = 'gray';
+	context.shadowOffsetX = 10;
+	context.shadowOffsetY = 10;
+	context.shadowBlur = 5;
+
+	context.fillStyle = '#058';
+	context.fillRect(200, 200, 400, 400);
+})();
+*/
+/*
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	context.shadowColor = 'green';
+	context.shadowOffsetX = -400;
+	context.shadowOffsetY = -400;
+	context.shadowBlur = 0;
+
+	context.fillStyle = '#058';
+	context.fillRect(400, 400, 400, 400);
+})();
+*/
+
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 300;
+	let context = canvas.getContext('2d');
+
+	context.fillStyle = '#058';
+	context.font = "bold 50px Arial";
+	context.textAlign = 'center';
+	context.textBaseline = 'middle';
+
+	context.shadowColor = '#aaa';
+	context.shadowOffsetX = 5;
+	context.shadowOffsetY = 5;
+	context.shadowBlur = 2;
+	context.fillText('申锦祥', 400, 100);
+
+	context.strokeStyle = '#058';
+	context.lineWidth = 2;
+	context.shadowColor = '00f7ff';
+	context.shadowOffsetX = 0;
+	context.shadowOffsetY = 0;
+	context.shadowBlur = 5;
+	context.strokeText('www.shenjinxiang.com', 400, 180);
 })();
