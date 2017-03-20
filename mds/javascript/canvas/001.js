@@ -256,6 +256,7 @@
 })();
 */
 
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 800;
@@ -280,4 +281,18 @@
 	context.shadowOffsetY = 0;
 	context.shadowBlur = 5;
 	context.strokeText('www.shenjinxiang.com', 400, 180);
+})();
+*/
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 100;
+	canvas.height = 100;
+	let context = canvas.getContext('2d');
+	
+	context.textAlign = 'center';
+	context.textBaseline = 'middle';
+	context.font = 'bold 100px Arial';
+	context.fillText('A', canvas.width / 2, canvas.height / 2);
+
+	context.getImageData(0, 0, canvas.width, canvas.height);
 })();
