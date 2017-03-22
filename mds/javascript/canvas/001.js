@@ -343,7 +343,6 @@
 	draw();
 
 	function draw() {
-		context.restore();
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
 		context.fillStyle = '#000';
@@ -357,6 +356,7 @@
 		context.clip();
 
 		drawGQ();
+		context.restore();
 	}
 
 	function drawGQ() {
@@ -397,3 +397,16 @@
 		context.restore();
 	}
 })();
+/*
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	context.fillStyle = '#058';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+
+	context.clearRect(100, 100, 300, 400);
+})();
+*/
