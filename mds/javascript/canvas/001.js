@@ -283,6 +283,7 @@
 	context.strokeText('www.shenjinxiang.com', 400, 180);
 })();
 */
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 100;
@@ -295,4 +296,41 @@
 	context.fillText('A', canvas.width / 2, canvas.height / 2);
 
 	context.getImageData(0, 0, canvas.width, canvas.height);
+})();
+*/
+
+/*
+(function() {
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+	context.fillStyle = '#000';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	context.beginPath();
+	context.arc(canvas.width / 2, canvas.height / 2, 200, 0, 2 * Math.PI, false);
+	context.fillStyle = '#fff';
+	context.fill();
+	context.clip();
+
+	context.font = 'bold 200px Arial';
+	context.textAlign = 'center';
+	context.textBaseline = 'middle';
+	context.fillStyle = '048';
+	context.fillText('CANVAS', canvas.width / 2, canvas.height / 2);
+})();
+*/
+(function() {
+	
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = 800;
+	canvas.height = 800;
+	let context = canvas.getContext('2d');
+
+
+	context.fillStyle = '#000';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
 })();
