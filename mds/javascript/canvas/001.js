@@ -322,6 +322,7 @@
 	context.fillText('CANVAS', canvas.width / 2, canvas.height / 2);
 })();
 */
+/*
 (function() {
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = 660;
@@ -397,6 +398,7 @@
 		context.restore();
 	}
 })();
+*/
 /*
 (function() {
 	let canvas = document.getElementById('mycanvas');
@@ -410,3 +412,54 @@
 	context.clearRect(100, 100, 300, 400);
 })();
 */
+(function (){
+	let canvas = document.getElementById('mycanvas');
+	canvas.width = window.innerWidth;
+	canvas.height = window. innerHeight;
+	let context = canvas.getContext('2d');
+
+	let config = {
+		num: 20,
+		minr: 10,
+		maxr: 40,
+		bcolor: '#058',
+		ccolor: 'red'
+	};
+
+	let balls = [];
+	let box = canvas.getBoundingClientRect();
+
+	init();
+	function init() {
+		for (let i = 0; i < config.num; i++) {
+			balls[i] = {
+				x: Math.random() * canvas.width,
+				y: Math.random() * canvas.height,
+				r: Math.random() * (config.maxr - config.minr) + config.minr
+			};
+		}
+		draw();
+	}
+
+	canvas.addEventListener('mousemove', draw, false);
+
+	function draw(e) {
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		let x = -1000, y = -1000;
+		if (e) {
+			x = e.clientX - box.left;
+			y = e.clientY - box.top;
+		}
+		for (let i = 0; i < balls.length; i++) {
+			context.beginPath();
+			context.arc(balls[i].x, balls[i].y, balls[i].r, 0, 2 * Math.PI, false);
+			if (context.isPointInPath(x, y)) {
+				context.fillStyle = config.ccolor;
+			} else {
+				context.fillStyle = config.bcolor;
+			}
+			context.fill();
+			context.closePath();
+		}
+	}
+})();
