@@ -1,4 +1,8 @@
 # Note
+<style>
+table th:nth-of-type(2) {width: 20%;}
+table th:nth-of-type(2) {width: 20%;}
+</style>
 ## 申锦祥
 > 8500 (2017-03-08)
 
