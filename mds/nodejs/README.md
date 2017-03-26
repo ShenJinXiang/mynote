@@ -9,7 +9,7 @@
 3. [Node.js模块和包](./Node.js模块和包.md#nodejs模块和包)    
  3.1. [创建模块和加载模块](./Node.js模块和包.md#创建模块和加载模块)    
  3.2. [包](./Node.js模块和包.md#包)    
- 3.3. [Node.js包管理器 npm](./Node.js模块和包.md#Node.js包管理器-npm)    
+ 3.3. [Node.js包管理器 npm](./Node.js模块和包.md#nodejs包管理器-npm)    
 4. [事件处理](./Node.js中的事件处理.md#nodejs中的事件处理)    
  4.1. [例子](./Node.js中的事件处理.md#一个简单的例子)    
  4.2. [EventEmitter常用API](./Node.js中的事件处理.md#eventemitter常用api)    
