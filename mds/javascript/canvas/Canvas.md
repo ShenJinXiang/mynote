@@ -39,3 +39,4 @@
  8.3. [设置文本位置](./Canvas文字渲染.md#设置文本位置)    
 9. [Canvas阴影](./Canvas阴影.md#canvas阴影)    
 10. [Canvas剪辑区域](./Canvas剪辑区域.md#canvas剪辑区域)    
+11. [Canvas交互](./Canvas交互.md#canvas交互)    

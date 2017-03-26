@@ -418,11 +418,12 @@
 	canvas.height = window. innerHeight;
 	let context = canvas.getContext('2d');
 
+	// 配置信息
 	let config = {
 		num: 20,
 		minr: 10,
 		maxr: 40,
-		bcolor: '#058',
+		bcolor: '#059',
 		ccolor: 'red'
 	};
 
@@ -430,6 +431,8 @@
 	let box = canvas.getBoundingClientRect();
 
 	init();
+
+	// 初始化
 	function init() {
 		for (let i = 0; i < config.num; i++) {
 			balls[i] = {
@@ -441,7 +444,13 @@
 		draw();
 	}
 
+	// 绑定事件
 	canvas.addEventListener('mousemove', draw, false);
+	window.onresize = function () {
+		init();
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+	};
 
 	function draw(e) {
 		context.clearRect(0, 0, canvas.width, canvas.height);
