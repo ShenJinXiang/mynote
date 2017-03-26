@@ -436,8 +436,8 @@
 	function init() {
 		for (let i = 0; i < config.num; i++) {
 			balls[i] = {
-				x: Math.random() * canvas.width,
-				y: Math.random() * canvas.height,
+				x: config.maxr + Math.random() * (canvas.width - 2 * config.maxr),
+				y: config.maxr + Math.random() * (canvas.height - 2 * config.maxr),
 				r: Math.random() * (config.maxr - config.minr) + config.minr
 			};
 		}
