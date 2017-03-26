@@ -7,3 +7,4 @@
 * [background](http://www.shenjinxiang.com/pages/mydemo/canvas/background/index.html)    
 * [探照灯](http://www.shenjinxiang.com/pages/mydemo/canvas/clip/index.html)
 * [模糊](http://www.shenjinxiang.com/pages/mydemo/canvas/blur/index.html)
+* [放大镜](http://www.shenjinxiang.com/pages/mydemo/canvas/magnifier/index.html)
