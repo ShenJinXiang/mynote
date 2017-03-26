@@ -77,4 +77,4 @@ isPointInPath()方法接受两个参数x、y，检查在画布中(x, y)坐标是
 
 ![](./images/00057.png)
 
-具体的效果点[这里](http://www.shenjinxiang.com/pages/mydemo)
+具体的效果点[这里](http://www.shenjinxiang.com/pages/mydemo/canvas/isPointInPath/index.html)
