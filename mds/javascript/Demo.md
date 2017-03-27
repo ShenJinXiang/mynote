@@ -9,3 +9,4 @@
 * [模糊](http://www.shenjinxiang.com/pages/mydemo/canvas/blur/index.html)
 * [放大镜](http://www.shenjinxiang.com/pages/mydemo/canvas/magnifier/index.html)
 * [isPointInPath](http://www.shenjinxiang.com/pages/mydemo/canvas/isPointInPath/index.html)
+* [图片缩放](http://www.shenjinxiang.com/pages/mydemo/canvas/zoom/index.html)
