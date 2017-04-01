@@ -40,3 +40,5 @@
 9. [Canvas阴影](./Canvas阴影.md#canvas阴影)    
 10. [Canvas剪辑区域](./Canvas剪辑区域.md#canvas剪辑区域)    
 11. [Canvas交互](./Canvas交互.md#canvas交互)    
+12. [Canvas绘制图像](./Canvas绘制图像.md#canvas绘制图像)    
+ 12.1 [drawImage()方法](./Canvas绘制图像.md#drawImage方法)    
