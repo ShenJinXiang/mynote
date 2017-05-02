@@ -8,3 +8,4 @@
 * [javascript](./mds/javascript/README.md)
 * [vim](./mds/vim/README.md)
 * [书单](./mds/books/books.md)
+* [note](./mds/note/READMD.md)    
