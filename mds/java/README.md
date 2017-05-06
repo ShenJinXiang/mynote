@@ -40,3 +40,4 @@
 10. [字符串工具](./字符串工具.md#字符串工具)    
 11. [JFinal框架解读](./JFinal框架/README.md)    
 12. [MyBatis](./MyBatis/README.md)    
+13. [设计模式](./设计模式/README.md)    
