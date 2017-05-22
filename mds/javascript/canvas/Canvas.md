@@ -42,3 +42,4 @@
 11. [Canvas交互](./Canvas交互.md#canvas交互)    
 12. [Canvas绘制图像](./Canvas绘制图像.md#canvas绘制图像)    
  12.1 [drawImage()方法](./Canvas绘制图像.md#drawImage方法)    
+13. [Canvas图片像素操作](./Canvas图片像素操作.md#Canvas图片像素操作)    

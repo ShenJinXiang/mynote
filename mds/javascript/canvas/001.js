@@ -411,7 +411,6 @@
 
 	context.clearRect(100, 100, 300, 400);
 })();
-*/
 (function (){
 	let canvas = document.getElementById('mycanvas');
 	canvas.width = window.innerWidth;
@@ -471,4 +470,40 @@
 			context.closePath();
 		}
 	}
+})();
+*/
+
+(function() {
+		var srcCanvas = document.getElementById('srcCanvas');
+		var toCanvas = document.getElementById('toCanvas');
+		srcCanvas.width = toCanvas.width = 700;
+		srcCanvas.height = toCanvas.height = 500;
+		var srcContext = srcCanvas.getContext('2d');
+		var toContext = toCanvas.getContext('2d');
+		var btn = document.getElementById('btn');
+
+		var img = new Image();
+		img.src = './timg.jpg';
+		img.onload = function() {
+			console.log(img.width);
+			console.log(img.height);
+			srcContext.drawImage(img, 0, 0, srcCanvas.width, srcCanvas.height);
+		};
+
+		btn.onclick = function() {
+			var imgData = srcContext.getImageData(0, 0, srcCanvas.width, srcCanvas.height);
+			for (var i = 0; i < srcCanvas.height; i++) {
+				for (var j = 0; j < srcCanvas.width; j++) {
+					var d0 = imgData['data'][(i * srcCanvas.width + j) * 4 + 0];
+					var d1 = imgData['data'][(i * srcCanvas.width + j) * 4 + 1];
+					var d2 = imgData['data'][(i * srcCanvas.width + j) * 4 + 2];
+					var d = (d0 + d1 + d2) / 3
+					imgData['data'][(i * srcCanvas.width + j) * 4 + 0] = d2;
+					imgData['data'][(i * srcCanvas.width + j) * 4 + 1] = d0;
+					imgData['data'][(i * srcCanvas.width + j) * 4 + 2] = d1;
+				}
+			}
+			console.log(imgData);
+			toContext.putImageData(imgData, 0, 0);
+		}
 })();
