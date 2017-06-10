@@ -39,3 +39,6 @@ insert into cst_zhq (id,zsxm_dm,nsqx_dm,sbyf,sbqr,sbzr) values(uuid(),'10101','0
 ```
 3. 添加 清卡日期和申报日期的小页面
 4. 添加通过税号获取会员等级和卡号的接口
+
+## 2017-06-10
+1. cst_sx.sys_org表添加yys_id 字段
