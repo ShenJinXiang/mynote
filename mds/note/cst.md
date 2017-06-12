@@ -42,3 +42,24 @@ insert into cst_zhq (id,zsxm_dm,nsqx_dm,sbyf,sbqr,sbzr) values(uuid(),'10101','0
 
 ## 2017-06-10
 1. cst_sx.sys_org表添加yys_id 字段
+
+## 2017-06-12
+1. 财税通后台 机构管理中添加运营商信息的维护，一级机构对应top_area的省信息，二级机构对应top_yys的信息
+2. 数据库中添加视图
+```sql
+CREATE ALGORITHM = UNDEFINED DEFINER = `root`@`%` SQL SECURITY DEFINER VIEW `zkx_yys` AS SELECT
+	`a`.`id` AS `id`,
+	`a`.`name` AS `name`,
+	`a`.`pid` AS `pid`
+FROM
+	`zkx`.`top_area` `a`
+WHERE
+	(`a`.`pid` = 0)
+UNION ALL
+	SELECT
+		`b`.`id` AS `id`,
+		`b`.`yys_name` AS `name`,
+		`b`.`area_id` AS `pid`
+	FROM
+		`zkx`.`top_yys` `b`
+```
