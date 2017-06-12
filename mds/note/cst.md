@@ -63,3 +63,24 @@ UNION ALL
 	FROM
 		`zkx`.`top_yys` `b`
 ```
+3. 创建数据库表 cst_prepare_user
+```sql
+CREATE TABLE `cst_prepare_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `gid` int(4) NOT NULL DEFAULT '3' COMMENT '会员等级，默认为银卡',
+  `username` varchar(60) NOT NULL COMMENT '用户名',
+  `password` varchar(45) DEFAULT NULL COMMENT '密码',
+  `province` varchar(20) DEFAULT NULL COMMENT '省信息 对应top_area ',
+  `yys_id` int(11) DEFAULT NULL COMMENT '运营商id 对应top_yys',
+  `yxts` int(11) DEFAULT '365' COMMENT '有效天数',
+  `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `confirm` tinyint(1) DEFAULT '0' COMMENT '确认状态 0 确认  1 已确认',
+  `create_userid` varchar(20) DEFAULT NULL COMMENT '创建人id 对应 cst_sx.sys_user',
+  `confirm_userid` varchar(20) DEFAULT NULL COMMENT '确认人id 对应 cst_sx.sys_user',
+  `yxbz` tinyint(1) DEFAULT '1' COMMENT '有效标志 0 无效 1有效 ',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='注册会员，经确认后进入top_user表';
+```
+4. top_user表的type字段添加注释
+5. top_area 表添加simple_name（拼音简称）字段，用于生成会员用户名
+6. 资源中配置了注册码生成和注册码查询的地址
