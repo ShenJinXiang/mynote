@@ -84,3 +84,45 @@ CREATE TABLE `cst_prepare_user` (
 4. top_user表的type字段添加注释
 5. top_area 表添加simple_name（拼音简称）字段，用于生成会员用户名
 6. 资源中配置了注册码生成和注册码查询的地址
+
+# 2017-06-13
+1. 创建视图 zkx_prepare_user
+```aql
+create view `zkx_prepare_user` as
+select 
+  a.id,
+  a.gid,
+  a.username,
+  a.password,
+  a.province,
+  (select zkx_yys.name from zkx_yys where zkx_yys.id = a.province) province_name,
+  a.yys_id,
+  (select zkx_yys.name from zkx_yys where zkx_yys.id = a.yys_id) yys_name,
+  a.yxts,
+  a.createTime,
+  a.create_userid,
+  (select sys_user.name from sys_user where sys_user.id = a.create_userid) create_username,
+  a.confirm,
+  a.confirm_time,
+  a.confirm_userid,
+  (select sys_user.name from sys_user where sys_user.id = a.confirm_userid) confirm_username,
+  (select c.id from zkx.top_user c where c.username = a.username limit 1) uid,
+  (select c.activate from zkx.top_user c where c.username = a.username limit 1) activate,
+  (select c.createtime from zkx.top_user_activate_log c where c.username = a.username limit 1) active_time,
+  a.yxbz
+from zkx.cst_prepare_user a
+```
+2. top_user表 createtime 和 endtime 字段改为date类型
+3. 创建 用户激活日志表top_user_activate_log
+```sql
+CREATE TABLE `top_user_activate_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(20) DEFAULT NULL COMMENT '用户id 对应 top_user.id',
+  `username` varchar(255) DEFAULT NULL COMMENT '用户名 对应 top_user.username',
+  `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '激活时间',
+  `ip` varchar(255) DEFAULT NULL COMMENT 'ip地址',
+  `type` tinyint(4) DEFAULT NULL COMMENT '终端类型 1（网站） 2（微信） 3（安卓端） 4 （ios）',
+  `yys_id` int(11) DEFAULT NULL COMMENT '运营商id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户激活日志表';
+```
