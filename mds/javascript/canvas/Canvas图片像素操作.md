@@ -37,6 +37,23 @@ imgData.data[7]=255;
 ```
 由于一个像素点需要四个连续的元素来表示其RGBA信息，所以data属性必然包含`width * height * 4`个元素
 
+第i个像素的rgba的值分别为：
+```javascript
+imgData.data[4 * i + 0]  // r
+imgData.data[4 * i + 1]  // g
+imgData.data[4 * i + 2]  // b
+imgData.data[4 * i + 3]  // a
+```
+
+第x行第y列的项目的rgba的值分别为：
+```javascript
+var i = x * width + y;
+imgData.data[4 * i + 0]  // r
+imgData.data[4 * i + 1]  // g
+imgData.data[4 * i + 2]  // b
+imgData.data[4 * i + 3]  // a
+```
+
 ## getImageData() 方法
 CanvasRenderingContext2D对象的`getImageData()`方法可以获取Canvas中指定矩形区域的像素数据，返回ImageData对象
 
