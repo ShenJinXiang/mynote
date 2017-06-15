@@ -85,7 +85,7 @@ CREATE TABLE `cst_prepare_user` (
 5. top_area 表添加simple_name（拼音简称）字段，用于生成会员用户名
 6. 资源中配置了注册码生成和注册码查询的地址
 
-# 2017-06-13
+## 2017-06-13
 1. 创建视图 zkx_prepare_user
 ```aql
 create view `zkx_prepare_user` as
@@ -126,3 +126,9 @@ CREATE TABLE `top_user_activate_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户激活日志表';
 ```
+
+## 2017-06-14
+1. 完成注册用户发放模块中 批量生成注册用户
+2. 完成注册用户发放模块中 批量删除注册用户(修改yxbz字段)
+3. zkx.cst_prepare_user 中添加gname字段
+4. 完成注册用户查询中批量确认功能
