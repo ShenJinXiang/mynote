@@ -143,3 +143,7 @@ CREATE TABLE `top_user_activate_log` (
 1. 将之前做好的部分部署至服务器上测试
 2. 消息表service_news 添加省份 地区 运营商信息的字段
 3. 消息管理模块，页面展示 搜索
+
+## 2017-06-21
+1. cst_sx.service_newspublish_con表添加yys_id字段
+2. 消息管理 新增 修改 查看 发布 查看发布情况 取消发布等功能
