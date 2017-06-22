@@ -147,3 +147,10 @@ CREATE TABLE `top_user_activate_log` (
 ## 2017-06-21
 1. cst_sx.service_newspublish_con表添加yys_id字段
 2. 消息管理 新增 修改 查看 发布 查看发布情况 取消发布等功能
+
+## 2017-06-22
+1. 修改登录页面、主页面的图片
+2. 添加dm_qq_province和dm_qq_yys表用于维护运营商对应的qq地址和省份对应的默认qq跳转地址
+3. qq跳转接口，适应外省用户
+4. 完成消息接口的修改
+5. 修改消息发布，如果为外省消息，不能选择全部纳税人选项
