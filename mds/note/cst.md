@@ -154,3 +154,48 @@ CREATE TABLE `top_user_activate_log` (
 3. qq跳转接口，适应外省用户
 4. 完成消息接口的修改
 5. 修改消息发布，如果为外省消息，不能选择全部纳税人选项
+
+## 2017-06-23
+1. 正式数据库中cst_sx.service_news表添加字段province、area、yys_id
+2. 正式数据库中cst_sx.service_newspublish_con添加字段yys_id
+3. 正式数据库cst_sx中创建表dm_qq_province:
+```sql
+CREATE TABLE `dm_qq_province` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `province` int(11) DEFAULT NULL COMMENT '省id 对应zkx.top_area.id 其中的省份信息',
+  `province_name` varchar(255) DEFAULT NULL COMMENT '省份名称',
+  `url` varchar(255) DEFAULT NULL COMMENT 'qq url地址',
+  `yxbz` tinyint(1) DEFAULT '1' COMMENT '有效标志 1 有效 0 无效',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+4. 正式数据库cst_sx中创建表dm_qq_yys：
+```sql
+CREATE TABLE `dm_qq_yys` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `yys_id` int(11) DEFAULT NULL COMMENT '运营商id 对应zkx.top_yys.id',
+  `yys_name` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT 'qq地址',
+  `yxbz` tinyint(1) DEFAULT '1' COMMENT '有效标志 1 有效 0无效',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+5. 初始化dm_qq_province数据:
+```sql
+insert into dm_qq_province
+(`province`, `province_name`, `url`)
+select 
+	id, name, 'http://wpa.qq.com/msgrd?v=3&uin=2850900674&site=qq&menu=yes'
+from zkx.top_area 
+where pid = 0
+```
+6. 初始化dm_qq_yys数据：
+```sql
+insert into dm_qq_yys
+(`yys_id`, `yys_name`, `url`)
+select 
+id, yys_name, 'http://wpa.qq.com/msgrd?v=3&uin=2850900674&site=qq&menu=yes'
+from zkx.top_yys
+```
+7. 安装财税通客户端，测试登录接口和消息推送接口的准确性
+8. 修改注册码发放页面的“生成注册码”按钮为“生成会员卡”
