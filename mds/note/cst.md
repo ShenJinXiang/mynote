@@ -227,3 +227,18 @@ delete from top_user_meta where uid in (
 
 delete  from top_user_activate_log
 ```
+
+5. 电子申报平台，将清卡征期小页面从财税通服务端移至财税服务后台管理系统中
+6. 创建公告表cst_gonggao
+```sql
+CREATE TABLE `cst_gonggao` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL COMMENT '公告标题',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `content` text COMMENT '公告内容',
+  `create_uid` varchar(20) DEFAULT NULL COMMENT '创建人',
+  `yxbz` tinyint(1) NOT NULL DEFAULT '1' COMMENT '有效标志 1-有效 0-无效',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+7. 公告模块做了一部分，先暂停
