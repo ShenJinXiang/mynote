@@ -200,3 +200,30 @@ from zkx.top_yys
 7. 安装财税通客户端，测试登录接口和消息推送接口的准确性
 8. 修改注册码发放页面的“生成注册码”按钮为“生成会员卡”
 9. 修改static/css/theme2.css top_right 宽度为270px(原来是260)
+
+## 2017-06-26
+1. 修改机构管理中存在的bug（修改后无法回填数据，回填的数据有误）
+2. 内蒙航天信息联系人：赵雪（153-4717-8820）
+3. 登录统计模块，添加按所属省份、行政区域（或运营商）统计
+
+# 2017-06-27
+1. 注册码查询页面，添加全部确认功能
+2. 将服务器上财税服务后台管理系统链接的数据库改为测试数据库（用于郭伟那边测试）
+3. 修改消息管理页面添加一个提醒文本，当所属省为山西的时候，显示提示信息
+4. 清楚现有的正式数据库中的无效数据
+```sql
+delete FROM `cst_prepare_user`
+
+delete from top_user where username in (
+	select username from cst_prepare_user 
+)
+
+delete from top_user_meta where uid in (
+
+	select id from top_user where username in (
+		select username from cst_prepare_user 
+	)
+)
+
+delete  from top_user_activate_log
+```
