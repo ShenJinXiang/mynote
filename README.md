@@ -9,3 +9,4 @@
 * [vim](./mds/vim/README.md)
 * [书单](./mds/books/books.md)
 * [note](./mds/note/README.md)    
+* [logs](./mds/logs/README.md)    
