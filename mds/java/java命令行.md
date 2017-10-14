@@ -75,6 +75,19 @@ $ javac src/com/shenjinxiang/demo/HelloWorld.java -d bin/
 
 > -d 表示编译到bin目录下
 
+demo文件下目录结构：
+```
+|-- bin
+|   └-- com
+|       └-- shenjinxiang
+|           └-- demo
+|               └-- HelloWorld.class
+└-- src
+	└-- com
+		└-- shenjinxiang
+			└-- demo
+				└-- HelloWorld.java
+```
 运行：
 ```sh
 $ cd bin
@@ -91,3 +104,4 @@ $ java com.shenjinxiang.demo.HelloWorld
 ```
 
 ## 编译多个类
+
