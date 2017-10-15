@@ -83,10 +83,10 @@ demo文件下目录结构：
 |           └-- demo
 |               └-- HelloWorld.class
 └-- src
-	└-- com
-		└-- shenjinxiang
-			└-- demo
-				└-- HelloWorld.java
+    └-- com
+        └-- shenjinxiang
+            └-- demo
+                └-- HelloWorld.java
 ```
 运行：
 ```sh
