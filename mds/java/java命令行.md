@@ -115,7 +115,7 @@ $ mkdir src bin
 |-- src
     └-- com
         └-- shenjinxiang
-            └-- demo
+            |-- demo
             |   └-- StudentDemo.java
             └-- entity
                 └-- Student.java
@@ -189,14 +189,14 @@ $ javac src/com/shenjinxiang/demo/StudentDemo.java -sourcepath src -d bin
 |-- bin
 |   └-- com
 |       └-- shenjinxiang
-|           └-- demo
+|           |-- demo
 |           |   └-- StudentDemo.class
 |           └-- entity
 |               └-- Student.class
 └-- src
     └-- com
         └-- shenjinxiang
-            └-- demo
+            |-- demo
             |   └-- StudentDemo.java
             └-- entity
                 └-- Student.java
