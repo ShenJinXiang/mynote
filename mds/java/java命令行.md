@@ -43,13 +43,9 @@ Hello World!
 $ mkdir src bin
 ```
 
-在`src`目录中编写源文件：`com/shenjinxiang/demo/HelloWorld.java`，先创建包：
+在`src`目录中编写源文件：`com/shenjinxiang/demo/HelloWorld.java`， 编辑：
 ```sh
 $ mkdir -p src/com/shenjinxiang/demo
-```
-
-编辑：
-```sh
 $ vim src/com/shenjinxiang/demo/HelloWorld.java
 ```
 
@@ -112,7 +108,7 @@ $ mkdir src bin
 编写源代码，文件结果如下：
 ```
 |-- bin
-|-- src
+└-- src
     └-- com
         └-- shenjinxiang
             |-- demo
@@ -214,3 +210,59 @@ $ java com.shenjinxiang.demo.StudentDemo
 年龄：149
 地址：武当山
 ```
+
+## 单文件生成jar包
+在`demo`目录中编写简单的`HelloWorld.java`文件：
+```java
+public class HelloWorld {
+
+	public static void main(String[] args) {
+		System.out.println("hello world!");
+	}
+}
+```
+
+编译成`class`文件：
+```
+$ javac HelloWorld.jar
+```
+
+运行class文件：
+```sh
+$ java HelloWorld
+hello world!
+```
+
+生成jar包：
+```
+$ jar -cvf hello.jar HelloWorld
+```
+
+> -c  创建新档案
+> -v  在标准输出中生成详细输出
+> -f  指定档案文件名
+
+运行jar文件：
+
+```
+$ java -jar hello.jar
+hello.jar中没有主清单属性
+```
+
+这是因为没有指定入口程序，即`main`方法地址，所以重新生成：
+
+```
+$ jar -cvfe hello.jar HelloWorld HelloWorld.class
+```
+        
+> -e 为捆绑到可执行 jar 文件的独立应用程序指定应用程序入口点
+
+可以看到生成的jar中的`META-INF/MANIFEST.MF`文件中多了`Main-Class` 这个参数 指定的就是main方法的地址
+
+运行生成的jar包：
+```
+$ java -jar hello.jar
+hello world!
+```
+
+## 多文件生成jar包
