@@ -266,3 +266,167 @@ hello world!
 ```
 
 ## 多文件生成jar包
+多文件生成jar包的方法和单文件是一样的，看个简单的例子：读取properties配置文件内容，通过setter方法设置在实体类中，然后同个getter方法获取并打印内容。`demo`中创建两个目录`src`和`bin`，源代码文件结果如下：
+```
+|-- bin
+└-- src
+    |-- com
+    |   └-- shenjinxiang
+    |       |-- demo
+    |       |   └-- MyDemo.java
+    |       |-- entity
+    |       |   └-- Person.java
+    |       └-- utils
+    |           └-- Prop.java
+    └-- config
+        └-- Config.properties
+```
+
+文件`src/com/shenjinxiang/utils/prop.java`代码：
+```java
+package com.shenjinxiang.utils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Properties;
+
+public class Prop {
+
+	private Properties properties = null;
+	private static final String DEFAULT_ENCODING = "UTF-8";
+
+	public Prop(String fileName) {
+		this(fileName, DEFAULT_ENCODING);
+	}
+
+	public Prop (String filename, String encoding) {
+		InputStream inputStream = null;
+		
+		try {
+			inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename);
+			if (inputStream == null) {
+				throw new IllegalArgumentException("未找到properties文件：" + filename);
+			}
+			properties = new Properties();
+			properties.load(new InputStreamReader(inputStream, encoding));
+		} catch (IOException e) {
+			throw new RuntimeException("加载文件失败：" + filename, e);
+		} finally {
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public String get (String key) {
+		return this.properties.getProperty(key);
+	}
+	
+	public String get (String key, String defaultValue) {
+		return this.properties.getProperty(key, defaultValue);
+	}
+}
+```
+
+文件`src/com/shenjinxiang/entity/Person.java`代码：
+```java
+package com.shenjinxiang.entity;
+
+public class Person {
+
+	private String name;
+	private int age;
+	private String address;
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return this.age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+}
+```
+
+文件`src/com/shenjinxiang/demo/MyDemo.java`代码：
+```java
+package com.shenjinxiang.demo;
+
+import com.shenjinxiang.utils.Prop;
+import com.shenjinxiang.entity.Person;
+
+public class MyDemo {
+
+	public static void main(String[] args) {
+		Prop prop = new Prop("config/Config.properties");
+		Person person = new Person();
+		person.setName(prop.get("name"));
+		person.setAge(Integer.valueOf(prop.get("age")));
+		person.setAddress(prop.get("address"));
+		System.out.println("name: " + person.getName());
+		System.out.println("age: " + person.getAge());
+		System.out.println("address: " + person.getAddress());
+	}
+}
+```
+
+配置文件`config/Config.properties`文件：
+```
+name = 诸葛亮
+age = 26
+address = 南阳
+```
+
+编译源代码：
+```sh
+$ javac src/com/shenjinxiang/demo/MyDemo.java -sourcepath src/ -d bin/
+```
+
+复制配置文件到bin目录中：
+```sh
+cp -rp src/config/ bin/config
+```
+
+运行文件：
+```
+$ java com.shenjinxiang.demo.MyDemo
+name: 诸葛亮
+age: 26
+address: 南阳
+```
+
+生成jar包：
+```sh
+$ jar -cvfe demo.jar com.shenjinxiang.demo.MyDemo *
+```
+
+运行jar包：
+```sh
+$ java -jar demo.jar
+name: 诸葛亮
+age: 26
+address: 南阳
+```
