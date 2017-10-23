@@ -430,3 +430,10 @@ name: 诸葛亮
 age: 26
 address: 南阳
 ```
+
+# 编译带jar包的文件
+情况`demo`目录的所有文件，分别创建`src`，`bin`，`lib`目录
+```sh
+$ mkdir src bin lib
+```
+
