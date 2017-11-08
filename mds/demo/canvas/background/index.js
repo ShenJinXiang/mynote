@@ -3,15 +3,15 @@
 		elem: 'canvas',
 		width: window.innerWidth,
 		height: window.innerHeight,
-		background: '#f2f2f2',
-		ballColor: 'rgba(200, 200, 200, 0.5)',
+		background: '#fefefe',
+		ballColor: 'rgba(200, 200, 200, 0.4)',
 		min: 0.5,
-		max: 10,
+		max: 20,
 		maxV: 1,
 		size: 50,
 		maxLine: 200,
 		outer: 100,
-		lineColor: 'rgba(200, 200, 200, 0.5)'
+		lineColor: 'rgba(220, 220, 220, 0.5)'
 	});
 	function draw(config) {
 
