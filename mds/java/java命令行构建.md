@@ -192,7 +192,7 @@ $ java -jar person.jar
 地址：北京
 ```
 
-## 适用jar包后的java文件
+## 使用jar包后的java文件
 先写一个简单的工具类StrKit，生成jar包
 ### 构建strkit.jar
 文件结构：
