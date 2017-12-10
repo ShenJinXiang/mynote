@@ -55,7 +55,7 @@ demo
 > -c  创建新档    
 > -v  在标准输出中生成详细输出    
 > -f  指定档案文件名    
-> 为捆绑到可执行 jar 文件的独立应用程序指定应用程序入口点    
+> -e  为捆绑到可执行 jar 文件的独立应用程序指定应用程序入口点       
 
 ### 运行jar包
 ```
@@ -141,8 +141,8 @@ public class Demo {
 $ javac src/com/shenjinxiang/demo/Demo.java -sourcepath src/ -d bin/ 
 ```
 
-> -sourcepath <路径>           指定查找输入源文件的位置
-> -d <目录>                    指定放置生成的类文件的位置
+> -sourcepath <路径>           指定查找输入源文件的位置    
+> -d <目录>                    指定放置生成的类文件的位置    
 
 编译后的文件结构：
 ```
