@@ -294,3 +294,25 @@ java -cp lib/strkit.jar:bin com.shenjinxiang.demo.StrKitTest
 "123"是空吗？false
 null是空吗？true
 ```
+
+### 生成jar包
+```
+$cd bin/
+$ jar -cvfe strTest.jar com.shenjinxiang.demo.Str
+KitTest *
+已添加清单
+正在添加: com/(输入 = 0) (输出 = 0)(存储了 0%)
+正在添加: com/.DS_Store(输入 = 6148) (输出 = 225)(压缩了 96%)
+正在添加: com/shenjinxiang/(输入 = 0) (输出 = 0)(存储了 0%)
+正在添加: com/shenjinxiang/demo/(输入 = 0) (输出 = 0)(存储了 0%)
+正在添加: com/shenjinxiang/demo/StrKitTest.class(输入 = 860) (输出 = 493)(压缩了 42%)
+正在添加: com/shenjinxiang/.DS_Store(输入 = 6148) (输出 = 197)(压缩了 96%)
+```
+
+### 运行jar包
+```
+$ java -Djava.ext.dirs=../lib/ -jar strTest.jar 
+""是空吗？true
+"123"是空吗？false
+null是空吗？true
+```
