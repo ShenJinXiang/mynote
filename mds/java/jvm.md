@@ -34,3 +34,44 @@
     |                                     执行引擎                                    |
     |---------------------------------------------------------------------------------|
 ```
+
+* 类加载系统负责从文件系统或网络中加载Class信息，加载的类信息存放于一块方法区的内存空间
+* Java堆在虚拟机启动的时候建立，是Java程序最主要的内存工作区域
+* 堆空间是所有线程共享的
+* 直接内存是在Java堆外的，直接向系统申请的内存区间，访问直接内存的速度会优于Java堆
+* 垃圾回收器可以堆方法区、java堆和直接内存进行回收
+* 每个Java虚拟机线程都有一个私有的Java栈，在线程创建的时候被创建，保存局部变量、方法参数，于java方法的调用、返回相关
+* 本地方法是java虚拟机的重要扩展，允许java直接调用本地方法
+* PC寄存器是每个线程私有的空间
+* 执行引擎是Java虚拟机的最核心组件之间，负责执行虚拟机的字节码
+
+## java 命令
+> java [-options] class [args...]
+
+* -options java虚拟机启动参数
+* class 为带有main()函数的Java类
+* args表示传递给主函数main()的参数
+
+**例子**
+
+```java
+public class SimpleArgs {
+
+	public static void main(String[] args) {
+		for (int i = 0; i < args.length; i++) {
+			System.out.println("参数" + (i + 1) + ": " + args[i]);
+		}
+		System.out.println("-Xmx" + Runtime.getRuntime().maxMemory() / 1000 / 1000 + "M");
+	}
+}
+```
+
+编译运行：
+```
+$ javac SimpleArgs
+$ java -Xmx100m SimpleArgs aa bb cc
+参数1: aa
+参数2: bb
+参数3: cc
+-Xmx100M
+ ```
