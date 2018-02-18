@@ -7,4 +7,4 @@
  4.3. [插入排序](./sort.md#插入排序)    
 3. [Demo](./Demo.md#Demo)    
 4. [API](./api.md#api)    
-5. [ECMAScript 6 入门](./ECMAScript6.md#ecmascript6入门)    
+5. [ECMAScript 6 入门](./es6/README.md#ecmascript6入门)    
