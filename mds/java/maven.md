@@ -2,6 +2,7 @@
 
 ## 目录结构
 
+```
 src
 	-main
 		-java
@@ -10,6 +11,7 @@ src
 		-java
 			-package
 	resources
+```
 
 ## 常用构建命令
 
