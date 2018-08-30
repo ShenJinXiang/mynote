@@ -1,0 +1,9 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+canvas {
+	display: block;
+	border: 1px solid #ccc;
+}
