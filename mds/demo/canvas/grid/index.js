@@ -19,6 +19,7 @@
 		};
 
 		var _data = {};
+		var ctx;
 
 		initData();
 		draw();
@@ -63,11 +64,11 @@
 		function draw() {
 			var canvas = document.createElement('canvas');
 			_$(_option.el).appendChild(canvas);
-			var context = canvas.getContext('2d');
-			drawByData(context);
+			ctx = canvas.getContext('2d');
+			drawByData();
 		}
 
-		function drawByData(ctx) {
+		function drawByData() {
 			var canvas = ctx.canvas;
 			canvas.width = _data.cols[_data.cols.length - 1];
 			canvas.height = _data.rows[_data.rows.length - 1];

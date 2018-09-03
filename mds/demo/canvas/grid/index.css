@@ -3,6 +3,13 @@
 	padding: 0px;
 	box-sizing: border-box;
 }
+#qyGrid {
+	padding: 0px;
+	overflow: hidden;
+	width: 98%;
+	height: 600px;
+	margin: 0px auto;
+}
 canvas {
 	display: block;
 	border: 1px solid #ccc;
