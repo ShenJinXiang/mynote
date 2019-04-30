@@ -44,3 +44,32 @@ document.open();
 document.add(new Paragraph("shenjinxiang"));
 document.close();
 ```
+
+## 设置密码
+```java
+pdfWriter.setEncryption("shen".getBytes(), "jinxiang".getBytes(),
+                PdfWriter.ALLOW_SCREENREADERS,
+                PdfWriter.STANDARD_ENCRYPTION_128);
+```
+此处需依赖其他jar，访问[http://mvnrepository.com/artifact/com.itextpdf/itextpdf/](http://mvnrepository.com/artifact/com.itextpdf/itextpdf/)，查看依赖库
+
+依赖项配置：
+```xml
+<dependency>
+	<groupId>org.apache.santuario</groupId>
+	<artifactId>xmlsec</artifactId>
+	<version>1.5.1</version>
+</dependency>
+
+<dependency>
+	<groupId>org.bouncycastle</groupId>
+	<artifactId>bcprov-jdk15on</artifactId>
+	<version>1.49</version>
+</dependency>
+
+<dependency>
+	<groupId>org.bouncycastle</groupId>
+	<artifactId>bcpkix-jdk15on</artifactId>
+	<version>1.49</version>
+</dependency>
+```
