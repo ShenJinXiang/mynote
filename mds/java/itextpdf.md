@@ -73,3 +73,14 @@ pdfWriter.setEncryption("shen".getBytes(), "jinxiang".getBytes(),
 	<version>1.49</version>
 </dependency>
 ```
+
+## 添加页面
+```java
+document.open();
+document.add(new Paragraph("shenjinxiang"));
+document.newPage();
+document.add(new Paragraph("page2"));
+document.newPage();
+document.add(new Paragraph("shenjinxiang"));
+document.close();
+```
